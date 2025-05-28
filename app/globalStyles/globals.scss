@@ -1,0 +1,61 @@
+body {
+  font-family: 'Optima' !important;
+  font-weight: 400;
+  background-color: #023524;
+  color: #6a6a6a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  list-style: none;
+  overflow: hidden;
+
+}
+a {
+  text-decoration: none;
+  list-style: none;
+}
+
+.main__btn {
+  padding: 10px 16px 10px 16px;
+  background: none;
+  font-size: 16px;
+  font-weight: 400;
+  background: #023524;
+  outline: none;
+     font-family: 'Optima', sans-serif;
+
+}
+// @font-face {
+//   font-display: swap;
+//   font-family: Optima;
+//   src: url('../../public/fonts/Optima-Medium.ttf');
+//   font-style: normal;
+//   font-weight: 500;
+
+// }
+
+@font-face {
+  font-family: 'Optima';
+  src: url('/fonts/Optima-Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Charis SIL';
+  src: url('/fonts/CharisSIL-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Cormorant;
+  src: url('../../public/fonts/Cormorant-Bold.ttf');
+  font-style: normal;
+  font-weight: 700;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

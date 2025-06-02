@@ -68,15 +68,25 @@
         display: flex;
         align-items: center;
         gap: 5px;
+        cursor: pointer;
+        // img{
+        //     transition: 0.2s ease-in-out;
+        // }
+        p{
+          color: #F9F6E3;
+          font-size: 16px;
+        }
       
       }
       span {
         cursor: pointer;
       }
-
-      span {
-        text-transform: uppercase;
-      }
+        .header__lang{
+text-transform: uppercase;
+        }
+      // span {
+      //   text-transform: uppercase;
+      // }
       .header__right_item {
         display: flex;
         align-items: center;
@@ -142,4 +152,9 @@
       }
     }
   }
+}
+
+
+.arrow-rotate{
+  transform: rotate(180deg);
 }

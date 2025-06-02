@@ -1,5 +1,6 @@
 import { useLang } from '@/app/hooks/useLang';
 import { handleCloseSearchModal } from '@/app/lib/utils/common';
+import Image from 'next/image';
 import React from 'react';
 // модалка для поиска
 export const SearchModal = () => {
@@ -23,14 +24,12 @@ export const SearchModal = () => {
 
   return (
     <div className="search-modal">
-      <button onClick={handleCloseSearchModal} className="btn-reset search-modal__close"/>
-        <h3 className="search-modal__title">{translations[lang].header.search_products}</h3>
+      {/* <button onClick={handleCloseSearchModal} className="btn-reset search-modal__close"/> */}
+ 
         <div className="search-modal__top">
-          <label className="search-modal__label">
-            <input onFocus={handleInputFocus} onBlur={handleInputBlur}  type="text" className="search-modal__input" />
-            <span className="search-modal__floating_label">
-              {translations[lang].header.search_infos}
-            </span>
+          <label className="search-modal__label"> 
+            <Image src={'/img/global-search.svg'} width={18} height={18} alt='search' />
+            <input type="text" placeholder='Поиск'/>
           </label>
         </div>
      

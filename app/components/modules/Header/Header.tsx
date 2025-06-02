@@ -1,14 +1,22 @@
 'use client';
 
 import { useUnit } from 'effector-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../elements/Logo';
 import Link from 'next/link';
 import { Menu } from './Menu';
-import { $searchModal, openMenu, openSearchModal } from '@/app/context/modals';
+import {
+  $currencyModal,
+  $searchModal,
+  openCartPopup,
+  openMenu,
+  openSearchModal,
+  toggleCurrencyModal,
+  toggleSearchModal,
+} from '@/app/context/modals';
 import { addOverflowHiddenToBody, handleCloseSearchModal } from '@/app/lib/utils/common';
 import { useLang } from '@/app/hooks/useLang';
-import CartPopup from './CartPopup';
+
 import { Button } from '../../elements/Button';
 import arrowDown from '../../../../public/img/arrow_down.svg';
 import { setLang } from '@/app/context/lang';
@@ -16,18 +24,29 @@ import { AllowedLangs } from '@/app/constants/lang';
 import Image from 'next/image';
 import { Hamburger } from './Hamburger';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+import { $location, fetchLocationFx } from '@/app/context/country';
+import { CartPopup } from './CartPopup';
 
 export const Header = () => {
   const { lang, translations } = useLang();
-  // переключение языка
-  const isMedia800 = useMediaQuery(800);
+
+  const location = useUnit($location); 
+  const isCurrencyModal = useUnit($currencyModal) 
+ 
+  
+  
+  useEffect(() => {
+    fetchLocationFx();
+
+    
+  }, []);
 
   const handleSwitchLang = (lang: string) => {
     setLang(lang as AllowedLangs);
     localStorage.setItem('lang', JSON.stringify(lang));
   };
-  console.log(lang);
 
+  // переключение языка
   const handleSwitchLangToRuEng = () => {
     if (lang == 'ru') {
       handleSwitchLang('en');
@@ -36,14 +55,19 @@ export const Header = () => {
     }
   };
   // const handleSwitchLangToEn = () => handleSwitchLang('en');
-
-  const handleOpenMenu = () => {
+  // Модалка открытые поиска
+  const handleOpenSearchMenu = () => {
+    toggleSearchModal();
     addOverflowHiddenToBody();
-    openMenu();
   };
 
-  const handleOpenSearchMenu = () => {
-    openSearchModal();
+  const handleOpenCart = () =>{
+    openCartPopup()
+  }
+
+  // Модалка открытые стран
+  const handleOpenCurrencyModal = () => {
+    toggleCurrencyModal();
     addOverflowHiddenToBody();
   };
   return (
@@ -56,13 +80,13 @@ export const Header = () => {
           <Hamburger />
 
           <ul>
-            <Link href={'/'}>
+            <Link href={'/about'}>
               <li>{translations[lang].header.about_brand}</li>
             </Link>
             <Link href={'/'}>
               <li>{translations[lang].header.collection}</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/contacts'}>
               <li>{translations[lang].header.contacts}</li>
             </Link>
             <Link href={'/'}>
@@ -78,46 +102,29 @@ export const Header = () => {
 
         <div className="header__right_items">
           {/* <Button>ВСТУПИТЬ В КЛУБ</Button> */}
-          <div className="currency__container">
-            <p>РОССИЯ (РУБ)</p>
-            <Image src={'/img/arrow_down.svg'} width={10} height={6} alt="arrow" />
+          <div onClick={handleOpenCurrencyModal} className="currency__container">
+            <p>
+              {' '}
+              {location?.country_name} ({location?.currency.code})
+            </p>
+          
+            <Image className={isCurrencyModal ? 'arrow-rotate' : ''} src={'/img/arrow_down.svg'} width={10} height={6} alt="arrow" />
           </div>
-          <span onClick={handleSwitchLangToRuEng}>{lang}</span>
+          <span className='header__lang' onClick={handleSwitchLangToRuEng}>{lang}</span>
           <div className="header__right_item">
-            <Image src={'/img/search.svg'} width={24} height={24} alt="search" />
-            <Image src={'/img/shopping_bag.svg'} width={24} height={24} alt="bag" />
-          </div>
-          {/* <ul>
-            <li>fsdasfdas</li>
-            <li>fsdasfdas</li>
-            <li>fsdasfdas</li>
-          </ul> */}
-        </div>
-        {/* <ul className="header__links list-reset">
-          <li className="header__links__item">
-            <button
+            <Image
               onClick={handleOpenSearchMenu}
-              className="btn-reset header__links__item__btn header__links__item__btn--search"
+              src={'/img/search.svg'}
+              width={24}
+              height={24}
+              alt="search"
             />
-          </li> 
-           <li className="header__links__item">
-           Корзина
-           </li>
-          <li className="header__links__item">
-            <Link
-              href="/favorites"
-              className="header__links__item__btn header__links__item__btn--favorites"></Link>
-          </li>
-          <li className="header__links__item">
-            <Link
-              className="header__links__item__btn header__links__item__btn--compare"
-              href="/comparison"></Link>
-          </li>
-          <li className="header__links__item"></li>
-          <li className="header__links__item header__links__item--profile">
-            <button className="btn-reset header__links__item__btn header__links__item__btn--profile" />
-          </li>
-        </ul> */}
+            <Image onClick={handleOpenCart } src={'/img/shopping_bag.svg'} width={24} height={24} alt="bag" />
+            <CartPopup/>
+          </div>
+     
+        </div>
+   
       </div>
     </header>
   );

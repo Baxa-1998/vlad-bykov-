@@ -5,7 +5,7 @@ import React from 'react'
 
 export const Hamburger = () => { 
   const menuIsOpen = useUnit($menuIsOpen);
-console.log(menuIsOpen);
+
 
   const handleOpenMenu = () => {
 

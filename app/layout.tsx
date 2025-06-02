@@ -4,6 +4,7 @@ import "./globalStyles/header.scss";
 import "./globalStyles/menu.scss";
 import "./globalStyles/mobile-navbar.scss";
 import "./globalStyles/search-modal.scss";
+import "./globalStyles/currency-modal.scss";
 import "./globalStyles/footer.scss";
 import "./globalStyles/hero.scss";
 import "./globalStyles/main-page.scss";

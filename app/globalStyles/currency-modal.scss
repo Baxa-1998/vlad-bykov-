@@ -1,0 +1,44 @@
+.currency-modal {
+  width: 288px;
+  height: fit-content;
+  position: fixed;
+  top: 72px;
+  right: 0;
+  transform: translateX(-50%);
+  z-index: 101;
+  background: #023524e5;
+  .currency-modal__list{
+    display: flex; 
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    // padding-left: 12px;
+    // padding-right: 12px;
+
+    .currency-modal__list__item{
+      height: fit-content;
+     
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      color: #F9F6E3;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: 'Optima', sans-serif;
+      cursor: pointer;
+      &:hover{
+        opacity: 80%;
+       
+      }
+      p{ 
+        margin-left: 12px;
+      }
+
+      img {
+        margin-right: 12px;
+      }
+    }
+  }
+}

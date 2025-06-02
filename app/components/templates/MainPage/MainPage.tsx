@@ -15,39 +15,54 @@ import { HistoryBrand } from '../../modules/MainPage/HistoryBrand/HistoryBrand';
 import { Category } from '../../modules/MainPage/Category/Category';
 import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandStatement';
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
+import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+import { usePathname } from 'next/navigation';
 
 export default function MainPage() {
+  const pathname = usePathname();
   const swiperRef = useRef<any>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
- const handleSlideChange = (swiper: any) => {
-  // Проверяем, последний ли слайд
-  const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
 
-  // if (isLastSlide) {
-  //       document.body.style.overflow = 'visible'
-  // } else {
-  //   document.body.style.overflow = 'hidden'
-  // }
+  const isDesktop = useMediaQuery(1280); // ← здесь
 
-  // Если всё ещё нужно логика с 2 и 6 индексом — можно оставить:
-  if (swiper.activeIndex === 2 || swiper.activeIndex === 6) {
-    setActiveSwiper(true);
-  } else {
-    setActiveSwiper(false);
-  }
-};
+  const handleReachEnd = () => {
+    if (swiperRef.current) {
+      swiperRef.current.mousewheel.disable();
+      document.body.style.overflow = 'visible';
+    }
+  };
+
+  const handleSlideChange = (swiper: any) => {
+    const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
+
+    if (isLastSlide) {
+      swiper.mousewheel.disable(); // отключаем прокрутку Swiper
+      document.body.style.overflow = 'visible'; // включаем scroll для всего документа
+    } else {
+      swiper.mousewheel.enable(); // снова включаем Swiper scroll
+
+      document.body.style.overflow = 'hidden';
+    }
+
+    // дополнительная логика, если нужна
+    if (swiper.activeIndex === 2 || swiper.activeIndex === 6) {
+      setActiveSwiper(true);
+    } else {
+      setActiveSwiper(false);
+    }
+  };
+
   return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={handleSlideChange}
         direction={'vertical'}
+        onReachEnd={handleReachEnd}
         slidesPerView={1}
         spaceBetween={30}
-        mousewheel={{ forceToAxis: true, releaseOnEdges: true }} // ✅ ВАЖНО
-        pagination={{
-          clickable: true,
-        }}
+        mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
+        pagination={{ clickable: true }}
         modules={[Mousewheel, Pagination]}
         className="mySwiper">
         <SwiperSlide>
@@ -65,11 +80,17 @@ export default function MainPage() {
         <SwiperSlide>
           <Category />
         </SwiperSlide>
-        <SwiperSlide><BrandStatement/></SwiperSlide>
         <SwiperSlide>
-       <JoinClub/>
+          <BrandStatement />
         </SwiperSlide>
+
+        {!isDesktop && (
+          <SwiperSlide>
+            <JoinClub />
+          </SwiperSlide>
+        )}
       </Swiper>
+      {/* <Footer/> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useUnit } from 'effector-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Logo from '../../elements/Logo';
 import Link from 'next/link';
 import { Menu } from './Menu';

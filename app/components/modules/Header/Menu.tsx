@@ -1,10 +1,9 @@
 import React from 'react';
 import { $menuIsOpen, closeMenu } from '@/app/context/modals';
 import { useUnit } from 'effector-react';
-import { useLang } from '@/app/hooks/useLang';
+
 import { removeOverflowHiddenFromBody } from '@/app/lib/utils/common';
-import { setLang } from '@/app/context/lang';
-import { AllowedLangs } from '@/app/constants/lang';
+
 
 
 import { usePathname } from 'next/navigation';
@@ -20,10 +19,10 @@ export const Menu = () => {
 
 
   // переключение языка
-  const handleSwitchLang = (lang: string) => {
-    setLang(lang as AllowedLangs);
-    localStorage.setItem('lang', JSON.stringify(lang));
-  };
+  // const handleSwitchLang = (lang: string) => {
+  //   setLang(lang as AllowedLangs);
+  //   localStorage.setItem('lang', JSON.stringify(lang));
+  // };
 
   // const handleSwitchLangToRu = () => handleSwitchLang('ru');
   // const handleSwitchLangToEn = () => handleSwitchLang('en');
@@ -33,13 +32,13 @@ export const Menu = () => {
     closeMenu();
   };
 
-  const handleRedirectToCatalog = (path: string) => {
-    if (pathName.includes('/catalog')) {
-      window.history.pushState({ path }, '', path);
-      window.location.reload();
-    }
-    handleCloseMenu();
-  };
+  // const handleRedirectToCatalog = (path: string) => {
+  //   if (pathName.includes('/catalog')) {
+  //     window.history.pushState({ path }, '', path);
+  //     window.location.reload();
+  //   }
+  //   handleCloseMenu();
+  // };
   const menuIsOpen = useUnit($menuIsOpen);
   // const { lang, translations } = useLang();
 

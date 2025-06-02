@@ -15,3 +15,10 @@ export interface IMenuLinkItemProps {
   };
   handleRedirectToCatalog: (arg0: string) => void;
 }
+
+export interface IJoinProps {
+  id: number;
+  name: string;
+  subscribers: string;
+  img: string;
+}

@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import AboutSection3 from '../components/modules/About/AboutSection3';
 import AboutSection4 from '../components/modules/About/AboutSection4';
+import AboutSection5 from '../components/modules/About/AboutSection5';
 
 
 
@@ -44,11 +45,9 @@ export default function AboutPage() {
     <AboutSection4/>
         </SwiperSlide>
         <SwiperSlide>
-  
+    <AboutSection5/>
         </SwiperSlide>
-        <SwiperSlide>
-    
-        </SwiperSlide>
+       
 
      
       </Swiper>

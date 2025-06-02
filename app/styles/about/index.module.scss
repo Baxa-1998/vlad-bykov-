@@ -238,6 +238,62 @@
   }
 }
 
+.aboutSection5{
+  width: 100%; 
+  height: 100vh; 
+  background: #FFFFFF;
+  padding-top: 64px;
+  align-items: start;
+  .aboutSection5Wrapper{
+    width: 90%;
+    margin: 0 auto;
+      h3{
+    text-align: start;
+
+  }
+  .aboutSection5Title{
+     text-align: start; 
+      color: #023524;
+    
+  }
+
+
+  }
+  
+  .clubMembers {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin: 0 auto;
+
+      margin-top: 64px;
+      //   display: grid;
+      // gap: 16px;
+
+      // grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      // max-height: calc(240px * 2 + 16px); // 2 ряда по высоте + gap (если надо ограничить)
+
+      // justify-content: center; // центровка колонок по горизонтали
+
+      .clubItems {
+        width: 240px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+
+        img {
+          border-radius: 50%;
+        }
+      }
+    }
+
+}
+
 @keyframes infinite-scroll {
   0% {
     transform: translateX(0);

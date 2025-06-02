@@ -135,6 +135,7 @@
       }
       .cart__list{
         width: 90%;
+        height: 50vh;
         .cart__item{
           .cart__info{
             .cart__info_heading{
@@ -142,6 +143,18 @@
             }
             .cart__info_title{
               font-size: 16px;
+            }
+            .cart__order_wrapper{
+              .cart__counter{
+                width: 90px;
+                height: 30px;
+              }
+            }
+          }
+          .cart__img{
+            img{
+              width: 96px;
+              height: 144px;
             }
           }
          

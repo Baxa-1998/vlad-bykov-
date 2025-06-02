@@ -1,5 +1,5 @@
 import React from 'react';
-import { $menuIsOpen, closeMenu } from '@/app/context/modals';
+import { $menuIsOpen } from '@/app/context/modals';
 import { useUnit } from 'effector-react';
 
 

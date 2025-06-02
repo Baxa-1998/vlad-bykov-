@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Hero } from '../../modules/MainPage/Hero/Hero';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -17,10 +17,8 @@ import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandState
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 
-
 export default function MainPage() {
-
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
 
   const isDesktop = useMediaQuery(1280); // ← здесь
@@ -32,7 +30,7 @@ export default function MainPage() {
     }
   };
 
-  const handleSlideChange = (swiper: any) => {
+  const handleSlideChange = (swiper: SwiperType) => {
     const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
 
     if (isLastSlide) {

@@ -13,7 +13,7 @@ import Image from 'next/image';
 
 export const Menu = () => {
 
-  const pathName = usePathname();
+  
 
 
 

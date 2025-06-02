@@ -2,11 +2,7 @@ import React from 'react';
 import { $menuIsOpen, closeMenu } from '@/app/context/modals';
 import { useUnit } from 'effector-react';
 
-import { removeOverflowHiddenFromBody } from '@/app/lib/utils/common';
 
-
-
-import { usePathname } from 'next/navigation';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,10 +23,10 @@ export const Menu = () => {
   // const handleSwitchLangToRu = () => handleSwitchLang('ru');
   // const handleSwitchLangToEn = () => handleSwitchLang('en');
 
-  const handleCloseMenu = () => {
-    removeOverflowHiddenFromBody();
-    closeMenu();
-  };
+  // const handleCloseMenu = () => {
+  //   removeOverflowHiddenFromBody();
+  //   closeMenu();
+  // };
 
   // const handleRedirectToCatalog = (path: string) => {
   //   if (pathName.includes('/catalog')) {

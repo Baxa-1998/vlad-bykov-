@@ -1,5 +1,5 @@
 import React from 'react';
-import { $menuIsOpen } from '@/app/context/modals';
+import { $menuIsOpen, closeMenu } from '@/app/context/modals';
 import { useUnit } from 'effector-react';
 
 
@@ -53,19 +53,19 @@ export const Menu = () => {
   return (
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
       <ul>
-        <Link href={'/about'}>
+        <Link onClick={()=> closeMenu()} href={'/about'}>
           <li>О БРЕНДЕ</li>{' '}
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
-        <Link href={'/'}>
+        <Link onClick={()=> closeMenu()} href={'/'}>
           <li>КОЛЛЕКЦИЯ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />{' '}
         </Link>
-        <Link href={'/contacts'}>
+        <Link onClick={()=> closeMenu()} href={'/contacts'}>
           <li>КОНТАКТЫ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
-        <Link href={'/'}>
+        <Link onClick={()=> closeMenu()} href={'/'}>
           <li>ИНДИВИДУАЛЬНЫЙ ПОШИВ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>

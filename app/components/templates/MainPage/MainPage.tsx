@@ -35,14 +35,15 @@ export default function MainPage() {
     const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
     console.log(isLastSlide);
     
-    if (isLastSlide) {
-      swiper.mousewheel.disable(); // отключаем прокрутку Swiper
-      document.body.style.overflow = 'visible'; // включаем scroll для всего документа
-    } else {
-      swiper.mousewheel.enable(); // снова включаем Swiper scroll
-
-      document.body.style.overflow = 'hidden';
-    }
+  if (isLastSlide) {
+  swiper.mousewheel.disable();
+  document.body.style.overflow = 'auto';
+  swiper.el.classList.add('swiper-disabled-scroll');
+} else {
+  swiper.mousewheel.enable();
+  document.body.style.overflow = 'hidden';
+  swiper.el.classList.remove('swiper-disabled-scroll');
+}
 
     // дополнительная логика, если нужна
     if (swiper.activeIndex === 2 || swiper.activeIndex === 6) {

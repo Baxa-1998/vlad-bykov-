@@ -89,6 +89,9 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
+                .cart__counter_number{
+                  display: block;
+                }
             button {
               background: none;
               border: none;
@@ -122,7 +125,30 @@
       margin-top: 24px;
     }
   }
-  
+  @media screen and (max-width: 540px){
+    width: 100%;
+    .cart__wrapper{
+      .cart__top{
+        h3{
+          font-size: 20px;
+        }
+      }
+      .cart__list{
+        width: 90%;
+        .cart__item{
+          .cart__info{
+            .cart__info_heading{
+              font-size: 14px;
+            }
+            .cart__info_title{
+              font-size: 16px;
+            }
+          }
+         
+        }
+      }
+    }
+  }
   // transform: translateX(100%);
 }
 

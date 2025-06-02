@@ -18,7 +18,7 @@ export const CartItem = () => {
         <div className="cart__order_wrapper">
           <div className="cart__counter">
             <button>-</button>
-            <span>1</span>
+            <span className='cart__counter_number'>1</span>
             <button>+</button>
           </div>
 
@@ -27,6 +27,7 @@ export const CartItem = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

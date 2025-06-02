@@ -49,20 +49,19 @@ export const NewCollection = () => {
   return (
     <div className={styles.newCollection}>
       <div className={styles.newCollectionWrapper}>
-        <div className={styles.newCollectionInner}> 
+        <div className={styles.newCollectionInner}>
           <div>
-  {titles.map((title, index) => (
-            <h3
-              onClick={() => handleCollectionClick(index)}
-              key={index}
-              className={`${styles.newCollectionTitle} ${
-                index === collectionSelected ? styles.titleActive : ''
-              }`}>
-              {title}
-            </h3>
-          ))}
+            {titles.map((title, index) => (
+              <h3
+                onClick={() => handleCollectionClick(index)}
+                key={index}
+                className={`${styles.newCollectionTitle} ${
+                  index === collectionSelected ? styles.titleActive : ''
+                }`}>
+                {title}
+              </h3>
+            ))}
           </div>
-        
         </div>
         <div className={styles.newCollectionItems}>
           {collectionItems.map((item) => (
@@ -75,9 +74,8 @@ export const NewCollection = () => {
           ))}
         </div>
         <div className={styles.newCollectionBtnWrapper}>
-    <Button className={styles.newCollectionBtn}>В КАТАЛОГ</Button>
+          <Button className={styles.newCollectionBtn}>В КАТАЛОГ</Button>
         </div>
-    
       </div>
     </div>
   );

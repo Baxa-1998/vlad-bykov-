@@ -1,8 +1,8 @@
 'use client';
-import { addScrollToBody } from '@/app/lib/utils/common';
+
 import styles from '@/app/styles/contacts/index.module.scss';
 import Link from 'next/link';
-import { useEffect } from 'react';
+
 const Contacts = () => {
   return (
     <section className={styles.contacts}>

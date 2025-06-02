@@ -1,26 +1,14 @@
-import { useLang } from '@/app/hooks/useLang';
-import { handleCloseSearchModal } from '@/app/lib/utils/common';
+
 import Image from 'next/image';
 import React from 'react';
 // модалка для поиска
 export const SearchModal = () => {
-  const { lang, translations } = useLang();
 
-    const handleInputFocus = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>
-  ) => {
-    e.target.classList.add('with_value')
-  }
 
-  const handleInputBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>
-  ) => {
-    if (e.target.value) {
-      return
-    }
 
-    e.target.classList.remove('with_value')
-  }
+
+
+
 
   return (
     <div className="search-modal">

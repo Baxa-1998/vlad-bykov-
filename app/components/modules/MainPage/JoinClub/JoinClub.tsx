@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/app/styles/main-page/index.module.scss';
-import Image from 'next/image';
+
 import { Button } from '@/app/components/elements/Button';
 import { ClubMembers } from './ClubMembers';
 interface IJoinProps {

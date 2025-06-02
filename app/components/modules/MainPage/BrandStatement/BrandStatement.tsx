@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/app/styles/main-page/index.module.scss';
-import Image from 'next/image';
+
 import { Title } from '@/app/components/elements/Title';
 
 export const BrandStatement = () => {

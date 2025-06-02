@@ -1,9 +1,5 @@
-import { IWrappedComponentProps } from '@/app/types/hocs';
-import { forwardRef } from 'react';
-import { withClickOutside } from '../../hocs/withClickOutside';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useLang } from '@/app/hooks/useLang';
+
+
 
 import Image from 'next/image';
 import { CartItem } from './CartItem';
@@ -11,7 +7,7 @@ import { useUnit } from 'effector-react';
 import { $cartModal, closeCartPopup } from '@/app/context/modals';
 import { Button } from '../../elements/Button';
 export const CartPopup = () => {
-  const { lang, translations } = useLang();
+
   const open = useUnit($cartModal)
 console.log(open);
   const handleClosePopup = () =>{

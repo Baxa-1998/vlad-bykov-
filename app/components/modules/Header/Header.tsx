@@ -7,38 +7,29 @@ import Link from 'next/link';
 import { Menu } from './Menu';
 import {
   $currencyModal,
-  $searchModal,
   openCartPopup,
-  openMenu,
-  openSearchModal,
   toggleCurrencyModal,
   toggleSearchModal,
 } from '@/app/context/modals';
-import { addOverflowHiddenToBody, handleCloseSearchModal } from '@/app/lib/utils/common';
+import { addOverflowHiddenToBody } from '@/app/lib/utils/common';
 import { useLang } from '@/app/hooks/useLang';
 
-import { Button } from '../../elements/Button';
-import arrowDown from '../../../../public/img/arrow_down.svg';
 import { setLang } from '@/app/context/lang';
 import { AllowedLangs } from '@/app/constants/lang';
 import Image from 'next/image';
 import { Hamburger } from './Hamburger';
-import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+
 import { $location, fetchLocationFx } from '@/app/context/country';
 import { CartPopup } from './CartPopup';
 
 export const Header = () => {
   const { lang, translations } = useLang();
 
-  const location = useUnit($location); 
-  const isCurrencyModal = useUnit($currencyModal) 
- 
-  
-  
+  const location = useUnit($location);
+  const isCurrencyModal = useUnit($currencyModal);
+
   useEffect(() => {
     fetchLocationFx();
-
-    
   }, []);
 
   const handleSwitchLang = (lang: string) => {
@@ -61,9 +52,9 @@ export const Header = () => {
     addOverflowHiddenToBody();
   };
 
-  const handleOpenCart = () =>{
-    openCartPopup()
-  }
+  const handleOpenCart = () => {
+    openCartPopup();
+  };
 
   // Модалка открытые стран
   const handleOpenCurrencyModal = () => {
@@ -107,10 +98,18 @@ export const Header = () => {
               {' '}
               {location?.country_name} ({location?.currency.code})
             </p>
-          
-            <Image className={isCurrencyModal ? 'arrow-rotate' : ''} src={'/img/arrow_down.svg'} width={10} height={6} alt="arrow" />
+
+            <Image
+              className={isCurrencyModal ? 'arrow-rotate' : ''}
+              src={'/img/arrow_down.svg'}
+              width={10}
+              height={6}
+              alt="arrow"
+            />
           </div>
-          <span className='header__lang' onClick={handleSwitchLangToRuEng}>{lang}</span>
+          <span className="header__lang" onClick={handleSwitchLangToRuEng}>
+            {lang}
+          </span>
           <div className="header__right_item">
             <Image
               onClick={handleOpenSearchMenu}
@@ -119,12 +118,16 @@ export const Header = () => {
               height={24}
               alt="search"
             />
-            <Image onClick={handleOpenCart } src={'/img/shopping_bag.svg'} width={24} height={24} alt="bag" />
-            <CartPopup/>
+            <Image
+              onClick={handleOpenCart}
+              src={'/img/shopping_bag.svg'}
+              width={24}
+              height={24}
+              alt="bag"
+            />
+            <CartPopup />
           </div>
-     
         </div>
-   
       </div>
     </header>
   );

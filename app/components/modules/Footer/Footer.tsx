@@ -1,18 +1,14 @@
 import Link from 'next/link';
 
-import FooterLinks from './FooterLinks';
-import FooterMobileLink from './FooterMobileLink';
-import { useLang } from '@/app/hooks/useLang';
-import { useMediaQuery } from '@/app/hooks/useMediaQuery';
-import Logo from '../../elements/Logo';
+
+
+
 import { Button } from '../../elements/Button';
 import Image from 'next/image';
-import facebook from '../../../../public/img/facebook.svg';
+
 
 const Footer = () => {
-  const { lang, translations } = useLang();
-  const isMedia950 = useMediaQuery(950);
-  const isMedia640 = useMediaQuery(640);
+
 
   return (
     <footer className="footer">

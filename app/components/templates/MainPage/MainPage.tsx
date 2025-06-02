@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { Mousewheel, Pagination } from 'swiper/modules';
-import Footer from '../../modules/Footer/Footer';
+
 import { Partners } from '../../modules/MainPage/Partners/Partners';
 import { NewCollection } from '../../modules/MainPage/NewCollection/NewCollection';
 import { HistoryBrand } from '../../modules/MainPage/HistoryBrand/HistoryBrand';
@@ -16,10 +16,10 @@ import { Category } from '../../modules/MainPage/Category/Category';
 import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandStatement';
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
-import { usePathname } from 'next/navigation';
+
 
 export default function MainPage() {
-  const pathname = usePathname();
+
   const swiperRef = useRef<any>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
 

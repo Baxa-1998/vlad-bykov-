@@ -157,7 +157,7 @@
   height: 100vh;
   width: 100%;
   background: radial-gradient(circle at center, rgba(6, 155, 105, 1), rgba(2, 53, 36, 1) 50%);
-  padding-top: 65px; 
+  padding-top: 65px;
   padding-bottom: 64px;
   .aboutSectionText {
     width: 90%;
@@ -196,36 +196,54 @@
 
     margin: 0 auto;
     margin-top: 85px;
-    img{
+    img {
       width: 519px;
       height: 96px;
     }
   }
 
-  @media screen and (max-width: 1336px){
-    .aboutPartners{
+  @media screen and (max-width: 1336px) {
+    .aboutPartners {
       width: 100%;
       justify-content: center;
-     
     }
-
   }
-   @media screen and (max-width: 1024px){
-    .aboutPartners{
+  @media screen and (max-width: 1024px) {
+    .aboutPartners {
       width: 100%;
       justify-content: center;
-      img{
+      img {
         width: 300px;
         height: 75px;
       }
     }
-   }
-    @media screen and (max-width: 540px){
-    .aboutPartners{
-      img{
+  }
+  @media screen and (max-width: 540px) {
+    .aboutSectionText{
+      h3{
+        font-size: 20px;
+      }
+      p{
+        font-size: 14px;
+      }
+    }
+    .aboutPartners {
+      animation: infinite-scroll 10s linear infinite;
+      flex-wrap: nowrap;
+      img {
         width: 104px;
         height: auto;
       }
     }
-    }
+  }
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }

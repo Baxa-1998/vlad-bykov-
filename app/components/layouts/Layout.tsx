@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
 import { Header } from '../modules/Header/Header';
-import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { SearchModal } from '../modules/Header/SearchModal';
@@ -14,11 +14,11 @@ import {
 } from '@/app/lib/utils/common';
 import Footer from '../modules/Footer/Footer';
 import { CurrencyModal } from '../modules/Header/CurrencyModal';
-import { useRouter } from 'next/router';
+
 import { usePathname } from 'next/navigation';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const isMedia800 = useMediaQuery(800);
+
   const searchModal = useUnit($searchModal);
   const currencyModal = useUnit($currencyModal);
 

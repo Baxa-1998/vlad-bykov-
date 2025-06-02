@@ -1,35 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { $menuIsOpen, closeMenu } from '@/app/context/modals';
 import { useUnit } from 'effector-react';
 import { useLang } from '@/app/hooks/useLang';
 import { removeOverflowHiddenFromBody } from '@/app/lib/utils/common';
 import { setLang } from '@/app/context/lang';
 import { AllowedLangs } from '@/app/constants/lang';
-import Logo from '../../elements/Logo';
-import { AnimatePresence, motion } from 'framer-motion';
-import Accordion from '../Accordion/Accordion';
+
+
 import { usePathname } from 'next/navigation';
-import MenuLinkItem from './MenuLinkItem';
-import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
 export const Menu = () => {
-  const [showCatalogList, setShowCatalog] = useState(false);
+
   const pathName = usePathname();
 
-  const isMedia800 = useMediaQuery(800);
-  const isMedia400 = useMediaQuery(450);
 
-  const handleShowCatalogList = () => setShowCatalog(true);
+
+
   // переключение языка
   const handleSwitchLang = (lang: string) => {
     setLang(lang as AllowedLangs);
     localStorage.setItem('lang', JSON.stringify(lang));
   };
 
-  const handleSwitchLangToRu = () => handleSwitchLang('ru');
-  const handleSwitchLangToEn = () => handleSwitchLang('en');
+  // const handleSwitchLangToRu = () => handleSwitchLang('ru');
+  // const handleSwitchLangToEn = () => handleSwitchLang('en');
 
   const handleCloseMenu = () => {
     removeOverflowHiddenFromBody();
@@ -44,20 +41,20 @@ export const Menu = () => {
     handleCloseMenu();
   };
   const menuIsOpen = useUnit($menuIsOpen);
-  const { lang, translations } = useLang();
+  // const { lang, translations } = useLang();
 
-  const clothLinks = [
-    {
-      id: 1,
-      text: 'одежда из translations',
-      href: '/catalog',
-    },
-    {
-      id: 2,
-      text: 'одежда из translations',
-      href: '/catalog',
-    },
-  ];
+  // const clothLinks = [
+  //   {
+  //     id: 1,
+  //     text: 'одежда из translations',
+  //     href: '/catalog',
+  //   },
+  //   {
+  //     id: 2,
+  //     text: 'одежда из translations',
+  //     href: '/catalog',
+  //   },
+  // ];
   return (
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
       <ul>

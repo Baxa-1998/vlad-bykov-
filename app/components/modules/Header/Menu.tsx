@@ -53,7 +53,7 @@ export const Menu = () => {
   return (
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
       <ul>
-        <Link href={'/'}>
+        <Link href={'/about'}>
           <li>О БРЕНДЕ</li>{' '}
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
@@ -61,7 +61,7 @@ export const Menu = () => {
           <li>КОЛЛЕКЦИЯ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />{' '}
         </Link>
-        <Link href={'/'}>
+        <Link href={'/contacts'}>
           <li>КОНТАКТЫ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>

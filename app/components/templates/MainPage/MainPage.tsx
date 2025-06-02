@@ -17,6 +17,7 @@ import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandState
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 
+
 export default function MainPage() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
@@ -32,7 +33,8 @@ export default function MainPage() {
 
   const handleSlideChange = (swiper: SwiperType) => {
     const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
-
+    console.log(isLastSlide);
+    
     if (isLastSlide) {
       swiper.mousewheel.disable(); // отключаем прокрутку Swiper
       document.body.style.overflow = 'visible'; // включаем scroll для всего документа
@@ -88,7 +90,7 @@ export default function MainPage() {
           </SwiperSlide>
         )}
       </Swiper>
-      {/* <Footer/> */}
+  
     </div>
   );
 }

@@ -1,0 +1,159 @@
+.custom1 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
+
+  background: linear-gradient(180deg, #02352466 40%, #023524cc 80%),
+    url('/img/custom/custom-main.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .customWrapper {
+    width: 50%;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 64px;
+    line-height: 25px;
+    .customTitle {
+      font-family: 'Charis SIL', sans-serif !important;
+      color: #f9f6e3;
+      font-size: 56px;
+      font-weight: 400;
+    }
+    .customBtn {
+      background: none;
+      border: 1px solid #f9f6e3;
+      font-size: 24px;
+      color: #f9f6e3;
+      padding-left: 32px;
+      padding-right: 32px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .customSubtitle {
+      font-family: 'Optima', sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+    }
+  }
+}
+
+.custom2 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
+
+  background: linear-gradient(180deg, #02352466 40%, #023524cc 80%),
+    url('/img/custom/custom-main2.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .customWrapper {
+    width: 50%;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 64px;
+    line-height: 25px;
+    .customTitle {
+      font-family: 'Charis SIL', sans-serif !important;
+      color: #f9f6e3;
+      font-size: 56px;
+      font-weight: 400;
+    }
+    .customBtn {
+      background: none;
+      border: 1px solid #f9f6e3;
+      font-size: 24px;
+      color: #f9f6e3;
+      padding-left: 32px;
+      padding-right: 32px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .customSubtitle {
+      font-family: 'Optima', sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+    }
+  }
+}
+
+.custom3{
+  width: 100%;
+  height: 100vh;
+
+  background: white;
+  .customWrapper{
+    display: flex; 
+    .customItem{
+      width: 33.5%;
+      height: 100vh;
+    
+      h3{
+        font-size: 24px;
+        color: #F9F6E3; 
+        font-family: 'Optima', sans-serif !important; 
+        font-weight: 400;
+      }
+      p{
+        font-size: 16px;
+        color: #F9F6E3;
+        opacity: 80%;
+             font-family: 'Optima', sans-serif !important;
+             font-weight: 400;
+             margin-bottom: 32px;
+      }
+      &:nth-child(1){
+          display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
+
+  background: linear-gradient(180deg, #02352466 40%, #023524cc 80%),
+    url('/img/custom/1.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+      }
+       &:nth-child(2){
+          display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
+
+  background: linear-gradient(180deg, #02352466 40%, #023524cc 80%),
+    url('/img/custom/2.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+      }
+         &:nth-child(3){
+          display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
+
+  background: linear-gradient(180deg, #02352466 40%, #023524cc 80%),
+    url('/img/custom/3.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+      }
+    }
+  }
+ 
+}

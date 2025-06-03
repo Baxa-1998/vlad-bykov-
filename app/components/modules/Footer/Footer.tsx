@@ -5,18 +5,19 @@ import Link from 'next/link';
 
 import { Button } from '../../elements/Button';
 import Image from 'next/image';
+import { useLang } from '@/app/hooks/useLang';
 
 
 const Footer = () => {
-
+  const {lang, translations} = useLang() 
 
   return (
     <footer className="footer">
       <div className="footer__top">
         <div className="footer__links">
-          <h2 className="footer__links_title">ПРИВАТНЫЕ АКЦИИ</h2>
+          <h2 className="footer__links_title">{translations[lang].footer.heading1}</h2>
           <p className="footer__links_subtitle">
-            Только для членов клуба. Только <br /> для избранных, кто ценит стиль.
+          {translations[lang].footer.subtitle}
           </p>
           <input type="email" placeholder="E-mail" />
           <Button className={'footer__links_btn'}>ОСТАВИТЬ ЗАЯВКУ</Button>
@@ -39,7 +40,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer__links">
-          <h2 className="footer__links_title">ОБСЛУЖИВАНИЕ</h2>
+          <h2 className="footer__links_title">{translations[lang].footer.heading2}</h2>
           <ul>
             <Link href={'/'}>
               <li>Доставка</li>
@@ -62,7 +63,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer__links">
-          <h2 className="footer__links_title">НОВЫЙ УРОВЕНЬ РОСКОШИ</h2>
+          <h2 className="footer__links_title">{translations[lang].footer.heading3}</h2>
           <p className="footer__links_subtitle">
             Уделяя особое внимание <br /> неподвластному времени стилю, <br /> ремесленному
             мастерству и <br />

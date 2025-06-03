@@ -80,7 +80,7 @@ export const Header = () => {
             <Link href={'/contacts'}>
               <li>{translations[lang].header.contacts}</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/custom'}>
               <li>{translations[lang].header.taoiliring}</li>
             </Link>
           </ul>

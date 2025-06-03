@@ -76,12 +76,22 @@
       "watched_products": "Watched products",
       "collection_products": "Products by Collection"
     },
-    "footer": {
-      "copyright": "«Rostelecom» All rights reserved",
-      "policy": "Data processing policy",
-      "privacy": "Privacy policy",
-      "mobile_version": "Mobile version",
-      "full_version": "Full version of the site"
+ "footer": {
+      "heading1": "PRIVATE SALES",
+      "heading2": "CUSTOMER SERVICE",
+      "heading3": "A NEW LEVEL OF LUXURY",
+      "subtitle": "Members only. Reserved for the select few who appreciate style.",
+      "full_version": "With a special focus on timeless style, artisanal craftsmanship, and the use of the finest natural materials, Vlad Bykov offers collections that embody pure luxury at an elegant price.",
+      "link1": "About",
+      "link2": "Collection",
+      "link3": "Contacts",
+      "link4": "Custom Tailoring",
+      "link5": "Delivery",
+      "link6": "Returns and Cancellations",
+      "link7": "FAQ",
+      "link8": "Payment Methods",
+      "link9": "Privacy Policy",
+      "link10": "Terms of Use"
     },
     "main_page": {
       "hero_hidden_title": "Clothing store Rostelecom",
@@ -336,11 +346,21 @@
       "collection_products": "Товары по коллекции"
     },
     "footer": {
-      "copyright": "«Ростелеком» Все права защищены",
-      "policy": "Политика обработки данных",
-      "privacy": "Политика конфиденциальности",
-      "mobile_version": "Мобильная версия",
-      "full_version": "Полная версия сайта"
+      "heading1": "ПРИВАТНЫЕ АКЦИИ",
+      "heading2": "ОБСЛУЖИВАНИЕ",
+      "heading3": "НОВЫЙ УРОВЕНЬ РОСКОШИ",
+      "subtitle": "Только для членов клуба. Только \n  для избранных, кто ценит стиль.",
+      "full_version": "Уделяя особое внимание неподвластному времени стилю, ремесленному мастерству и использованию лучших натуральных материалов, Vlad Bykov предлагает коллекции, представляющие собой чистую роскошь по элегантной цене.",
+      "link1": "О бренде",
+      "link2": "Коллекции",
+      "link3": "Контакты",
+      "link4": "Индивидуальный пошив",
+      "link5": "Доставка",
+      "link6": "Возврат и отмена",
+      "link7": "Вопросы и ответы",
+      "link8": "Методы оплаты",
+      "link9": "Политика конфиденциальности",
+      "link10": "Условия пользования"
     },
     "main_page": {
       "hero_hidden_title": "Магазин одежды Ростелеком",

@@ -91,6 +91,9 @@ export default function AboutPage() {
             style={{
               height: '100vh',
               overflowY: 'auto',
+                    minHeight: '100vh',
+      touchAction: 'auto', // ✅ Разрешаем touch scroll
+      WebkitOverflowScrolling: 'touch', // ✅ плавный скролл на iOS
             }}>
             {' '}
             <AboutSection5 />

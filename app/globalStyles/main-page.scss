@@ -18,7 +18,13 @@
   }
   
    }
+   &:nth-last-child{
+      overflow: visible;
+   }
 
+}
+.swiper-slide:last-child {
+  overflow: visible;
 }
 .swiper-slide.last-slide {
   height: auto !important;

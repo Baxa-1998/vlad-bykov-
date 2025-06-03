@@ -22,10 +22,12 @@ export default function AboutPage() {
     const isLast = swiper.isEnd;
     if (isLast) {
       swiper.mousewheel.disable();
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = 'visible'; 
+         swiper.allowTouchMove = false; 
     } else {
       swiper.mousewheel.enable();
       document.body.style.overflow = 'hidden';
+         swiper.allowTouchMove = true; 
     }
 
     // если последний слайд меняем стиль круга
@@ -94,6 +96,7 @@ export default function AboutPage() {
                     minHeight: '100vh',
       touchAction: 'auto', // ✅ Разрешаем touch scroll
       WebkitOverflowScrolling: 'touch', // ✅ плавный скролл на iOS
+
             }}>
             {' '}
             <AboutSection5 />

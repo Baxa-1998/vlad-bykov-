@@ -3,7 +3,7 @@ import styles from '@/app/styles/main-page/index.module.scss';
 
 import { Button } from '@/app/components/elements/Button';
 import { ClubMembers } from './ClubMembers';
-import { IJoinProps } from '@/app/types/modules';
+
 import { members } from '@/app/constants/clubMembers';
 
 

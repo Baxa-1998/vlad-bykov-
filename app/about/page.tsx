@@ -1,5 +1,5 @@
-'use client'
-import React from 'react';
+'use client';
+import React, { useEffect, useRef } from 'react';
 import AboutSection from '../components/modules/About/AboutSection';
 import AboutSection2 from '../components/modules/About/AboutSection2';
 
@@ -12,44 +12,77 @@ import { Mousewheel, Pagination } from 'swiper/modules';
 import AboutSection3 from '../components/modules/About/AboutSection3';
 import AboutSection4 from '../components/modules/About/AboutSection4';
 import AboutSection5 from '../components/modules/About/AboutSection5';
-
-
-
-
+import type { Swiper as SwiperType } from 'swiper';
 
 
 export default function AboutPage() {
+  const swiperRef = useRef<SwiperType | null>(null);
+  const lastSlideRef = useRef<HTMLDivElement>(null);
+  const handleSlideChange = (swiper: SwiperType) => {
+    if (swiper.isEnd) {
+      swiper.mousewheel.disable();
+    } else {
+      swiper.mousewheel.enable();
+    }
+  };
+
+  // Следим за scroll в последнем слайде
+  useEffect(() => {
+    const lastSlide = lastSlideRef.current;
+
+    if (!lastSlide) return;
+
+    const handleScroll = () => {
+      if (!swiperRef.current) return;
+
+      // если пользователь доскроллил до верха
+      if (lastSlide.scrollTop === 0) {
+        swiperRef.current.mousewheel.enable();
+        swiperRef.current.slideTo(swiperRef.current.slides.length - 2); // вернуться к предыдущему слайду
+      }
+    };
+
+    lastSlide.addEventListener('scroll', handleScroll);
+    return () => {
+      lastSlide.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
-      <div>
-        <Swiper
-   
-     
-        direction={'vertical'}
-     
+    <div>
+      <Swiper
+        direction="vertical"
         slidesPerView={1}
         spaceBetween={30}
         mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
         pagination={{ clickable: true }}
         modules={[Mousewheel, Pagination]}
-        className="mySwiper">
+        className="mySwiper"
+        onSlideChange={handleSlideChange}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}>
         <SwiperSlide>
-      <AboutSection/>
+          <AboutSection />
         </SwiperSlide>
         <SwiperSlide>
-    <AboutSection2/>
+          <AboutSection2 />
         </SwiperSlide>
         <SwiperSlide>
-   <AboutSection3/>
+          <AboutSection3 />
         </SwiperSlide>
         <SwiperSlide>
-    <AboutSection4/>
+          <AboutSection4 />
         </SwiperSlide>
-        <SwiperSlide>
-    <AboutSection5/>
-        </SwiperSlide>
-       
-
+        <SwiperSlide className="last-slide">
+          <div
+            ref={lastSlideRef}
+            style={{
+              height: '100vh',
+              overflowY: 'auto',
+            }}>
+            {' '}
+            <AboutSection5 />
+          </div>
      
+        </SwiperSlide>
       </Swiper>
       {/* <Footer/> */}
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/app/styles/custom/index.module.scss';
-import { Button } from '../../elements/Button';
+
 export const CustomTailoring3 = () => {
   return (
     <div className={styles.custom3}>

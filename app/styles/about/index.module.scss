@@ -291,7 +291,19 @@
         }
       }
     }
+@media screen and (max-width: 540px){
+  .aboutSection5Wrapper{
+    h3{
+      font-size: 14px;
 
+    }
+    h2{
+      font-size: 20px;
+      line-height: 5px;
+    }
+    padding-bottom: 90px;
+  }
+}
 }
 
 @keyframes infinite-scroll {

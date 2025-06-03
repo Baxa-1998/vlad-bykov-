@@ -1,14 +1,9 @@
-
-import MainPage from "./components/templates/MainPage/MainPage";
-
+import MainPage from './components/templates/MainPage/MainPage';
 
 export default function Home() {
   return (
- <>
- <MainPage/> 
-
- </>
-  
- 
+    <>
+      <MainPage />
+    </>
   );
 }

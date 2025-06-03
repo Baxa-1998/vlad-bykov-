@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Hero } from '../../modules/MainPage/Hero/Hero';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -20,7 +20,8 @@ import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 
 export default function MainPage() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [activeSwiper, setActiveSwiper] = useState(false);
+  const [activeSwiper, setActiveSwiper] = useState(false); 
+  const lastSlideRef = useRef<HTMLDivElement>(null);
 
   const isDesktop = useMediaQuery(1280); // ← здесь
 
@@ -32,7 +33,7 @@ export default function MainPage() {
   };
 
   const handleSlideChange = (swiper: SwiperType) => {
-    const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
+    const isLastSlide = swiper.isEnd;
     console.log(isLastSlide);
     
   if (isLastSlide) {
@@ -45,13 +46,41 @@ export default function MainPage() {
   swiper.el.classList.remove('swiper-disabled-scroll');
 }
 
-    // дополнительная логика, если нужна
+    // дополнительная логика 
     if (swiper.activeIndex === 2 || swiper.activeIndex === 6) {
       setActiveSwiper(true);
     } else {
       setActiveSwiper(false);
     }
   };
+
+
+    // Следим за scroll в последнем слайде
+    useEffect(() => {
+      // запрещаем скролл при загрузке
+      document.body.style.overflow = 'hidden';
+  
+      const lastSlide = lastSlideRef.current;
+      if (!lastSlide) return;
+  
+      const handleScroll = () => {
+        if (!swiperRef.current) return;
+  
+        // Если пользователь доскроллил вверх на последнем слайде
+        if (lastSlide.scrollTop === 0) {
+          swiperRef.current.mousewheel.enable();
+          swiperRef.current.slideTo(swiperRef.current.slides.length - 2);
+          document.body.style.overflow = 'hidden'; // ❌ снова запрет скролла
+        }
+      };
+  
+      lastSlide.addEventListener('scroll', handleScroll);
+      return () => {
+        lastSlide.removeEventListener('scroll', handleScroll);
+        document.body.style.overflow = ''; // очистка
+      };
+    }, []);
+
 
   return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
@@ -81,13 +110,23 @@ export default function MainPage() {
         <SwiperSlide>
           <Category />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
+         
           <BrandStatement />
         </SwiperSlide>
 
         {!isDesktop && (
           <SwiperSlide>
-            <JoinClub />
+            <div
+                 ref={lastSlideRef}
+            style={{
+              height: '100vh',
+              overflowY: 'auto',
+            }}
+            >
+ <JoinClub />
+            </div>
+           
           </SwiperSlide>
         )}
       </Swiper>

@@ -12,7 +12,7 @@ export const Payment = () => {
           <p>3.iDeal</p>
           <p>4.Bank Transferl</p>
           <p>5.Bancontact/Mister Cash</p>
-          <p>6.ING Home'Pay</p>
+          <p>6.ING HomePay</p>
           <p>7.SOFORT Banking</p>
           <p>8.Belfius Direct Net</p>
           <p>9.EPS</p>
@@ -60,7 +60,7 @@ export const Payment = () => {
           </p>
         </div>
         <div className={styles.paymentItem}>
-          <h2>ING Home'Pay</h2>
+          <h2>ING HomePay</h2>
           <p>
             При выборе опции PayPal при оформлении заказа вы будете перенаправлены на сайт PayPal
             для «Войти» и проверки отображаемой суммы перед нажатием «Оплатить сейчас». После

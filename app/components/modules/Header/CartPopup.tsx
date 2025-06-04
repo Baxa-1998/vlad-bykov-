@@ -9,7 +9,7 @@ import { Button } from '../../elements/Button';
 export const CartPopup = () => {
 
   const open = useUnit($cartModal)
-console.log(open);
+
   const handleClosePopup = () =>{
     closeCartPopup()
   }

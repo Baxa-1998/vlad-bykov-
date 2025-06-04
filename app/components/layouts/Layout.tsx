@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { Header } from '../modules/Header/Header';
 
-
 import { AnimatePresence, motion } from 'framer-motion';
 import { SearchModal } from '../modules/Header/SearchModal';
 import { useUnit } from 'effector-react';
@@ -18,15 +17,12 @@ import { CurrencyModal } from '../modules/Header/CurrencyModal';
 import { usePathname } from 'next/navigation';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-
   const searchModal = useUnit($searchModal);
   const currencyModal = useUnit($currencyModal);
 
   const pathname = usePathname();
 
   useEffect(() => {
- 
-
     if (pathname === '/contacts' || pathname === '/payment') {
       addScrollToBody();
     } else {

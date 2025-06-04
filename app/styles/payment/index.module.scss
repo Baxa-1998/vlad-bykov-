@@ -10,5 +10,25 @@
         font-weight: 400;
         font-size: 32px;
 
+  } 
+  .paymentWrapper{
+    display: flex;
+    flex-direction: column;
+    .paymentItem{
+      h2{
+        font-size: 20px;
+      }
+      p{
+        color: #91A29B;
+        font-size: 16px;
+      }
+    }
+  }
+  @media screen and (max-width: 540px){
+    padding-top: 80px;
+    padding-left: 16px;
+    h2{
+      font-size: 22px;
+    }
   }
 }

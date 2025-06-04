@@ -25,9 +25,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log('pathNameChanged');
+ 
 
-    if (pathname === '/contacts') {
+    if (pathname === '/contacts' || pathname === '/payment') {
       addScrollToBody();
     } else {
       removeScrollToBody();

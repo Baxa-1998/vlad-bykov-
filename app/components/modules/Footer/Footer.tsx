@@ -51,7 +51,7 @@ const Footer = () => {
             <Link href={'/'}>
               <li>Вопросы и ответы</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/payment'}>
               <li>Методы оплаты</li>
             </Link>
             <Link href={'/'}>

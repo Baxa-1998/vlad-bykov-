@@ -65,7 +65,7 @@ export const Menu = () => {
           <li>КОНТАКТЫ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
-        <Link onClick={()=> closeMenu()} href={'/'}>
+        <Link onClick={()=> closeMenu()} href={'/custom'}>
           <li>ИНДИВИДУАЛЬНЫЙ ПОШИВ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>

@@ -6,7 +6,7 @@ export const Payment = () => {
       <h2>МЕТОДЫ ОПЛАТЫ</h2>
       <div className={styles.paymentWrapper}>
         <div className={styles.paymentItem}>
-          <h2>Мы принимаем:</h2>
+          <h2>Мы принимаем :</h2>
           <p>1.PayPal</p>
           <p>2.Credit Card</p>
           <p>3.iDeal</p>

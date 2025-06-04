@@ -4,7 +4,7 @@ import { Hero } from '../../modules/MainPage/Hero/Hero';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
-import 'swiper/css';ёё
+import 'swiper/css'; 
 import 'swiper/css/pagination';
 
 import { Mousewheel, Pagination } from 'swiper/modules';

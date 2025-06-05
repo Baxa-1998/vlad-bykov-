@@ -4,17 +4,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
+import type { Swiper as SwiperType } from 'swiper';
 import { CustomTailoring1 } from '../components/modules/CustomTailoring/CustomTailoring1';
 import { CustomTailoring2 } from '../components/modules/CustomTailoring/CustomTailoring2';
 import { CustomTailoring3 } from '../components/modules/CustomTailoring/CustomTailoring3';
 
 export default function CustomPage() {
   const lastSlideRef = useRef<HTMLDivElement>(null);
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   // ✅ обработка overflow при переходе между слайдами
-  const handleSlideChange = (swiper: any) => {
+  const handleSlideChange = (swiper:SwiperType ) => {
     const isLast = swiper.isEnd;
 
     if (isLast) {

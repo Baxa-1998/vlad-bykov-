@@ -22,12 +22,12 @@ export default function AboutPage() {
     const isLast = swiper.isEnd;
     if (isLast) {
       swiper.mousewheel.disable();
-      document.body.style.overflow = 'visible'; 
-         swiper.allowTouchMove = false; 
+      document.body.style.overflow = 'visible';
+      swiper.allowTouchMove = false;
     } else {
       swiper.mousewheel.enable();
       document.body.style.overflow = 'hidden';
-         swiper.allowTouchMove = true; 
+      swiper.allowTouchMove = true;
     }
 
     // если последний слайд меняем стиль круга
@@ -74,7 +74,8 @@ export default function AboutPage() {
         modules={[Mousewheel, Pagination]}
         className="mySwiper"
         onSlideChange={handleSlideChange}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}>
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        >
         <SwiperSlide>
           <AboutSection />
         </SwiperSlide>
@@ -93,10 +94,9 @@ export default function AboutPage() {
             style={{
               height: '100vh',
               overflowY: 'auto',
-                    minHeight: '100vh',
-      touchAction: 'auto', // ✅ Разрешаем touch scroll
-      WebkitOverflowScrolling: 'touch', // ✅ плавный скролл на iOS
-
+              minHeight: '100vh',
+              touchAction: 'auto', // ✅ Разрешаем touch scroll
+              WebkitOverflowScrolling: 'touch', // ✅ плавный скролл на iOS
             }}>
             {' '}
             <AboutSection5 />

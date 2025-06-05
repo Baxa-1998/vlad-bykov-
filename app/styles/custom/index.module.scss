@@ -259,4 +259,15 @@
       }
     }
   }
+   @media screen and (max-width: 900px){
+    .customWrapper{
+      flex-direction: column;
+      .customItem{
+        width: 100%;
+        h3{
+          line-height: 0px;
+        }
+      }
+    }
+   } 
 }

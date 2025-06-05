@@ -54,12 +54,37 @@ export default function CustomPage() {
     };
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden'; // стартовое состояние
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
+useEffect(() => {
+  const lastSlide = lastSlideRef.current;
+  const swiper = swiperRef.current;
+  if (!lastSlide || !swiper) return;
+
+  const handleWheel = (e: WheelEvent) => {
+    const scrollTop = lastSlide.scrollTop;
+    const isScrollingUp = e.deltaY < 0;
+
+    if (isScrollingUp) {
+      if (scrollTop > 0) {
+        // 🔒 Блокируем переход свайпера, пока пользователь не доскроллит вверх
+        swiper.allowTouchMove = false;
+        swiper.mousewheel.disable();
+        document.body.style.overflow = 'visible';
+      } else {
+        // ✅ Доскроллил до самого верха — включаем свайпер
+        swiper.allowTouchMove = true;
+        swiper.mousewheel.enable();
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  };
+
+  lastSlide.addEventListener('wheel', handleWheel, { passive: false });
+
+  return () => {
+    lastSlide.removeEventListener('wheel', handleWheel);
+    document.body.style.overflow = '';
+  };
+}, []);
 
   return (
     <div>

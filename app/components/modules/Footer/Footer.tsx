@@ -42,7 +42,7 @@ const Footer = () => {
             <Link href={'/cancellation'}>
               <li>Возврат и отмена</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/faq'}>
               <li>Вопросы и ответы</li>
             </Link>
             <Link href={'/payment'}>

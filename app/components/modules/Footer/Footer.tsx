@@ -1,24 +1,18 @@
 import Link from 'next/link';
 
-
-
-
 import { Button } from '../../elements/Button';
 import Image from 'next/image';
 import { useLang } from '@/app/hooks/useLang';
 
-
 const Footer = () => {
-  const {lang, translations} = useLang() 
+  const { lang, translations } = useLang();
 
   return (
     <footer className="footer">
       <div className="footer__top">
         <div className="footer__links">
           <h2 className="footer__links_title">{translations[lang].footer.heading1}</h2>
-          <p className="footer__links_subtitle">
-          {translations[lang].footer.subtitle}
-          </p>
+          <p className="footer__links_subtitle">{translations[lang].footer.subtitle}</p>
           <input type="email" placeholder="E-mail" />
           <Button className={'footer__links_btn'}>ОСТАВИТЬ ЗАЯВКУ</Button>
         </div>
@@ -42,10 +36,10 @@ const Footer = () => {
         <div className="footer__links">
           <h2 className="footer__links_title">{translations[lang].footer.heading2}</h2>
           <ul>
-            <Link href={'/'}>
+            <Link href={'/delivery'}>
               <li>Доставка</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/cancellation'}>
               <li>Возврат и отмена</li>
             </Link>
             <Link href={'/'}>
@@ -54,7 +48,7 @@ const Footer = () => {
             <Link href={'/payment'}>
               <li>Методы оплаты</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/policy'}>
               <li>Политика конфиденциальности</li>
             </Link>
             <Link href={'/'}>
@@ -87,7 +81,7 @@ const Footer = () => {
             <Image src={'/img/tik-tok.svg'} width={20} height={20} alt="socials" />
           </Link>
         </div>
-            <div className="footer__logo">
+        <div className="footer__logo">
           <Image
             src={'/img/footer-logo.svg'}
             width={0}
@@ -95,10 +89,10 @@ const Footer = () => {
             style={{ width: 'fit-content', height: 'fit-content' }}
             alt="socials"
           />
-            <div className="footer__currency">
-                      <p>РОССИЯ (РУБ ₽)</p>
-                      <Image src={'/img/footer-arrow.svg'} width={10} height={6} alt="arrow" />
-                    </div>
+          <div className="footer__currency">
+            <p>РОССИЯ (РУБ ₽)</p>
+            <Image src={'/img/footer-arrow.svg'} width={10} height={6} alt="arrow" />
+          </div>
         </div>
         <div className="footer__payment">
           <Link href={'/'}>
@@ -183,7 +177,6 @@ const Footer = () => {
             />
           </Link>
         </div>
-    
       </div>
     </footer>
   );

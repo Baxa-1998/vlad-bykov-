@@ -21,9 +21,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const currencyModal = useUnit($currencyModal);
 
   const pathname = usePathname();
+  console.log(pathname);
 
   useEffect(() => {
-    if (pathname === '/contacts' || pathname === '/payment') {
+    if (
+      pathname === '/contacts' ||
+      pathname === '/payment' ||
+      pathname === '/policy' ||
+      pathname === '/delivery' ||
+      pathname === '/cancellation'
+    ) {
       addScrollToBody();
     } else {
       removeScrollToBody();

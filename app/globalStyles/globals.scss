@@ -15,7 +15,43 @@ a {
   text-decoration: none;
   list-style: none;
 }
+.accordion{
+      position: relative;
+      width: 100%;
+      text-align: start;
+      color: #91A29B; 
+      background: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid #91A29B40;
+      border-top: none;
+     border-left: none;
+     border-right: none;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      cursor: pointer; 
+      &:nth-child(1){
+        border-top: 1px solid #91A29B40;
+      }
+      p{
+        font-size: 14px;
+      }
+         .rotation_icon{
+        position: fixed;
+        right: 120px;
+       
+      }
+      @media screen and (max-width: 540px){
+        .rotation_icon{
+          right: 40px;
+        }
 
+      }
+
+}
+
+.rotation-active{
+  transform: rotate(180deg) !important;
+}
 .main__btn {
   padding: 10px 16px 10px 16px;
   background: none;

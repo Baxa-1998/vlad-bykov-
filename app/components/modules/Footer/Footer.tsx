@@ -19,16 +19,16 @@ const Footer = () => {
         <div className="footer__links">
           <h2 className="footer__links_title">VLAD BYKOV</h2>
           <ul>
-            <Link href={'/'}>
+            <Link href={'/about'}>
               <li>О бренде</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/catalog'}>
               <li>Коллекции</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/contacts'}>
               <li>Контакты</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/custom'}>
               <li>Индивидуальный пошив</li>
             </Link>
           </ul>

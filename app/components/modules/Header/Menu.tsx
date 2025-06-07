@@ -1,40 +1,44 @@
-import React from 'react';
-import { $menuIsOpen, closeMenu } from '@/app/context/modals';
+'use client';
+import React, { useEffect } from 'react';
+import { $currencyModal, $menuIsOpen, closeMenu, toggleCurrencyModal } from '@/app/context/modals';
 import { useUnit } from 'effector-react';
-
-
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { addOverflowHiddenToBody } from '@/app/lib/utils/common';
+import { setLang } from '@/app/context/lang';
+import { AllowedLangs } from '@/app/constants/lang';
+import { $location, fetchLocationFx } from '@/app/context/country';
+import { useLang } from '@/app/hooks/useLang';
 
 export const Menu = () => {
+  const handleOpenCurrencyModal = () => {
+    toggleCurrencyModal();
+    addOverflowHiddenToBody();
+  };
+  const { lang, translations } = useLang();
 
-  
+  const location = useUnit($location);
+  const isCurrencyModal = useUnit($currencyModal);
 
+  useEffect(() => {
+    fetchLocationFx();
+  }, []);
 
-
+  const handleSwitchLang = (lang: string) => {
+    setLang(lang as AllowedLangs);
+    localStorage.setItem('lang', JSON.stringify(lang));
+  };
 
   // переключение языка
-  // const handleSwitchLang = (lang: string) => {
-  //   setLang(lang as AllowedLangs);
-  //   localStorage.setItem('lang', JSON.stringify(lang));
-  // };
+  const handleSwitchLangToRuEng = () => {
+    if (lang == 'ru') {
+      handleSwitchLang('en');
+    } else {
+      handleSwitchLang('ru');
+    }
+  };
 
-  // const handleSwitchLangToRu = () => handleSwitchLang('ru');
-  // const handleSwitchLangToEn = () => handleSwitchLang('en');
-
-  // const handleCloseMenu = () => {
-  //   removeOverflowHiddenFromBody();
-  //   closeMenu();
-  // };
-
-  // const handleRedirectToCatalog = (path: string) => {
-  //   if (pathName.includes('/catalog')) {
-  //     window.history.pushState({ path }, '', path);
-  //     window.location.reload();
-  //   }
-  //   handleCloseMenu();
-  // };
   const menuIsOpen = useUnit($menuIsOpen);
   // const { lang, translations } = useLang();
 
@@ -53,23 +57,43 @@ export const Menu = () => {
   return (
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
       <ul>
-        <Link onClick={()=> closeMenu()} href={'/about'}>
+        <Link onClick={() => closeMenu()} href={'/about'}>
           <li>О БРЕНДЕ</li>{' '}
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
-        <Link onClick={()=> closeMenu()} href={'/'}>
+        <Link onClick={() => closeMenu()} href={'/'}>
           <li>КОЛЛЕКЦИЯ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />{' '}
         </Link>
-        <Link onClick={()=> closeMenu()} href={'/contacts'}>
+        <Link onClick={() => closeMenu()} href={'/contacts'}>
           <li>КОНТАКТЫ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
-        <Link onClick={()=> closeMenu()} href={'/custom'}>
+        <Link onClick={() => closeMenu()} href={'/custom'}>
           <li>ИНДИВИДУАЛЬНЫЙ ПОШИВ</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
       </ul>
+
+      <div className="menu__currency">
+        <div onClick={handleOpenCurrencyModal} className="menu__container">
+          <p>
+            {' '}
+            {location?.country_name} ({location?.currency.code})
+          </p>
+
+          <Image
+            className={isCurrencyModal ? 'arrow-rotate' : ''}
+            src={'/img/arrow_down.svg'}
+            width={10}
+            height={6}
+            alt="arrow"
+          />
+        </div>
+        <span className="menu__lang" onClick={handleSwitchLangToRuEng}>
+          {lang}
+        </span>
+      </div>
     </nav>
   );
 };

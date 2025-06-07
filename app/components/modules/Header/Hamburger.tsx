@@ -1,4 +1,4 @@
-import { $menuIsOpen, closeMenu, openMenu } from '@/app/context/modals';
+import { $menuIsOpen, closeCurrencyModal, closeMenu, openMenu } from '@/app/context/modals';
 import { addOverflowHiddenToBody, removeOverflowHiddenFromBody } from '@/app/lib/utils/common';
 import { useUnit } from 'effector-react';
 import React from 'react'
@@ -12,6 +12,7 @@ export const Hamburger = () => {
 
     addOverflowHiddenToBody();
     openMenu();
+    closeCurrencyModal()
 
    
     if(menuIsOpen) {

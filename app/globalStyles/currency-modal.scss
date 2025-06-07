@@ -42,3 +42,13 @@
     }
   }
 }
+
+.currency-modal-active{
+  transform: translate(0%) !important; 
+  width: 100% !important;
+  top: 60px !important;
+  height: 80vh;
+  background-color: #023524 !important;
+  z-index: 150;
+
+}

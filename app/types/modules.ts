@@ -22,3 +22,13 @@ export interface IJoinProps {
   subscribers: string;
   img: string;
 }
+
+
+
+export interface ICatalogProps {
+  id: number;
+  title: string;
+  name: string;
+  img: string;
+  price: number;
+}

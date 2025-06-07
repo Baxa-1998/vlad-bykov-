@@ -1,0 +1,181 @@
+.product {
+  background: #ffff;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  .productTop {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    .productColors {
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: 16px;
+    }
+    .productInfo {
+      width: 100%; 
+      padding-left: 24px;
+      h5 {
+        font-size: 16px;
+        color: #023524;
+        opacity: 60%;
+        font-family: 'Optima', sans-serif;
+        font-weight: 400;
+        line-height: 10px;
+      }
+      h4 {
+        color: #000000;
+        font-size: 32px;
+        font-family: 'Charis SIL', sans-serif;
+        font-weight: 400;
+        line-height: 10px;
+      }
+      p {
+        color: #91a29b;
+        font-size: 24px;
+      }
+      .productSize { 
+        p{
+          color: #91A29B; 
+          font-size: 14px;
+          font-family: 'Optima', sans-serif;
+        }
+        .productSizeItems{
+          display: flex;
+          gap: 12px;
+  button{
+          width: 32px;
+          height: 32px; 
+          border: 1px solid #91A29B40;
+          background: none;
+          font-size: 14px;
+          color: #91A29B;
+          cursor: pointer;
+         
+
+        }
+        }
+      
+      }
+      h3{
+        color: #023524; 
+        font-family: 'Optima', sans-serif;
+        font-size: 14px;
+        margin-top: 24px;
+        font-weight: 400;
+        
+      }
+      .productBtn{
+        width: 100%;
+        height: 56px;
+        outline: none;
+        border: none;
+        color: #F9F6E3; 
+        font-family: 'Optima', sans-serif !important;
+        font-size: 20px;
+        font-weight: 400; 
+        margin-top: 30px;
+      }
+    .productAvailableColors {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%; 
+      height: 48px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #91A29B40;
+  margin-top: 16px;
+  h2{
+    margin-left: 24px;
+    color: #91A29B; 
+    font-family: 'Optima', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  p{
+    margin-right: 24px;
+        font-family: 'Optima', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #023524;
+  }
+}
+
+.dropdownList {
+  position: absolute;
+  top: 100%;
+  right: 14px;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin-top: 4px;
+  z-index: 100;
+}
+
+.dropdownList li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdownList li:hover {
+  background-color: #f0f0f0;
+}
+.productDescription{
+  p {
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    font-size: 16px;
+
+    &.collapsed {
+      max-height: 80px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff);
+        pointer-events: none;
+      }
+    }
+
+    &.expanded {
+      max-height: none;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+    button {
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-size: 14px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}
+    }
+  }
+  .productQuestions{
+    width: 28%;
+    padding-left: 100px;
+    margin-top: 32px;
+
+
+
+  }
+}

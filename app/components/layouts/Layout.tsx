@@ -19,8 +19,9 @@ import { usePathname } from 'next/navigation';
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const searchModal = useUnit($searchModal);
   const currencyModal = useUnit($currencyModal);
+    const pathname = usePathname();
+ const isCatalogItemPage = pathname.startsWith('/catalog/') && pathname.split('/').length === 3;
 
-  const pathname = usePathname();
   console.log(pathname);
 
   useEffect(() => {
@@ -29,7 +30,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       pathname === '/payment' ||
       pathname === '/policy' ||
       pathname === '/delivery' ||
-      pathname === '/cancellation'
+      pathname === '/cancellation' ||
+      pathname === '/catalog' ||
+      isCatalogItemPage
     ) {
       addScrollToBody();
     } else {

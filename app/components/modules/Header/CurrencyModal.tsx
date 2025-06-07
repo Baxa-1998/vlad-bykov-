@@ -1,8 +1,10 @@
 'use client';
+import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import Image from 'next/image';
 import React from 'react';
 
 export const CurrencyModal = () => {
+  const isMedia540 = useMediaQuery(540);
   const countryData = [
     {
       id: 1,
@@ -32,7 +34,7 @@ export const CurrencyModal = () => {
   ];
 
   return (
-    <div className="currency-modal">
+    <div className={`currency-modal ${isMedia540 ? 'currency-modal-active' : ''}`}>
       <ul className="currency-modal__list">
         {countryData.map((item) => (
           <li className="currency-modal__list__item list-reset" key={item.id}>

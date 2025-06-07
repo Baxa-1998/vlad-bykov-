@@ -7,12 +7,14 @@
   height: 100%;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-
   overflow-x: hidden;
   background: #023524;
   transform: translate(-100%);
   transition: transform 0.4s ease-in-out;
   padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   ul {
     padding: 0;
     width: 90%;
@@ -33,6 +35,31 @@
       }
     }
   }
+  .menu__currency{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 100px;
+  .menu__container{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    p{
+      color: #F9F6E3; 
+      font-size: 14px;
+      font-family: 'Optima', sans-serif;
+
+    }
+  }
+  .menu__lang{
+    font-size: 14px;
+    color: #F9F6E3;
+    text-transform: uppercase;
+  }
+  }
+
 }
 
 .nav-menu__container {

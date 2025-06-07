@@ -74,7 +74,7 @@ export const Header = () => {
             <Link href={'/about'}>
               <li>{translations[lang].header.about_brand}</li>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/catalog'}>
               <li>{translations[lang].header.collection}</li>
             </Link>
             <Link href={'/contacts'}>

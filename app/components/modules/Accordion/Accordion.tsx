@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-const Accordion = ({ children, title, titleClass, rotateIconClass }: IAccordionProps) => {
+const Accordion = ({ children, title, rotateIconClass }: IAccordionProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleAccordion = () => setExpanded(!expanded);

@@ -16,7 +16,7 @@ export const Menu = () => {
     toggleCurrencyModal();
     addOverflowHiddenToBody();
   };
-  const { lang, translations } = useLang();
+  const { lang} = useLang();
 
   const location = useUnit($location);
   const isCurrencyModal = useUnit($currencyModal);

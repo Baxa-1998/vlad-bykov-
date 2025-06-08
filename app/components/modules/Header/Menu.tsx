@@ -16,7 +16,7 @@ export const Menu = () => {
     toggleCurrencyModal();
     addOverflowHiddenToBody();
   };
-  const { lang} = useLang();
+  const { lang, translations } = useLang();
 
   const location = useUnit($location);
   const isCurrencyModal = useUnit($currencyModal);
@@ -58,19 +58,19 @@ export const Menu = () => {
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
       <ul>
         <Link onClick={() => closeMenu()} href={'/about'}>
-          <li>О БРЕНДЕ</li>{' '}
+          <li>{translations[lang].header.about_brand}</li>{' '}
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
         <Link onClick={() => closeMenu()} href={'/'}>
-          <li>КОЛЛЕКЦИЯ</li>
+          <li>{translations[lang].header.collection}</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />{' '}
         </Link>
         <Link onClick={() => closeMenu()} href={'/contacts'}>
-          <li>КОНТАКТЫ</li>
+          <li>{translations[lang].header.contacts}</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
         <Link onClick={() => closeMenu()} href={'/custom'}>
-          <li>ИНДИВИДУАЛЬНЫЙ ПОШИВ</li>
+          <li>{translations[lang].header.taoiliring}</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
       </ul>

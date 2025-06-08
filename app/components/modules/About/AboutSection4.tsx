@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '@/app/styles/about/index.module.scss';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+import { useLang } from '@/app/hooks/useLang';
 type IPartner = {
   id: number;
   img: string;
@@ -52,20 +53,13 @@ type IPartner = {
   ];
 const AboutSection4 = () => {
   const isMedia540 = useMediaQuery(540);
-
+  const {translations, lang} = useLang()
   return (
     <div className={styles.aboutSection4}>
       <div className={styles.aboutSectionText}>
-        <h3>НАШИ ПАРТНЁРЫ</h3>
+        <h3>{translations[lang].about.title4}</h3>
         <p>
-          Мы сотрудничаем с лучшими мастерами отрасли, чтобы воплотить в жизнь наше видение роскоши.
-          Наше производство расположено в Италии, ОАЭ, России и Казахстане, где каждое предприятие
-          обладает своими богатыми традициями мастерства и опытом. <br /> <br /> От точности
-          итальянского мастерства до инновационных технологий, применяемых в других наших мастерских
-          по всему миру, каждое изделие, которое мы создаем, является свидетельством нашей
-          приверженности качеству и совершенству. Работая с мастерами-ремесленниками в этих
-          регионах, мы гарантируем, что каждое изделие соответствует самым высоким стандартам
-          роскоши и дизайна.
+         {translations[lang].about.subtitle}
         </p>
       </div>
       <div className={styles.aboutPartners}>

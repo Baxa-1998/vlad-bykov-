@@ -5,20 +5,22 @@ import { Button } from '@/app/components/elements/Button';
 import { ClubMembers } from './ClubMembers';
 
 import { members } from '@/app/constants/clubMembers';
+import { useLang } from '@/app/hooks/useLang';
 
 
 
 export const JoinClub = () => {
+  const {translations, lang} = useLang();
   return (
     <div className={styles.joinClub}>
       <div className={styles.joinClubWrapper}>
         <div className={styles.joinClubInner}>
-          <h3>ЭСКЛЮЗИВНОСТЬ</h3>
-          <h2>ЭТО НЕ ПРОСТО ВЕЩИ</h2>
+          <h3>{translations[lang].joinClub.main_title}</h3>
+          <h2>{translations[lang].joinClub.title}</h2>
           <p>
-            Сделано в Италии. Экологичные материалы. <br /> Доставка по всему миру.
+        {translations[lang].joinClub.subtitle}
           </p>
-          <Button>ВСТУПИТЬ В КЛУБ</Button>
+          <Button>{translations[lang].joinClub.button}</Button>
         </div>
         <div className={styles.clubMembers}>
           {members.map((member) => (

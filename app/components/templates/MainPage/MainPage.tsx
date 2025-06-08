@@ -4,7 +4,7 @@ import { Hero } from '../../modules/MainPage/Hero/Hero';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
-import 'swiper/css'; 
+import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { Mousewheel, Pagination } from 'swiper/modules';
@@ -16,6 +16,8 @@ import { Category } from '../../modules/MainPage/Category/Category';
 import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandStatement';
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+import { useGate } from 'effector-react';
+import { MainPageGate } from '@/app/context/goods';
 
 export default function MainPage() {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -24,6 +26,7 @@ export default function MainPage() {
   const fourthSlideRef = useRef<HTMLDivElement>(null);
   // хук изменение ширины
   const isMedia540 = useMediaQuery(540);
+  useGate(MainPageGate)
 
   const handleReachEnd = () => {
     if (swiperRef.current) {

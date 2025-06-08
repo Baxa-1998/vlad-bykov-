@@ -6,8 +6,9 @@ import { CartItem } from './CartItem';
 import { useUnit } from 'effector-react';
 import { $cartModal, closeCartPopup } from '@/app/context/modals';
 import { Button } from '../../elements/Button';
+import { useLang } from '@/app/hooks/useLang';
 export const CartPopup = () => {
-
+  const {translations, lang} = useLang()
   const open = useUnit($cartModal)
 
   const handleClosePopup = () =>{
@@ -20,12 +21,12 @@ export const CartPopup = () => {
    
       <div className="cart__wrapper">
         <div className="cart__top">
-          <h3>КОРЗИНА</h3>
+          <h3>{translations[lang].cart.basket}</h3>
           <Image onClick={handleClosePopup} src={'/img/close.svg'} width={12} height={12} alt="close" />
         </div>
         <div className="delivery__info">
           <p>
-            Бесплатная доставка  <span>от 20 000 ₽</span>
+            {translations[lang].cart.delivery}  <span>{translations[lang].cart.from} 20 000 ₽</span>
           </p>
         </div>
         <div className='cart__list'>
@@ -36,7 +37,7 @@ export const CartPopup = () => {
              <CartItem/>
                 <CartItem/>
         </div>
-        <Button className='cart__btn'>Оформить заказ 30123₽ </Button>
+        <Button className='cart__btn'>{translations[lang].cart.button} 30123₽ </Button>
       </div>
     </div>
   );

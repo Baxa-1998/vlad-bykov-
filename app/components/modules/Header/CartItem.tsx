@@ -1,9 +1,10 @@
 
+import { useLang } from '@/app/hooks/useLang';
 import Image from 'next/image';
 import React from 'react';
 
 export const CartItem = () => { 
- 
+  const {translations, lang} = useLang()
   return (
     <div className="cart__item">
       <div className="cart__img">
@@ -23,7 +24,7 @@ export const CartItem = () => {
           </div>
 
           <div className="cart__delete">
-            Удалить
+            {translations[lang].cart.remove}
           </div>
         </div>
       </div>

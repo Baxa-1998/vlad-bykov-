@@ -14,22 +14,22 @@ const Footer = () => {
           <h2 className="footer__links_title">{translations[lang].footer.heading1}</h2>
           <p className="footer__links_subtitle">{translations[lang].footer.subtitle}</p>
           <input type="email" placeholder="E-mail" />
-          <Button className={'footer__links_btn'}>ОСТАВИТЬ ЗАЯВКУ</Button>
+          <Button className={'footer__links_btn'}>{translations[lang].footer.button}</Button>
         </div>
         <div className="footer__links">
           <h2 className="footer__links_title">VLAD BYKOV</h2>
           <ul>
             <Link href={'/about'}>
-              <li>О бренде</li>
+              <li>{translations[lang].footer.link1}</li>
             </Link>
             <Link href={'/catalog'}>
-              <li>Коллекции</li>
+              <li>{translations[lang].footer.link2}</li>
             </Link>
             <Link href={'/contacts'}>
-              <li>Контакты</li>
+              <li>{translations[lang].footer.link3}</li>
             </Link>
             <Link href={'/custom'}>
-              <li>Индивидуальный пошив</li>
+              <li>{translations[lang].footer.link4}</li>
             </Link>
           </ul>
         </div>
@@ -37,33 +37,28 @@ const Footer = () => {
           <h2 className="footer__links_title">{translations[lang].footer.heading2}</h2>
           <ul>
             <Link href={'/delivery'}>
-              <li>Доставка</li>
+              <li>{translations[lang].footer.link5}</li>
             </Link>
             <Link href={'/cancellation'}>
-              <li>Возврат и отмена</li>
+              <li>{translations[lang].footer.link6}</li>
             </Link>
             <Link href={'/faq'}>
-              <li>Вопросы и ответы</li>
+              <li>{translations[lang].footer.link7}</li>
             </Link>
             <Link href={'/payment'}>
-              <li>Методы оплаты</li>
+              <li>{translations[lang].footer.link8}</li>
             </Link>
             <Link href={'/policy'}>
-              <li>Политика конфиденциальности</li>
+              <li>{translations[lang].footer.link9}</li>
             </Link>
             <Link href={'/'}>
-              <li>Условия пользования</li>
+              <li>{translations[lang].footer.link10}</li>
             </Link>
           </ul>
         </div>
         <div className="footer__links">
           <h2 className="footer__links_title">{translations[lang].footer.heading3}</h2>
-          <p className="footer__links_subtitle">
-            Уделяя особое внимание <br /> неподвластному времени стилю, <br /> ремесленному
-            мастерству и <br />
-            использованию лучших натуральных <br /> материалов, Vlad Bykov предлагает <br />{' '}
-            коллекции, представляющие собой <br /> чистую роскошь по элегантной цене.
-          </p>
+          <p className="footer__links_subtitle">{translations[lang].footer.full_version}</p>
         </div>
       </div>
       <div className="footer__bottom">

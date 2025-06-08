@@ -1,0 +1,22 @@
+import { Db, MongoClient } from 'mongodb';
+import { shuffle } from './common';
+
+export const getDbAndReqBody = async (clientPromise: Promise<MongoClient>, req: Request | null) => {
+  const db = (await clientPromise).db(process.env.NEXT_PUBLIC_DB_NAME);
+
+  if (req) {
+    const reqBody = await req.json();
+    return { db, reqBody };
+  }
+  return { db };
+};
+
+export const getNewGoods = async (db: Db) => {
+  const clothes = await db.collection('cloth').find({ type: 'new' }).toArray();
+
+  return shuffle(
+    clothes
+      .filter((item) => Object.values(item.sizes).some((value) => value))
+      .slice(0, 5)
+  );
+};

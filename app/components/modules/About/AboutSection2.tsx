@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from '@/app/styles/about/index.module.scss';
-const AboutSection2 = () => {
+import { useLang } from '@/app/hooks/useLang';
+const AboutSection2 = () => { 
+  const {translations, lang} = useLang()
   return (
     <div className={styles.aboutSection2}>
       <div className={styles.aboutSectionWrapper2}>
         <h3>
-          Сегодня VLAD BYKOV представляет коллекцию знаковых изделий, <br /> созданных из редчайших
-          материалов, поставляемых ведущими <br /> мануфактурами Италии и Франции. Обувь, сумки, аксессуары <br />
-          и одежда, выполненные вручную лучшими мастерами, становятся <br /> символами статуса
-          и безупречного вкуса.
+     {translations[lang].about.title2}
         </h3>
       </div>
     </div>

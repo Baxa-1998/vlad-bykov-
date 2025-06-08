@@ -36,14 +36,101 @@
        "about_brand": "About",
       "collection": "Collection",
       "contacts": "Contacts",
-      "taoiliring": "Custom tailoring"
+      "taoiliring": "Custom tailoring",
+      "search": "Search"
+     
  
+    }, 
+
+    "cart":{
+      "basket": "Cart", 
+      "delivery": "Free delivery", 
+      "from": "from", 
+      "button": "Place an order" , 
+       "remove": "Remove"
+      
+
     },
     "hero": {
       "title": "Private fashion house",
       "subtitle": "Exclusivity in every detail",
       "button": "To shopping"
  
+    },
+    "partners":{
+      "title": "WE ARE CHOOSEN",
+      "subtitle": "Businessmen, politicians, celebrities, bloggers"
+    }, 
+
+    "category":{
+      "men": "MEN",
+      "girls": "GIRLS",
+      "news": "NEW COLLECTIONS",
+      "button": "TO CATALOG"
+    },
+
+      "historyBrand":{
+      "title": "LUXURY IS IN OUR BLOOD",
+      "subtitle": "The art of creating things that amaze not only in quality but also in style ",
+      "button":"BRAND HISTORY"
+    },
+        "catalog": {
+      "men":"FOR MEN",
+      "girls":"FOR GIRLS",
+      "shoes":"SHOES",
+      "top_clothing":"TOP CLOTHING",
+      "cloth":"CLOTH",
+      "accessories": "ACCESSORIES",
+      "button":"READ MORE"
+      
+      
+    },
+    "brandStatement": {
+      "title": "IT'S NOT JUST STUFF",
+      "subtitle": "Made in Italy. Eco-friendly materials. Worldwide delivery."
+    },
+        "joinClub": {
+      "main_title": "EXCLUSIVITY",
+      "title": "IT'S NOT JUST STUFF",
+      "title2": "Ambassadors, clients and guests",
+      "subtitle": "Made in Italy. Eco-friendly materials. Worldwide delivery.",
+      "button": "JOIN THE CLUB"
+    },
+      "about":{
+      "title": "Since 2016, VLAD BYKOV has been creating Bespoke \n clothes and shoes on the verge of art.\n  Exclusive materials, superior craftsmanship, filigree handwork - all this is available \n only to those who understand true luxury.",
+      "title2": "Today VLAD BYKOV presents a collection of iconic products \n made of the rarest materials supplied by the leading \n manufactories in Italy and France. Shoes, bags, accessories \n and clothes handmade by the best craftsmen become symbols of \n status and impeccable taste.", 
+      "title3": "Our philosophy is to offer each \n guest a truly personalized experience.",
+      "button": "TO BE A CLIENT", 
+      "title4": "OUR PARTNERS",
+      "subtitle": "We collaborate with the finest craftsmen in the industry to bring our vision of luxury to life. Our production is located in Italy, the UAE, Russia, and Kazakhstan, where each \n facility has its own rich traditions of craftsmanship and expertise. \n \n From the precision of Italian craftsmanship to the innovative technologies used in our other workshops around the world, every product we create is a \n testament to our commitment to quality and excellence. By working with master artisans in these regions, we ensure that each item meets the highest \n standards of luxury and design."
+    },
+       "contacts":{
+      "main_title": "CONTACTS", 
+      "title1": "Сontacts", 
+      "title2": "Email",  
+      "title3": "Address",
+      "title4": "Requisites",
+      "subtitle1": "Customer Support",
+      "subtitle2": "Corporate customer support", 
+      "subtitle3": "Press service",
+      "subtitle4": "Content Division",
+      "subtitle5": "Individuals",
+      "subtitle6": "Corporate clients",
+      "subtitle7": "Compliance",
+      "subtitle8": "Correspondence from government agencies",
+      "subtitle9": "OOO “Instamart Service”, 115035, Moscow, vn.ter.g. Zamoskvorechye mun. district, 9a Sadovnicheskaya St., floor 5, room. I, room 1.",
+      "subtitle10": "OOO Instamart Service",
+      "subtitle11": "INN",
+      "subtitle12": "KPP",
+      "subtitle13": "OGRN",
+      "subtitle14": "R/S",
+      "subtitle15": "SBERBANK BANK",
+      "subtitle16": "BIC",
+      "subtitle17": "C/S."
+
+
+
+
     },
     "comparison": {
       "umbrella": "Umbrellas",
@@ -80,8 +167,8 @@
       "heading1": "PRIVATE SALES",
       "heading2": "CUSTOMER SERVICE",
       "heading3": "A NEW LEVEL OF LUXURY",
-      "subtitle": "Members only. Reserved for the select few who appreciate style.",
-      "full_version": "With a special focus on timeless style, artisanal craftsmanship, and the use of the finest natural materials, Vlad Bykov offers collections that embody pure luxury at an elegant price.",
+      "subtitle": "Members only. \n Reserved for the select few who appreciate style.",
+      "full_version": "With a special focus \n  on timeless style, artisanal \n  craftsmanship, and the use of the finest \n  natural materials, Vlad Bykov offers \n collections that embody pure luxury \n at an elegant price.",
       "link1": "About",
       "link2": "Collection",
       "link3": "Contacts",
@@ -91,7 +178,8 @@
       "link7": "FAQ",
       "link8": "Payment Methods",
       "link9": "Privacy Policy",
-      "link10": "Terms of Use"
+      "link10": "Terms of Use",
+      "button": "LEAVE A REQUEST"
     },
     "main_page": {
       "hero_hidden_title": "Clothing store Rostelecom",
@@ -138,36 +226,7 @@
       "in_cart": "Added",
       "share": "Share"
     },
-    "catalog": {
-      "all_categories": "All categories",
-      "popular": "Popular",
-      "new": "New",
-      "cheap_first": "Cheap first",
-      "expensive_first": "Expensive first",
-      "categories": "Categories",
-      "sort": "Sort",
-      "price": "Price",
-      "from": "From",
-      "to": "To",
-      "rub": "₽",
-      "done": "Done",
-      "size": "Size",
-      "color": "Color",
-      "purpure": "Purpure",
-      "orange": "Orange",
-      "yellow": "Yellow",
-      "black": "Black",
-      "white": "White",
-      "cotton": "Cotton",
-      "synthetics": "Synthetic",
-      "polyester": "Polyester",
-      "next_page": "Next page",
-      "previous_page": "Previous page",
-      "filters": "Filters",
-      "found": "Found",
-      "nothing_found": "Nothing found",
-      "collection": "Collection"
-    },
+   
     "size_table": {
       "head_circumference": "Head circumference, cm",
       "size": "Size",
@@ -306,7 +365,16 @@
       "collection": "Коллекция",
       "contacts": "Контакты",
       "taoiliring": "Индивидуальный пошив",
-      "logout": "Выйти"
+      "search": "Поиск"
+    },
+        "cart":{
+      "basket": "Корзина", 
+      "delivery": "Бесплатная доставка", 
+      "from": "от", 
+      "button": "Оформить заказ",
+      "remove": "Удалить"
+      
+
     },
      "hero": {
       "title": "Приватный дом моды",
@@ -314,6 +382,63 @@
       "button": "К покупкам"
  
     },
+
+      "partners":{
+      "title": "НАС ВЫБИРАЮТ",
+      "subtitle": "Бизнесмены, политики, селебрити, блогеры"
+    },
+        "category":{
+      "men": "ДЛЯ МУЖЧИН",
+      "girls": "ДЛЯ ДЕВУШЕК",
+      "news": "НОВЫЕ КОЛЕКЦИИ",
+      "button":"В КАТАЛОГ"
+    },
+         "historyBrand":{
+      "title": "РОСКОШЬ У НАС В КРОВИ",
+      "subtitle": "Искусство создания вещей, которые изумляют не только качеством, но и стилем",
+      "button":"ИСТОРИЯ БРЕНДА"
+    },
+    "catalog": {
+      "men":"ДЛЯ МУЖЧИН",
+      "girls":"ДЛЯ ДЕВУШЕК",
+      "shoes":"ОБУВЬ",
+      "top_clothing":"Вверхная одежда",
+      "cloth":"Одежда",
+      "accessories": "Аксесуары",
+      "button":"ПОДРОБНЕЕ"
+      
+      
+    },
+        "brandStatement": {
+      "title": "ЭТО НЕ ПРОСТО ВЕЩИ",
+      "subtitle": "Сделано в Италии. Экологичные материалы. Доставка по всему миру."
+    },
+            "joinClub": {
+      "main_title": "ЭКСКЛЮЗИВНОСТЬ",
+      "title": "ЭТО НЕ ПРОСТО ВЕЩИ",
+       "title2": "Амбассадоры, клиенты и гости",
+      "subtitle": "Сделано в Италии. Экологичные материалы. Доставка по всему миру.",
+      "button": "ВСТУПИТЬ В КЛУБ"
+    },
+
+    "about":{
+      "title": "C 2016 года VLAD BYKOV создаёт одежду и обувь Bespoke \n  на грани искусства. Эксклюзивные материалы, высшее \n мастерство, филигранная ручная работа — всё это доступно лишь \n тем, кто понимает истинную роскошь.",
+      "title2": "Сегодня VLAD BYKOV представляет коллекцию знаковых изделий, \n созданных из редчайших материалов, поставляемых ведущими \n мануфактурами Италии и Франции. Обувь, сумки, аксессуары \n и одежда, выполненные вручную лучшими мастерами, становятся \n символами статуса и безупречного вкуса.",
+        "title3": "Наша философия заключается в том, чтобы предложить каждому \n гостю по-настоящему индивидуальный подход.",
+        "button": "СТАТЬ КЛИЕНТОМ", 
+        "title4": "НАШИ ПАРТНЕРЫ",
+        "subtitle": "Мы сотрудничаем с лучшими мастерами отрасли, чтобы воплотить в жизнь наше видение роскоши. Наше  производство расположено в Италии, ОАЭ, России и Казахстане, где каждое \n предприятие обладает своими богатыми традициями мастерства и опытом. \n \n От точности итальянского мастерства до инновационных технологий, применяемых в других наших мастерских по всему миру, каждое изделие, которое мы создаем, является \n свидетельством нашей приверженности качеству и совершенству. Работая с мастерами-ремесленниками в этих регионах, мы гарантируем, что каждое изделие соответствует самым \n высоким стандартам роскоши и дизайна."
+    },
+    "contacts":{
+      "main_title": "КОНТАКТЫ", 
+      "title1": "Контакты", 
+      "title2": "Почта",  
+      "title3": "Адрес",
+      "title4": "Реквизиты"
+
+
+    },
+
     "comparison": {
       "umbrella": "Зонты",
       "bags": "Сумки",
@@ -350,7 +475,7 @@
       "heading2": "ОБСЛУЖИВАНИЕ",
       "heading3": "НОВЫЙ УРОВЕНЬ РОСКОШИ",
       "subtitle": "Только для членов клуба. Только \n  для избранных, кто ценит стиль.",
-      "full_version": "Уделяя особое внимание неподвластному времени стилю, ремесленному мастерству и использованию лучших натуральных материалов, Vlad Bykov предлагает коллекции, представляющие собой чистую роскошь по элегантной цене.",
+      "full_version": "Уделяя особое внимание \n неподвластному времени стилю, \n ремесленному мастерству и \n использованию лучших натуральных \n материалов, Vlad Bykov предлагает \n коллекции, представляющие собой \n чистую роскошь по элегантной цене.",
       "link1": "О бренде",
       "link2": "Коллекции",
       "link3": "Контакты",
@@ -360,7 +485,8 @@
       "link7": "Вопросы и ответы",
       "link8": "Методы оплаты",
       "link9": "Политика конфиденциальности",
-      "link10": "Условия пользования"
+      "link10": "Условия пользования", 
+      "button": "ОСТАВИТЬ ЗАЯВКУ"
     },
     "main_page": {
       "hero_hidden_title": "Магазин одежды Ростелеком",
@@ -407,36 +533,7 @@
       "in_cart": "Добавлено",
       "share": "Поделиться"
     },
-    "catalog": {
-      "all_categories": "Все категории",
-      "popular": "Популярные",
-      "new": "Новинки",
-      "cheap_first": "Сначала дешевые",
-      "expensive_first": "Сначала дорогие",
-      "categories": "Категории",
-      "sort": "Сортировка",
-      "price": "Цена",
-      "from": "От",
-      "to": "До",
-      "rub": "руб.",
-      "done": "Готово",
-      "size": "Размер",
-      "color": "Цвет",
-      "purpure": "Пурпурный",
-      "orange": "Оранжевый",
-      "yellow": "Желтый",
-      "black": "Черный",
-      "white": "Белый",
-      "cotton": "Хлопок",
-      "synthetics": "Синтетика",
-      "polyester": "Полиэстер",
-      "next_page": "Следующая страница",
-      "previous_page": "Предыдущая страница",
-      "filters": "Фильтры",
-      "found": "Найдено",
-      "nothing_found": "Ничего не найдено",
-      "collection": "Коллекция"
-    },
+  
     "size_table": {
       "head_circumference": "Обхват головы, см",
       "size": "Размер",

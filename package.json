@@ -12,6 +12,7 @@
     "@faker-js/faker": "^9.8.0",
     "@tailwindcss/postcss": "^4.1.7",
     "@types/mongodb": "^4.0.7",
+    "axios": "^1.9.0",
     "bootstrap": "^5.3.6",
     "dotenv": "^16.5.0",
     "effector": "^23.3.0",

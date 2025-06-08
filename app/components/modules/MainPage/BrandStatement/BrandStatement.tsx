@@ -2,8 +2,10 @@ import React from 'react';
 import styles from '@/app/styles/main-page/index.module.scss';
 
 import { Title } from '@/app/components/elements/Title';
+import { useLang } from '@/app/hooks/useLang';
 
 export const BrandStatement = () => {
+  const {translations, lang} = useLang();
   return (
     <div className={styles.brandStatement}>
      {/* <div className={styles.brandStatementImg}> 
@@ -14,10 +16,10 @@ export const BrandStatement = () => {
       
  
       <div className={styles.brandStatementWrapper}>
-        <Title className={styles.brandStatementTitle}>ЭТО НЕ ПРОСТО ВЕЩИ</Title>
+        <Title className={styles.brandStatementTitle}>{translations[lang].brandStatement.title}</Title>
       
         <p className={styles.brandStatementSubtitle}>
-          Сделано в Италии. Экологичные материалы. <br /> Доставка по всему миру.
+        {translations[lang].brandStatement.subtitle}
         </p>
       </div>
       

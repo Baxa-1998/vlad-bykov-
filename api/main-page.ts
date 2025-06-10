@@ -6,3 +6,15 @@ export const getNewProductsFX = createEffect(async () => {
 
   return data; 
 });
+
+export const getMenProductsFX = createEffect(async () => {
+  const { data } = await api.get('/api/goods/men');
+
+  return data; 
+});
+
+export const getWomenProductsFX = createEffect(async () => {
+  const { data } = await api.get('/api/goods/women');
+
+  return data; 
+});

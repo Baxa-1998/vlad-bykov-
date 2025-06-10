@@ -2,7 +2,7 @@
 import { Effect, createDomain, sample } from 'effector';
 import { Gate, createGate } from 'effector-react';
 
-import { getNewProductsFX } from '@/api/main-page';
+import { getMenProductsFX, getNewProductsFX, getWomenProductsFX } from '@/api/main-page';
 
 const goods = createDomain();
 
@@ -22,6 +22,10 @@ const goodSampleInstance = (effect: Effect<void, [], Error>, gate: Gate<unknown>
     target: effect,
   });
 
-export const $newProducts = goodsStoreInstance(getNewProductsFX) 
+export const $newProducts = goodsStoreInstance(getNewProductsFX);
+export const $menProducts = goodsStoreInstance(getMenProductsFX);
+export const $womenProducts = goodsStoreInstance(getWomenProductsFX);
 
-goodSampleInstance(getNewProductsFX, MainPageGate)
+goodSampleInstance(getNewProductsFX, MainPageGate);
+goodSampleInstance(getMenProductsFX, MainPageGate);
+goodSampleInstance(getWomenProductsFX, MainPageGate);

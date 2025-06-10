@@ -11,12 +11,27 @@ export const getDbAndReqBody = async (clientPromise: Promise<MongoClient>, req: 
   return { db };
 };
 
+//  из бд получаем по типу новинки 5 товаров
 export const getNewGoods = async (db: Db) => {
   const clothes = await db.collection('cloth').find({ type: 'new' }).toArray();
 
   return shuffle(
-    clothes
-      .filter((item) => Object.values(item.sizes).some((value) => value))
-      .slice(0, 5)
+    clothes.filter((item) => Object.values(item.sizes).some((value) => value)).slice(0, 5),
+  );
+};
+// из бд получаем по типу мужские 5 товаров
+export const getMenGoods = async (db: Db) => {
+  const clothes = await db.collection('cloth').find({ type: 'men' }).toArray();
+
+  return shuffle(
+    clothes.filter((item) => Object.values(item.sizes).some((value) => value)).slice(0, 5),
+  );
+};
+
+export const getWomenGoods = async (db: Db) => {
+  const clothes = await db.collection('cloth').find({ type: 'women' }).toArray();
+
+  return shuffle(
+    clothes.filter((item) => Object.values(item.sizes).some((value) => value)).slice(0, 5),
   );
 };

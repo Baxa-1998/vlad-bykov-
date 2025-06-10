@@ -3,13 +3,17 @@ import styles from '@/app/styles/main-page/index.module.scss';
 import Image from 'next/image';
 import { Button } from '@/app/components/elements/Button';
 import { useUnit } from 'effector-react';
-import { $newProducts } from '@/app/context/goods';
+import { $menProducts, $newProducts, $womenProducts } from '@/app/context/goods';
 import { useLang } from '@/app/hooks/useLang';
 export const NewCollection = () => {
   const [collectionSelected, setCollectionSelected] = React.useState(0);
   const { translations, lang } = useLang();
-  const goods = useUnit($newProducts);
-  console.log(goods);
+  const newGoods = useUnit($newProducts);
+  const menGoods = useUnit($menProducts);
+  const womenGoods = useUnit($womenProducts);
+  console.log(menGoods);
+  console.log(womenGoods);
+  console.log(newGoods);
 
   const titles = [
     translations[lang].category.news,
@@ -37,7 +41,12 @@ export const NewCollection = () => {
           </div>
         </div>
         <div className={styles.newCollectionItems}>
-          {goods.map((item) => (
+          {(collectionSelected === 0
+            ? newGoods
+            : collectionSelected === 1
+            ? menGoods
+            : womenGoods
+          ).map((item) => (
             <div key={item._id} className={styles.newCollectionItem}>
               <Image width={300} height={300} src={item.img} alt="collection" />
               <span className={styles.newCollectionItemTitle}>

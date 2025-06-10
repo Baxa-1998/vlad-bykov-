@@ -3,7 +3,7 @@ import styles from '@/app/styles/main-page/index.module.scss';
 import Image from 'next/image';
 import { Button } from '@/app/components/elements/Button';
 import { useUnit } from 'effector-react';
-import { $menProducts, $newProducts, $womenProducts } from '@/app/context/goods';
+import { $allGoods, $menProducts, $newProducts, $shoesProducts, $womenProducts } from '@/app/context/goods';
 import { useLang } from '@/app/hooks/useLang';
 export const NewCollection = () => {
   const [collectionSelected, setCollectionSelected] = React.useState(0);
@@ -11,9 +11,11 @@ export const NewCollection = () => {
   const newGoods = useUnit($newProducts);
   const menGoods = useUnit($menProducts);
   const womenGoods = useUnit($womenProducts);
-  console.log(menGoods);
-  console.log(womenGoods);
-  console.log(newGoods);
+  const shoes = useUnit($shoesProducts);
+  const goods = useUnit($allGoods); 
+  console.log(shoes);
+  
+ 
 
   const titles = [
     translations[lang].category.news,

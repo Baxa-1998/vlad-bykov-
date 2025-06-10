@@ -13,7 +13,7 @@ export const getDbAndReqBody = async (clientPromise: Promise<MongoClient>, req: 
 
 //  из бд получаем по типу новинки 5 товаров
 export const getNewGoods = async (db: Db) => {
-  const clothes = await db.collection('cloth').find({ type: 'new' }).toArray();
+  const clothes = await db.collection('cloth').find({ isNew: true }).toArray();
 
   return shuffle(
     clothes.filter((item) => Object.values(item.sizes).some((value) => value)).slice(0, 5),
@@ -35,3 +35,14 @@ export const getWomenGoods = async (db: Db) => {
     clothes.filter((item) => Object.values(item.sizes).some((value) => value)).slice(0, 5),
   );
 };
+
+
+export const getClothGoods = async (db: Db) => {
+  return db.collection('cloth').find().toArray();
+};
+
+
+export const getShoes = async (db: Db) => {
+  return db.collection('cloth').find({ category: 'shoes' }).toArray();
+};
+

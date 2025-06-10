@@ -2,7 +2,8 @@
 import { Effect, createDomain, sample } from 'effector';
 import { Gate, createGate } from 'effector-react';
 
-import { getMenProductsFX, getNewProductsFX, getWomenProductsFX } from '@/api/main-page';
+import { getAllGoodsFX, getMenProductsFX, getNewProductsFX, getShoesProductsFX, getWomenProductsFX } from '@/api/main-page';
+import { getShoes } from '../lib/utils/api-routes';
 
 const goods = createDomain();
 
@@ -25,7 +26,11 @@ const goodSampleInstance = (effect: Effect<void, [], Error>, gate: Gate<unknown>
 export const $newProducts = goodsStoreInstance(getNewProductsFX);
 export const $menProducts = goodsStoreInstance(getMenProductsFX);
 export const $womenProducts = goodsStoreInstance(getWomenProductsFX);
+export const $allGoods = goodsStoreInstance(getAllGoodsFX);
+export const $shoesProducts = goodsStoreInstance(getShoesProductsFX);
 
 goodSampleInstance(getNewProductsFX, MainPageGate);
 goodSampleInstance(getMenProductsFX, MainPageGate);
 goodSampleInstance(getWomenProductsFX, MainPageGate);
+goodSampleInstance(getAllGoodsFX, MainPageGate);
+goodSampleInstance(getShoesProductsFX, MainPageGate);

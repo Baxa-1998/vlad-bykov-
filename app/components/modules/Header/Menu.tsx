@@ -10,6 +10,8 @@ import { setLang } from '@/app/context/lang';
 import { AllowedLangs } from '@/app/constants/lang';
 import { $location, fetchLocationFx } from '@/app/context/country';
 import { useLang } from '@/app/hooks/useLang';
+import { useTransitionRouter } from 'next-view-transitions';
+import { slideInOut } from '@/app/lib/utils/animations';
 
 export const Menu = () => {
   const handleOpenCurrencyModal = () => {
@@ -17,10 +19,23 @@ export const Menu = () => {
     addOverflowHiddenToBody();
   };
   const { lang, translations } = useLang();
+  const router = useTransitionRouter();
 
   const location = useUnit($location);
   const isCurrencyModal = useUnit($currencyModal);
+  const handleClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    closeMenu();
 
+    // Запускаем анимацию
+
+    // Переход через 400 мс
+    setTimeout(() => {
+      router.push(path, {
+        onTransitionReady: slideInOut,
+      });
+    }, 400);
+  };
   useEffect(() => {
     fetchLocationFx();
   }, []);
@@ -57,19 +72,19 @@ export const Menu = () => {
   return (
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
       <ul>
-        <Link onClick={() => closeMenu()} href={'/about'}>
+        <Link onClick={(e) => handleClick(e, '/about')} href={'/about'}>
           <li>{translations[lang].header.about_brand}</li>{' '}
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
-        <Link onClick={() => closeMenu()} href={'/'}>
+        <Link onClick={(e) => handleClick(e, '/catalog')} href={'/catalog'}>
           <li>{translations[lang].header.collection}</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />{' '}
         </Link>
-        <Link onClick={() => closeMenu()} href={'/contacts'}>
+        <Link onClick={(e) => handleClick(e, '/contacts')} href={'/contacts'}>
           <li>{translations[lang].header.contacts}</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>
-        <Link onClick={() => closeMenu()} href={'/custom'}>
+        <Link onClick={(e) => handleClick(e, '/custom')} href={'/custom'}>
           <li>{translations[lang].header.taoiliring}</li>
           <Image src={'/img/arrow-forward.svg'} width={0} height={0} alt="arrow" />
         </Link>

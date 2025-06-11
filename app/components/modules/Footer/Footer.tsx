@@ -1,12 +1,13 @@
 import Link from 'next/link';
-
 import { Button } from '../../elements/Button';
 import Image from 'next/image';
 import { useLang } from '@/app/hooks/useLang';
+import { useTransitionRouter } from 'next-view-transitions';
+import { slideInOut } from '@/app/lib/utils/animations';
 
 const Footer = () => {
   const { lang, translations } = useLang();
-
+  const router = useTransitionRouter();
   return (
     <footer className="footer">
       <div className="footer__top">
@@ -19,16 +20,44 @@ const Footer = () => {
         <div className="footer__links">
           <h2 className="footer__links_title">VLAD BYKOV</h2>
           <ul>
-            <Link href={'/about'}>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/about', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/about'}>
               <li>{translations[lang].footer.link1}</li>
             </Link>
-            <Link href={'/catalog'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/catalog', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/catalog'}>
               <li>{translations[lang].footer.link2}</li>
             </Link>
-            <Link href={'/contacts'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/contacts', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/contacts'}>
               <li>{translations[lang].footer.link3}</li>
             </Link>
-            <Link href={'/custom'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/custom', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/custom'}>
               <li>{translations[lang].footer.link4}</li>
             </Link>
           </ul>
@@ -36,22 +65,64 @@ const Footer = () => {
         <div className="footer__links">
           <h2 className="footer__links_title">{translations[lang].footer.heading2}</h2>
           <ul>
-            <Link href={'/delivery'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/delivery', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/delivery'}>
               <li>{translations[lang].footer.link5}</li>
             </Link>
-            <Link href={'/cancellation'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/cancellation', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/cancellation'}>
               <li>{translations[lang].footer.link6}</li>
             </Link>
-            <Link href={'/faq'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/faq', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/faq'}>
               <li>{translations[lang].footer.link7}</li>
             </Link>
-            <Link href={'/payment'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/payment', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/payment'}>
               <li>{translations[lang].footer.link8}</li>
             </Link>
-            <Link href={'/policy'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/policy', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/policy'}>
               <li>{translations[lang].footer.link9}</li>
             </Link>
-            <Link href={'/'}>
+            <Link
+             onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/', {
+                              onTransitionReady: slideInOut,
+                            });
+                          }}
+            href={'/'}>
               <li>{translations[lang].footer.link10}</li>
             </Link>
           </ul>

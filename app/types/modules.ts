@@ -32,3 +32,23 @@ export interface ICatalogProps {
   img: string;
   price: number;
 }
+
+
+
+export interface IGoodsItemProps {
+    _id: string; 
+  name: string;
+  description: string;
+  price: number;
+  img: string;
+  inStock: string;
+  isNew: boolean;
+  category: string;
+  type: string;
+  sizes: number[];
+  characteristics: {
+    compositions: string;
+    collection: string;
+    colors: string[];
+}
+}

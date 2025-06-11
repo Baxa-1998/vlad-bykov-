@@ -28,6 +28,19 @@
       }
     }
   }
+  @media (max-width: 540px){
+    .search-modal__top {
+      .search-modal__label{
+        img{
+          left: 30px;
+        }
+        input{
+          padding-left: 50px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
 }
 
 .search-modal__close {

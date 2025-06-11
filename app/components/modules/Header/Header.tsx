@@ -19,11 +19,48 @@ import { Hamburger } from './Hamburger';
 import { $location, fetchLocationFx } from '@/app/context/country';
 import { CartPopup } from './CartPopup';
 import { useTransitionRouter } from 'next-view-transitions';
+import { slideInOut } from '@/app/lib/utils/animations';
 export const Header = () => {
   const { lang, translations } = useLang();
-  const router = useTransitionRouter()
+  const router = useTransitionRouter();
   const location = useUnit($location);
   const isCurrencyModal = useUnit($currencyModal);
+  // function slideInOut() {
+  //   document.documentElement.animate(
+  //     [
+  //       {
+  //         opacity: 1,
+  //         transform: 'translateY(0)',
+  //       },
+  //       {
+  //         opacity: 0.2,
+  //         transform: 'translateY(-35%)',
+  //       },
+  //     ],
+  //     {
+  //       duration: 1500,
+  //       easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
+  //       fill: 'forwards',
+  //       pseudoElement: '::view-transition-old(root)',
+  //     },
+  //   );
+  //   document.documentElement.animate(
+  //     [
+  //       {
+  //         clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+  //       },
+  //       {
+  //         clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)',
+  //       },
+  //     ],
+  //     {
+  //       duration: 1500,
+  //       easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
+  //       fill: 'forwards',
+  //       pseudoElement: '::view-transition-new(root)',
+  //     },
+  //   );
+  // }
 
   useEffect(() => {
     fetchLocationFx();
@@ -68,22 +105,60 @@ export const Header = () => {
           <Hamburger />
 
           <ul>
-            <Link href={'/about'}>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/about', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/about'}>
               <li>{translations[lang].header.about_brand}</li>
             </Link>
-            <Link href={'/catalog'}>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/catalog', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/catalog'}>
               <li>{translations[lang].header.collection}</li>
             </Link>
-            <Link href={'/contacts'}>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/contacts', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/contacts'}>
               <li>{translations[lang].header.contacts}</li>
             </Link>
-            <Link href={'/custom'}>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/custom', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/custom'}>
               <li>{translations[lang].header.taoiliring}</li>
             </Link>
           </ul>
         </div>
         <div className="header__logo">
-          <Logo />
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              router.push('/', {
+                onTransitionReady: slideInOut,
+              });
+            }}
+            className="logo"
+            href="/">
+            <Logo />
+          </Link>
         </div>
 
         <Menu />

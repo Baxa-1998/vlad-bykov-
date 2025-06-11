@@ -4,17 +4,18 @@ import styles from '@/app/styles/main-page/index.module.scss';
 import Image from 'next/image';
 import { Button } from '@/app/components/elements/Button';
 import { useUnit } from 'effector-react';
-import { $allGoods, $menProducts, $newProducts, $shoesProducts, $womenProducts } from '@/app/context/goods';
+import {  $menProducts, $newProducts, $shoesProducts, $womenProducts } from '@/app/context/goods';
 import { useLang } from '@/app/hooks/useLang';
+import { IGoodsItemProps } from '@/app/types/modules';
 export const NewCollection = () => {
   const [collectionSelected, setCollectionSelected] = React.useState(0);
   const { translations, lang } = useLang();
-  const newGoods = useUnit($newProducts);
-  const menGoods = useUnit($menProducts);
-  const womenGoods = useUnit($womenProducts);
-  const shoes = useUnit($shoesProducts);
-  const goods = useUnit($allGoods); 
-  console.log(shoes);
+  const newGoods: IGoodsItemProps[] = useUnit($newProducts);
+  const menGoods: IGoodsItemProps[] = useUnit($menProducts);
+  const womenGoods: IGoodsItemProps[] = useUnit($womenProducts);
+  const shoes: IGoodsItemProps[] = useUnit($shoesProducts);
+
+
   
  
 

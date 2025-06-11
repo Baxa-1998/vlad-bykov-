@@ -50,9 +50,9 @@ const Contacts = () => {
         </div>
         <div className={styles.contactsItems}>
           <h2>{translations[lang].contacts.title3}</h2>
-          <p>
+      
           <p>{translations[lang].contacts.subtitle9}</p>
-          </p>
+         
         </div>
         <div className={styles.contactsItems}>
          <h2>{translations[lang].contacts.title4}</h2>

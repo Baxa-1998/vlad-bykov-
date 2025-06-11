@@ -69,6 +69,31 @@
       "button": "TO CATALOG"
     },
 
+       "delivery":{
+        "main_title": "DELIVERY",
+      "title": "DELIVERY TIME AND COST",
+      "title2": "GENERAL DELIVERY POLICY",
+      "title3": "DELIVERY NOTIFICATION",
+      "title4": "TAXES AND DUTIES",
+      "title5": "COUNTRIES OF DELIVERY",
+      "title6": "CANCEL OR CHANGE ORDER",
+      "title7": "DELIVERY ISSUES"
+ 
+    },
+
+    "cancellations": {
+         "main_title": "Refunds and cancellations",
+       "title": "DELIVERY TIME AND COST",
+      "title2": "GENERAL DELIVERY POLICY",
+      "title3": "DELIVERY NOTIFICATION",
+      "title4": "TAXES AND DUTIES",
+      "title5": "COUNTRIES OF DELIVERY",
+      "title6": "CANCEL OR CHANGE ORDER",
+      "title7": "DELIVERY ISSUES"
+    },
+    
+
+
       "historyBrand":{
       "title": "LUXURY IS IN OUR BLOOD",
       "subtitle": "The art of creating things that amaze not only in quality but also in style ",
@@ -88,6 +113,24 @@
     "brandStatement": {
       "title": "IT'S NOT JUST STUFF",
       "subtitle": "Made in Italy. Eco-friendly materials. Worldwide delivery."
+    },
+    "customTailoring": {
+        "title": "CUSTOM TAILORING",
+        "title2": "IT'S YOUR INDIVILUALITY",
+        "title3": "ESCLUSIVITY",
+        "title4": "COMFORT",
+        "title5": "HEALTH",
+        "button1": "SUBMIT A REQUEST",
+        "button2": "BRAND HISTORY",
+        "subtitle1": "No limits to imagination",
+        "subtitle2": "Each pair of shoes, custom-made by our fashion designers, \n exists in only a single version",
+        "subtitle3": "Combinations of materials, patterns and colors \n guarantees the uniqueness of your shoes",
+        "subtitle4": "Your footwear is made with all \n specific features of your feet",
+        "subtitle5": "Shoes made to individual \n customized with the best \n They keep your feet healthy"
+        
+
+
+
     },
         "joinClub": {
       "main_title": "EXCLUSIVITY",
@@ -393,6 +436,26 @@
       "news": "НОВЫЕ КОЛЕКЦИИ",
       "button":"В КАТАЛОГ"
     },
+    "delivery":{
+      "main_title": "ДОСТАВКА",
+      "title": "СТОИМОСТЬ И ВРЕМЯ ДОСТАВКИ",
+      "title2": "ОБЩАЯ ПОЛИТИКА ДОСТАВКИ",
+      "title3": "УВЕДОМЛЕНИЕ О ДОСТАВКИ",
+      "title4": "НАЛОГИ И ПОШЛИНЫ",
+      "title5": "СТРАНЫ ДОСТАВКИ",
+      "title6": "ОТМЕНА И ИЗМЕНЕНИЕ ЗАКАЗА",
+      "title7": "ПРОБЛЕМЫ С ДОСТАВКОЙ"
+    },
+    "cancellations": {
+         "main_title": "ВОЗВРАТ И ОТМЕНА",
+      "title": "СТОИМОСТЬ И ВРЕМЯ ДОСТАВКИ",
+      "title2": "ОБЩАЯ ПОЛИТИКА ДОСТАВКИ",
+      "title3": "УВЕДОМЛЕНИЕ О ДОСТАВКИ",
+      "title4": "НАЛОГИ И ПОШЛИНЫ",
+      "title5": "СТРАНЫ ДОСТАВКИ",
+      "title6": "ОТМЕНА И ИЗМЕНЕНИЕ ЗАКАЗА",
+      "title7": "ПРОБЛЕМЫ С ДОСТАВКОЙ"
+    },
          "historyBrand":{
       "title": "РОСКОШЬ У НАС В КРОВИ",
       "subtitle": "Искусство создания вещей, которые изумляют не только качеством, но и стилем",
@@ -413,6 +476,24 @@
       "title": "ЭТО НЕ ПРОСТО ВЕЩИ",
       "subtitle": "Сделано в Италии. Экологичные материалы. Доставка по всему миру."
     },
+      "customTailoring": {
+        "title": "ИНДИВИДУАЛЬНЫЙ ПОШИВ",
+        "title2": "ЭТО ВАША ИНДИВИДУАЛЬНОСТЬ",
+        "title3": "ЭКЛЮЗИВНОСТЬ",
+        "title4": "КОМФОРТ",
+        "title5": "ЗДОРОВЬЕ",
+        "button1": "ОТПРАВИТЬ ЗАЯВКУ",
+        "button2": "ИСТОРИЯ БРЕНДА",
+        "subtitle1": "Без границ для изоброжения",
+        "subtitle2": "Каждая пара обуви, выполненная на заказ нашими модельерами, \n существует только в единственном варианте",
+        "subtitle3": "Комбинации материалов, моделей и цвета \n гарантирует уникальность Вашей обуви",
+        "subtitle4": "При изготовлении обуви учитываются все \n особенности Ваших стоп",
+        "subtitle5": "Обувь, выполненная по индивидуальным \n меркам с использованием лучших \n материалов, сохраняет здоровье Ваших ног"
+        
+
+
+
+    },
             "joinClub": {
       "main_title": "ЭКСКЛЮЗИВНОСТЬ",
       "title": "ЭТО НЕ ПРОСТО ВЕЩИ",
@@ -429,12 +510,31 @@
         "title4": "НАШИ ПАРТНЕРЫ",
         "subtitle": "Мы сотрудничаем с лучшими мастерами отрасли, чтобы воплотить в жизнь наше видение роскоши. Наше  производство расположено в Италии, ОАЭ, России и Казахстане, где каждое \n предприятие обладает своими богатыми традициями мастерства и опытом. \n \n От точности итальянского мастерства до инновационных технологий, применяемых в других наших мастерских по всему миру, каждое изделие, которое мы создаем, является \n свидетельством нашей приверженности качеству и совершенству. Работая с мастерами-ремесленниками в этих регионах, мы гарантируем, что каждое изделие соответствует самым \n высоким стандартам роскоши и дизайна."
     },
-    "contacts":{
+      "contacts":{
       "main_title": "КОНТАКТЫ", 
       "title1": "Контакты", 
       "title2": "Почта",  
       "title3": "Адрес",
-      "title4": "Реквизиты"
+      "title4": "Реквизиты",
+      "subtitle1": "Поддержка клиентов",
+      "subtitle2": "Поддержка корпоративных клиентов", 
+      "subtitle3": "Пресс слежба",
+      "subtitle4": "Отдел контента",
+      "subtitle5": "Физические лица",
+      "subtitle6": "Корпоративные клиенты",
+      "subtitle7": "Комплаенс",
+      "subtitle8": "Корреспонденция от государственных органов",
+      "subtitle9": "ООО «Инстамарт Сервис», 115035, Москва, вн.тер.г. мун. округ Замоскворечье, ул. Садовническая, 9а, этаж 5, помещ. I, ком.1.",
+      "subtitle10": "ООО «Инстамарт Сервис»",
+      "subtitle11": "ИНН",
+      "subtitle12": "KPP",
+      "subtitle13": "ОГРН",
+      "subtitle14": "Р/С",
+      "subtitle15": "БАНК СБЕРБАНК",
+      "subtitle16": "БИК",
+      "subtitle17": "К/С."
+
+
 
 
     },

@@ -1,5 +1,4 @@
 'use client';
-
 import { useUnit } from 'effector-react';
 import React, { useEffect } from 'react';
 import Logo from '../../elements/Logo';
@@ -13,18 +12,16 @@ import {
 } from '@/app/context/modals';
 import { addOverflowHiddenToBody } from '@/app/lib/utils/common';
 import { useLang } from '@/app/hooks/useLang';
-
 import { setLang } from '@/app/context/lang';
 import { AllowedLangs } from '@/app/constants/lang';
 import Image from 'next/image';
 import { Hamburger } from './Hamburger';
-
 import { $location, fetchLocationFx } from '@/app/context/country';
 import { CartPopup } from './CartPopup';
-
+import { useTransitionRouter } from 'next-view-transitions';
 export const Header = () => {
   const { lang, translations } = useLang();
-
+  const router = useTransitionRouter()
   const location = useUnit($location);
   const isCurrencyModal = useUnit($currencyModal);
 

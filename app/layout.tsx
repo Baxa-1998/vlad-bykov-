@@ -11,8 +11,7 @@ import "./globalStyles/main-page.scss";
 import "./globalStyles/cart-popup.scss";
 import './globalStyles/normalize.scss'
 import { Layout } from "./components/layouts/Layout";
-
-
+import {ViewTransitions} from 'next-view-transitions'
 
 
 
@@ -25,12 +24,15 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) { 
   return (
-    <html lang="en">
+    <ViewTransitions>
+   <html lang="en">
       <body>
         <Layout>{children}</Layout>
       </body>
     </html>
+    </ViewTransitions>
+ 
   );
 }

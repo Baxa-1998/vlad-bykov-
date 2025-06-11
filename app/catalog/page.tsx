@@ -4,7 +4,7 @@ import styles from '@/app/styles/catalog/index.module.scss';
 import { Catalog } from '../components/modules/Catalog/Catalog';
 import Link from 'next/link';
 import { collectionItems } from '../constants/catalog';
-import { useUnit } from 'effector-react';
+
 import { useLang } from '../hooks/useLang';
 
 export default function CatalogPage() {

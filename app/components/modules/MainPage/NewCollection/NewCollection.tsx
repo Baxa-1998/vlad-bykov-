@@ -13,7 +13,7 @@ export const NewCollection = () => {
   const newGoods: IGoodsItemProps[] = useUnit($newProducts);
   const menGoods: IGoodsItemProps[] = useUnit($menProducts);
   const womenGoods: IGoodsItemProps[] = useUnit($womenProducts);
-  const shoes: IGoodsItemProps[] = useUnit($shoesProducts);
+
 
 
   

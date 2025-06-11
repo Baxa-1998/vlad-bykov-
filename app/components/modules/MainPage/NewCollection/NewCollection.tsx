@@ -4,7 +4,7 @@ import styles from '@/app/styles/main-page/index.module.scss';
 import Image from 'next/image';
 import { Button } from '@/app/components/elements/Button';
 import { useUnit } from 'effector-react';
-import {  $menProducts, $newProducts, $shoesProducts, $womenProducts } from '@/app/context/goods';
+import {  $menProducts, $newProducts,  $womenProducts } from '@/app/context/goods';
 import { useLang } from '@/app/hooks/useLang';
 import { IGoodsItemProps } from '@/app/types/modules';
 export const NewCollection = () => {

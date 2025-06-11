@@ -3,7 +3,7 @@ import { Effect, createDomain, sample } from 'effector';
 import { Gate, createGate } from 'effector-react';
 
 import { getAllGoodsFX, getMenProductsFX, getNewProductsFX, getShoesProductsFX, getWomenProductsFX } from '@/api/main-page';
-import { getShoes } from '../lib/utils/api-routes';
+
 
 const goods = createDomain();
 

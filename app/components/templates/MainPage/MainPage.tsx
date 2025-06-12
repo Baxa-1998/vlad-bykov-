@@ -19,6 +19,7 @@ import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import { useGate } from 'effector-react';
 import { MainPageGate } from '@/app/context/goods';
 
+
 export default function MainPage() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
@@ -26,7 +27,7 @@ export default function MainPage() {
   const fourthSlideRef = useRef<HTMLDivElement>(null);
   // хук изменение ширины
   const isMedia540 = useMediaQuery(540);
-  useGate(MainPageGate)
+  useGate(MainPageGate);
 
   const handleReachEnd = () => {
     if (swiperRef.current) {
@@ -118,7 +119,8 @@ export default function MainPage() {
     };
   }, [isMedia540]);
 
-  return (
+  return ( 
+ 
     <div className={activeSwiper ? 'on-third-slide' : ''}>
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -173,5 +175,7 @@ export default function MainPage() {
         </SwiperSlide>
       </Swiper>
     </div>
+ 
+
   );
 }

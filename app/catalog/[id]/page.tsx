@@ -6,10 +6,15 @@ import React, { useState } from 'react';
 import styles from '@/app/styles/product/index.module.scss';
 import { Button } from '@/app/components/elements/Button';
 import Accordion from '@/app/components/modules/Accordion/Accordion';
+import { useUnit } from 'effector-react';
+import { $allGoods } from '@/app/context/goods';
+import { IGoodsItemProps } from '@/app/types/modules';
 
 const ProductPage = () => {
-  const params = useParams();
-  const id = Number(params?.id);
+  const { id } = useParams();
+
+  const goods: IGoodsItemProps[] = useUnit($allGoods); // TS думает, что это never[]
+  const item = goods.find((i) => i._id === id);
   const [expanded, setExpanded] = useState(false);
 
   const toggleDescription = () => setExpanded(!expanded);
@@ -18,8 +23,6 @@ const ProductPage = () => {
   const [selected, setSelected] = useState('3 цвета');
 
   const colors = ['красный', 'синий', 'зелёный'];
-
-  const item = collectionItems.find((item) => item.id === id);
 
   if (!item) return <div>Товар не найден</div>;
 
@@ -33,7 +36,7 @@ const ProductPage = () => {
         </div>
         <Image width={526} height={720} src={item.img} alt="collection" />
         <div className={styles.productInfo}>
-          <h5>{item.title}</h5>
+          <h5>{item.characteristics.compositions.split('/')}</h5>
           <h4>{item.name}</h4>
           <p>{item.price} ₽</p>
           <div className={styles.productSize}>
@@ -94,22 +97,22 @@ const ProductPage = () => {
           iste exercitationem quidem eveniet placeat quia unde temporibus cum corrupti doloremque
           quod accusamus consequuntur pariatur dolorem repudiandae sunt.
         </Accordion>
-            <Accordion title="Информация о доставке">
+        <Accordion title="Информация о доставке">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum impedit fugiat odit,
           iste exercitationem quidem eveniet placeat quia unde temporibus cum corrupti doloremque
           quod accusamus consequuntur pariatur dolorem repudiandae sunt.
         </Accordion>
-              <Accordion title="Возврат">
+        <Accordion title="Возврат">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum impedit fugiat odit,
           iste exercitationem quidem eveniet placeat quia unde temporibus cum corrupti doloremque
           quod accusamus consequuntur pariatur dolorem repudiandae sunt.
         </Accordion>
-                 <Accordion title="Отзывы">
+        <Accordion title="Отзывы">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum impedit fugiat odit,
           iste exercitationem quidem eveniet placeat quia unde temporibus cum corrupti doloremque
           quod accusamus consequuntur pariatur dolorem repudiandae sunt.
         </Accordion>
-                   <Accordion title="ОПЛАТА И БЕЗОПАСНОСТЬ">
+        <Accordion title="ОПЛАТА И БЕЗОПАСНОСТЬ">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum impedit fugiat odit,
           iste exercitationem quidem eveniet placeat quia unde temporibus cum corrupti doloremque
           quod accusamus consequuntur pariatur dolorem repudiandae sunt.

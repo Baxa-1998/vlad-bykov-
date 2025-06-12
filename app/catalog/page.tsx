@@ -3,11 +3,17 @@ import React, { useEffect } from 'react';
 import styles from '@/app/styles/catalog/index.module.scss';
 import { Catalog } from '../components/modules/Catalog/Catalog';
 import Link from 'next/link';
-import { collectionItems } from '../constants/catalog';
+
 
 import { useLang } from '../hooks/useLang';
+import { IGoodsItemProps } from '../types/modules';
+import { useUnit } from 'effector-react';
+import { $allGoods } from '../context/goods';
 
 export default function CatalogPage() {
+  const goods: IGoodsItemProps[] = useUnit($allGoods);
+  console.log(goods);
+
   const [collectionSelected, setCollectionSelected] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 15;
@@ -25,9 +31,9 @@ export default function CatalogPage() {
   };
 
   // Пагинация
-  const totalPages = Math.ceil(collectionItems.length / itemsPerPage);
+  const totalPages = Math.ceil(goods.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = collectionItems.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = goods.slice(startIndex, startIndex + itemsPerPage);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -49,8 +55,8 @@ export default function CatalogPage() {
 
         <div className={styles.catalogItems}>
           {currentItems.map((item) => (
-            <Link href={`/catalog/${item.id}`} key={item.id}>
-              <Catalog key={item.id} item={item} />
+            <Link href={`/catalog/${item._id}`} key={item._id}>
+              <Catalog key={item._id} item={item} />
             </Link>
           ))}
         </div>

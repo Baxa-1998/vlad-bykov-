@@ -7,6 +7,8 @@ import { useUnit } from 'effector-react';
 import {  $menProducts, $newProducts,  $womenProducts } from '@/app/context/goods';
 import { useLang } from '@/app/hooks/useLang';
 import { IGoodsItemProps } from '@/app/types/modules';
+import { Link, useTransitionRouter } from 'next-view-transitions';
+
 export const NewCollection = () => {
   const [collectionSelected, setCollectionSelected] = React.useState(0);
   const { translations, lang } = useLang();
@@ -14,7 +16,7 @@ export const NewCollection = () => {
   const menGoods: IGoodsItemProps[] = useUnit($menProducts);
   const womenGoods: IGoodsItemProps[] = useUnit($womenProducts);
 
-
+  const router = useTransitionRouter();
 
   
  
@@ -62,7 +64,13 @@ export const NewCollection = () => {
           ))}
         </div>
         <div className={styles.newCollectionBtnWrapper}>
-          <Button className={styles.newCollectionBtn}>{translations[lang].category.button}</Button>
+          <Link
+              onClick={(e) => {
+                          e.preventDefault();
+                          router.push('/catalog');
+                        }}
+          href={'/catalog'}> <Button className={styles.newCollectionBtn}>{translations[lang].category.button}</Button></Link>
+         
         </div>
       </div>
     </div>

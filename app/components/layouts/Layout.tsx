@@ -4,7 +4,7 @@ import { Header } from '../modules/Header/Header';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { SearchModal } from '../modules/Header/SearchModal';
-import { useUnit } from 'effector-react';
+import { useGate, useUnit } from 'effector-react';
 import { $currencyModal, $searchModal } from '@/app/context/modals';
 import {
   addScrollToBody,
@@ -15,6 +15,7 @@ import Footer from '../modules/Footer/Footer';
 import { CurrencyModal } from '../modules/Header/CurrencyModal';
 
 import { usePathname } from 'next/navigation';
+import { MainPageGate } from '@/app/context/goods';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const searchModal = useUnit($searchModal);
@@ -22,7 +23,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
  const isCatalogItemPage = pathname.startsWith('/catalog/') && pathname.split('/').length === 3;
 
-  console.log(pathname);
+  useGate(MainPageGate);
 
   useEffect(() => {
     if (

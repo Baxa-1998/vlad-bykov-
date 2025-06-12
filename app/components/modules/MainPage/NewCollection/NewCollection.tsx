@@ -54,7 +54,7 @@ export const NewCollection = () => {
             : womenGoods
           ).map((item) => (
             <div key={item._id} className={styles.newCollectionItem}>
-              <Image width={300} height={300} src={item.img} alt="collection" />
+              <Image width={300} height={300} src={item.img[0]} alt="collection" />
               <span className={styles.newCollectionItemTitle}>
                 {item.characteristics.compositions.split('/')}
               </span>

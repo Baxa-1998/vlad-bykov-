@@ -26,56 +26,75 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       grid-column-gap: 44px;
-        justify-content: initial;
-       row-gap: 56px;
-          padding: 0; // временно
-  margin: 0 auto; // допустимо, если нужно выравнивание по центру
-      margin-top: 46px; 
+      justify-content: initial;
+      row-gap: 56px;
+      padding: 0; // временно
+      margin: 0 auto; // допустимо, если нужно выравнивание по центру
+      margin-top: 46px;
       cursor: pointer;
-          h5 {
-          color: #023524;
-          font-size: 16px;
-          font-weight: 400;
-          font-family: 'Optima', sans-serif !important;
-          margin-top: 20px;
-          line-height: 15px;
-                  text-align: center;
+      h5 {
+        color: #023524;
+        font-size: 16px;
+        font-weight: 400;
+        font-family: 'Optima', sans-serif !important;
+        margin-top: 20px;
+        line-height: 15px;
+        text-align: center;
+
+      
+      }
+        a {
+          div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
         }
 
+      h4 {
+        font-size: 20px;
+        font-family: 'Optima', sans-serif !important;
+        color: #000000;
+        font-weight: 400;
+        line-height: 15px;
+        text-align: center;
+      }
+      @media screen and (max-width: 540px) {
+        h5{
+          line-height: 0px;
+        }
         h4 {
-          font-size: 20px;
-          font-family: 'Optima', sans-serif !important;
-          color: #000000;
-          font-weight: 400;
-          line-height: 15px;
-          text-align: center;
+          font-size: 18px;
+          line-height: 0px;
         }
-        p {
-          font-size: 16px;
-          font-family: 'Optima', sans-serif !important;
-          color: #91a29b;
-          font-weight: 400;
-                  text-align: center;
+        p{
+          line-height: 0px;
         }
+      }
+      p {
+        font-size: 16px;
+        font-family: 'Optima', sans-serif !important;
+        color: #91a29b;
+        font-weight: 400;
+        text-align: center;
+      }
     }
-    .catalogPagination{
+    .catalogPagination {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px; 
-      button{
+      gap: 12px;
+      button {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 32px;
-        height: 32px; 
-        border: 1px solid #91A29B40; 
+        height: 32px;
+        border: 1px solid #91a29b40;
         background: none;
-        color: #91A29B40;
+        color: #91a29b40;
         cursor: pointer;
-
       }
-
     }
   }
 }

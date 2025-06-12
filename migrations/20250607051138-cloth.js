@@ -8,6 +8,12 @@ const getRandomColorArray = (arr, count = 3) => {
   return shuffled.slice(0, Math.floor(Math.random() * count) + 1);
 };
 
+const getRandomArrayValues = (arr, maxCount = 5) => {
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  const count = Math.floor(Math.random() * maxCount) + 1;
+  return shuffled.slice(0, count);
+};
+
 const collections = [
   'Himalaya shoes',
   'Mules',
@@ -54,13 +60,14 @@ module.exports = {
               compositions: getRandomArrayValue(compositions),
               collection: getRandomArrayValue(collections),
             },
-            img: getRandomArrayValue(images),
+            img: getRandomArrayValues(images,5),
             isNew: faker.datatype.boolean(),
             inStock: faker.string.numeric(2),
             sizes: isShoes
               ? getShoeSizes()
               : {
                   s: faker.datatype.boolean(),
+                  m: faker.datatype.boolean(),
                   l: faker.datatype.boolean(),
                   xl: faker.datatype.boolean(),
                   xll: faker.datatype.boolean(),

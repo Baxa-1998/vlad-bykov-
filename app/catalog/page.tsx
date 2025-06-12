@@ -4,7 +4,6 @@ import styles from '@/app/styles/catalog/index.module.scss';
 import { Catalog } from '../components/modules/Catalog/Catalog';
 import Link from 'next/link';
 
-
 import { useLang } from '../hooks/useLang';
 import { IGoodsItemProps } from '../types/modules';
 import { useUnit } from 'effector-react';
@@ -18,6 +17,11 @@ export default function CatalogPage() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 15;
   const { translations, lang } = useLang();
+
+  const men = goods.filter((item) => item.type === 'men');
+  const women = goods.filter((item) => item.type === 'women');
+  const isNew = goods.filter((item) => item.isNew === true);
+
 
   const titles = [
     translations[lang].category.news,
@@ -52,13 +56,15 @@ export default function CatalogPage() {
             </h3>
           ))}
         </div>
-
+        {/* товары */}
         <div className={styles.catalogItems}>
-          {currentItems.map((item) => (
-            <Link href={`/catalog/${item._id}`} key={item._id}>
-              <Catalog key={item._id} item={item} />
-            </Link>
-          ))}
+          {(collectionSelected === 0 ? isNew : collectionSelected === 1 ? men : women).map(
+            (item) => (
+              <Link href={`/catalog/${item._id}`} key={item._id}>
+                <Catalog key={item._id} item={item} />
+              </Link>
+            ),
+          )}
         </div>
 
         <div className={styles.catalogPagination}>

@@ -110,6 +110,19 @@
       
       
     },
+    "productItem": {
+       "size":"Size",
+       "inStock": "Pieces in stock",
+       "button": "Add to cart",
+       "colors": "MORE COLORS", 
+       "more": "more",
+       "question1": "Details",
+       "question2": "Information about delivery",
+       "question3": "Refund",
+       "question4": "Reviews",
+       "question5": "Payment and Security"
+
+    },
     "brandStatement": {
       "title": "IT'S NOT JUST STUFF",
       "subtitle": "Made in Italy. Eco-friendly materials. Worldwide delivery."
@@ -471,6 +484,19 @@
       "button":"ПОДРОБНЕЕ"
       
       
+    },
+        "productItem": {
+       "size":"Размер",
+       "inStock": "Осталось",
+       "button": "Добавить в корзину",
+       "colors": "БОЛЬШЕ ЦВЕТОВ", 
+       "more": "узнать больше",
+       "question1": "Детали",
+       "question2": "Информация о доставке",
+       "question3": "Возврат",
+       "question4": "Отзывы",
+       "question5": "Оплата и безопасность"
+
     },
         "brandStatement": {
       "title": "ЭТО НЕ ПРОСТО ВЕЩИ",

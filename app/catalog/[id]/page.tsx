@@ -37,7 +37,7 @@ const ProductPage = () => {
         setSelectedSize(item.sizes[0]?.toString());
       } else {
         // для одежды
-        const firstAvailable = Object.entries(item.sizes).find(([_, available]) => available);
+  const firstAvailable = Object.entries(item.sizes).find(([ , available ]) => available);
         if (firstAvailable) {
           setSelectedSize(firstAvailable[0]);
         }

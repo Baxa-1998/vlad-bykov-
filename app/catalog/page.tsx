@@ -37,7 +37,7 @@ export default function CatalogPage() {
   // Пагинация
   const totalPages = Math.ceil(goods.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = goods.slice(startIndex, startIndex + itemsPerPage);
+
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

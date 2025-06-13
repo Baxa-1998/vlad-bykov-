@@ -26,7 +26,7 @@ const ProductPage = () => {
 
   const [open, setOpen] = useState(false);
 
-  if (!item) return <div>Товар не найден</div>;
+ 
   console.log(item);
 
   //  установка размеров если обувь или одежда
@@ -55,6 +55,7 @@ const ProductPage = () => {
     }
   }, [item]);
 
+   if (!item) return <div>Товар не найден</div>;
   return (
     <div className={styles.product}>
       <div className={styles.productTop}>

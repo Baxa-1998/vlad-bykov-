@@ -53,6 +53,7 @@ export const NewCollection = () => {
             ? menGoods
             : womenGoods
           ).map((item) => (
+            <Link key={item._id} href={`/catalog/${item._id}`}>
             <div key={item._id} className={styles.newCollectionItem}>
               <Image width={300} height={300} src={item.img[0]} alt="collection" />
               <span className={styles.newCollectionItemTitle}>
@@ -60,7 +61,9 @@ export const NewCollection = () => {
               </span>
               <h4 className={styles.newCollectionItemName}>{item.characteristics.collection}</h4>
               <p className={styles.newCollectionItemPrice}>{item.price} ₽</p>
-            </div>
+            </div>    
+            </Link>
+          
           ))}
         </div>
         <div className={styles.newCollectionBtnWrapper}>

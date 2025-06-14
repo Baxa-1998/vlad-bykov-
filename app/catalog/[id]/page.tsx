@@ -59,34 +59,39 @@ const ProductPage = () => {
   return (
     <div className={styles.product}>
       <div className={styles.productTop}>
-        <div className={styles.productColors}>
-          {/* {item.img.map((img)=>(
-            <Image width={86} height={86} src={item.img} alt="collection" />
-        ))} */}
-          {Array.isArray(item.img) ? (
-            item.img.map((img) => (
-              <Image
-                key={img}
-                width={86}
-                height={86}
-                src={img}
-                alt="collection"
-                onClick={() => setSelectedImage(img)}
-                className={`${styles.thumbnail} ${selectedImage === img ? styles.active : ''}`}
-              />
-            ))
-          ) : (
-            <Image
-              width={86}
-              height={86}
-              src={item.img}
-              alt="collection"
-              onClick={() => setSelectedImage(item.img)}
-              className={styles.thumbnail}
-            />
-          )}
-        </div>
-        {selectedImage && <Image width={526} height={720} src={selectedImage} alt="collection" />}
+
+   <div className={styles.productImages}>
+    <div className={styles.productColors}>
+  {Array.isArray(item.img) &&
+    item.img.map((img) => (
+      <div key={img} className={styles.colorOption}>
+        {/* Кружочек — виден только на мобильных */}
+        <div
+          onClick={() => setSelectedImage(img)}
+          className={`${styles.circle} ${selectedImage === img ? styles.active : ''}`}
+        />
+
+        {/* Миниатюра — видна только на десктопе */}
+        <Image
+          width={60}
+          height={60}
+          src={img}
+          alt="collection"
+          onClick={() => setSelectedImage(img)}
+          className={`${styles.thumbnail} ${selectedImage === img ? styles.active : ''}`}
+        />
+      </div>
+    ))}
+</div>
+  {selectedImage && <Image className={styles.productMainImg} width={526} height={720} src={selectedImage} alt="collection" />}
+
+   </div>
+
+
+
+
+
+      
         <div className={styles.productInfo}>
           <h5>{item.characteristics.compositions.split('/')}</h5>
           <h4>{item.name}</h4>

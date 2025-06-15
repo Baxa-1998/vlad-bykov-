@@ -12,6 +12,7 @@ import "./globalStyles/cart-popup.scss";
 import './globalStyles/normalize.scss'
 import { Layout } from "./components/layouts/Layout";
 import {ViewTransitions} from 'next-view-transitions'
+import '@/app/context/cart';
 
 
 
@@ -27,8 +28,10 @@ export default function RootLayout({
 }>) { 
   return (
     <ViewTransitions>
+      
    <html lang="en">
       <body>
+      
         <Layout>{children}</Layout>
       </body>
     </html>

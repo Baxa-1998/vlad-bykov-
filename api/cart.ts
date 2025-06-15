@@ -1,38 +1,33 @@
-import { createEffect } from "effector";
-import api from "./apiInstance";
-import { IAddProductToCartFx, ICartItem } from "@/app/types/cart";
-import toast from "react-hot-toast";
+import { createEffect } from 'effector';
 
-export const getCartItemsFx = createEffect(async ({ clientId }: { clientId: string }) => {
-  try {
-    const { data } = await api.get(`/api/cart/all?clientId=${clientId}`);
+import toast from 'react-hot-toast';
+import api from '@/api/apiInstance';
+import { ICartItem } from '@/app/types/cart';
 
-    if (data?.error) {
-      toast.error(data.error);
-      return [];
-    }
-
-    return data as ICartItem[];
-  } catch (error) {
-    toast.error((error as Error).message);
-    return [];
-  }
-});
+export interface IAddProductToCartFx {
+  productId: string;
+  category: string;
+  count: number;
+  size: string;
+  color: string;
+  clientId: string;
+  jwt?: string;
+  setSpinner: (loading: boolean) => void;
+}
 
 export const addProductToCartFx = createEffect(
-  async ({ setSpinner, ...dataFields }: IAddProductToCartFx) => {
+  async ({ setSpinner, ...data }: IAddProductToCartFx) => {
     try {
       setSpinner(true);
+      const res = await api.post('/api/cart/add', data);
 
-      const { data } = await api.post("/api/cart/add", dataFields);
-
-      if (data?.error) {
-        toast.error(data.error);
+      if (res.data?.error) {
+        toast.error(res.data.error);
         return;
       }
 
-      toast.success("Добавлено в корзину");
-      return data as { newCartItem: ICartItem };
+      toast.success('Товар добавлен в корзину');
+      return res.data as { newCartItem: ICartItem };
     } catch (error) {
       toast.error((error as Error).message);
     } finally {

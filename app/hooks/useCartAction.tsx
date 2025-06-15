@@ -1,7 +1,7 @@
 import { useUnit } from 'effector-react';
 import React, { useState } from 'react';
 import { $currentProduct } from '../context/goods';
-import { useCartByAuth } from './useCartByAuth';
+
 import { isItemInList } from '../lib/utils/common';
 import { addCartItemToLS, addItemToCart } from '../lib/utils/cart';
 
@@ -11,7 +11,6 @@ export const useCartAction = () => {
   const [selectedColor, setSelectedColor] = useState('');
   const [addToCartSpinner, setAddToCartSpinner] = useState(false);
 
-  const currentCartByAuth = useCartByAuth();
   const currentCartItems = currentCartByAuth.filter((item) => item.productId === product._id);
   const isProductInCart = isItemInList(currentCartByAuth, product._id);
 

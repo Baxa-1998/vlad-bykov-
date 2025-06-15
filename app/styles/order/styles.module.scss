@@ -1,0 +1,184 @@
+.order {
+  background: #ffff;
+  padding-top: 128px;
+  padding-left: 72px;
+  padding-right: 72px;
+  padding-bottom: 64px;
+  .orderWrapper {
+    width: 50%;
+
+    h3 {
+      color: #023524;
+      font-size: 32px;
+      font-family: 'Charis SIL', sans-serif !important;
+      font-weight: 400;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      .orderTitle {
+        font-family: 'Charis SIL', sans-serif !important;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000000;
+        line-height: 0px;
+      }
+      div {
+        width: 100%;
+      }
+      .contactInput {
+        div {
+          input {
+            width: 100%;
+            height: 60px;
+          }
+        }
+      }
+      .deliveryInput {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        div {
+          position: relative;
+          p {
+            position: absolute;
+            left: 12px;
+            top: -7px;
+            font-size: 12px;
+            color: #023524;
+          }
+          select {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #91a29b40;
+            outline: none;
+            padding-left: 12px;
+          }
+        }
+      }
+      .userInfo {
+        display: flex;
+        gap: 20px;
+        div {
+          input {
+            width: 100% ;
+            height: 60px;
+          }
+        }
+      }
+      .company {
+        div {
+          input {
+            width: 100%;
+              height: 60px;
+          }
+        }
+      }
+      .adress {
+        position: relative;
+        img {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          cursor: pointer;
+          transform: translate(-50%, -50%);
+        }
+        div {
+          input {
+            width: 100%;
+              height: 60px;
+          }
+        }
+      }
+      .appartment { 
+        div {
+          input{
+            width: 100%;
+              height: 60px;
+          }
+        }
+        }
+        .saveOrder{
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          label{
+            display: block;
+            position: static;
+          }
+.checkboxWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+ 
+  width: 24px;
+  height: 24px;
+ 
+
+  // сам чекбокс – делаем его невидимым, но оставляем размер кликабельным
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  // обводка и фон
+  .checkmark {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: 2px solid #023524;
+    border-radius: 4px;
+
+    // центрируем «галочку» при checked
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; // чтобы клики проходили до input
+
+    &::before {
+      content: "";
+      font-size: 16px;
+      display: none;
+    }
+  }
+
+
+  // когда input.checked — меняем фон и показываем галочку
+  input:checked + .checkmark {
+    background-color: none;
+
+    &::before {
+      content: "✔";
+      display: block;
+      color: #023524;
+    }
+
+  }
+
+}
+   h5{
+    margin-left: 15px;
+    color: #000000;
+    line-height: 0px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Optima', sans-serif !important;
+  }
+
+          div{
+            display: flex;
+            align-items: center;
+          }
+        }
+
+    }
+  }
+}

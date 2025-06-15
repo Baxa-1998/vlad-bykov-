@@ -1,81 +1,78 @@
-import { ICartItem } from '@/app/types/cart';
 import { IGoodsItemProps } from '@/app/types/modules';
-import { idGenerator } from './common';
+import { ICartItem } from '@/app/types/cart';
 import { addProductToCart, setCartFromLS } from '@/app/context/cart';
+import { idGenerator } from './common';
 import toast from 'react-hot-toast';
 
 export const addItemToCart = (
   product: IGoodsItemProps,
-  setSpinner: (arg0: boolean) => void,
+  setSpinner: (loading: boolean) => void,
   count: number,
-  selectedSize = '',
-  selectedColor = '',
-) => {
-  const authRaw = localStorage.getItem('auth');
-  const auth = authRaw ? JSON.parse(authRaw) : null;
-
-  const clientId = addCartItemToLS(product, selectedSize, selectedColor, count, false);
-  addProductToCart({
-    jwt: auth?.accessToken || '',
-    setSpinner,
-    productId: product._id,
-    category: product.category,
-    count,
-    size: selectedSize,
-    color: selectedColor,
-    clientId,
-  });
-};
-export const addCartItemToLS = (
-  product: IGoodsItemProps,
   selectedSize: string,
-  selectedColor: string,
-  count: number,
-  withToast = true,
+  selectedColor: string
 ) => {
-  let cartFromLS: ICartItem[] = JSON.parse(localStorage.getItem('cart') as string);
+  const cartFromLS: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
-  const clientId = idGenerator();
-
-  if (!cartFromLS) {
-    cartFromLS = [];
-  }
   const existingItem = cartFromLS.find(
-    (item) => item.productId === product._id && item.size === selectedSize,
+    (item) => item.productId === product._id && item.size === selectedSize
   );
+
+  let updatedCart: ICartItem[];
+
   if (existingItem) {
-    const updateCount = existingItem.count !== count ? count : +existingItem.count + 1;
-
-    const updatedCart = cartFromLS.map((item) =>
-      item.productId === existingItem.productId && item.size === selectedSize
-        ? { ...existingItem, count: updateCount }
-        : item,
+    updatedCart = cartFromLS.map((item) =>
+      item.productId === product._id && item.size === selectedSize
+        ? { ...item, count: item.count + count }
+        : item
     );
-
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setCartFromLS(updatedCart);
-    toast.success('Добавлено в корзину');
-    return existingItem.clientId;
-  }
-
-  const cart = [
-    ...cartFromLS,
-    {
-      clientId,
+  } else {
+    const newItem: ICartItem = {
+      clientId: idGenerator(),
       productId: product._id,
       name: product.name,
-      price: product.price,
       img: product.img?.[0] || '',
       category: product.category,
       type: product.type,
-      size: selectedSize,
-      color: selectedColor || (product.characteristics?.colors?.[0] ?? ''),
-      inStock: product.inStock,
+      price: product.price,
       count,
-    },
-  ];
-  localStorage.setItem('cart', JSON.stringify(cart));
-  setCartFromLS(cart as ICartItem[]);
-  withToast && toast.success('Добавлено в корзину');
-  return clientId;
+      compositions: product.characteristics?.compositions || '',
+      size: selectedSize,
+      color: selectedColor || product.characteristics?.colors?.[0] || '',
+      inStock: product.inStock,
+    };
+    updatedCart = [...cartFromLS, newItem];
+    addProductToCart(newItem); // обновляем Effector
+  }
+
+  localStorage.setItem('cart', JSON.stringify(updatedCart));
+  setCartFromLS(updatedCart);
+
+  toast.success('Товар добавлен в корзину');
 };
+
+export function incrementCartItem(productId: string, size: string) {
+  const cart: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const updated = cart.map(item =>
+    item.productId === productId && item.size === size
+      ? { ...item, count: item.count + 1 }
+      : item
+  );
+  localStorage.setItem('cart', JSON.stringify(updated));
+  setCartFromLS(updated);
+}
+
+/**
+ * Уменьшить count (и удалить, если count упал до 0) в LS и в Effector‑сторе
+ */
+export function decrementCartItem(productId: string, size: string) {
+  const cart: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const updated = cart
+    .map(item =>
+      item.productId === productId && item.size === size
+        ? { ...item, count: item.count - 1 }
+        : item
+    )
+    .filter(item => item.count > 0);
+  localStorage.setItem('cart', JSON.stringify(updated));
+  setCartFromLS(updated);
+}

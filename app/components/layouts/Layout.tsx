@@ -16,8 +16,10 @@ import { CurrencyModal } from '../modules/Header/CurrencyModal';
 
 import { usePathname } from 'next/navigation';
 import { MainPageGate } from '@/app/context/goods';
-import { $cartFromLs } from '@/app/context/cart';
-import { useCartByAuth } from '@/app/hooks/useCartByAuth';
+import '@/app/context/cart'; 
+
+import { $cart  } from '@/app/context/cart';
+import { initLocation } from '@/app/context/country';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const searchModal = useUnit($searchModal);
@@ -27,8 +29,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
  const isCategoryPage = pathname.startsWith('/category/') && pathname.split('/').length === 3;
 
   useGate(MainPageGate);
-  const currentCartByAuth = useCartByAuth()
-  console.log(currentCartByAuth);
+
+   useEffect(() => {
+    initLocation();
+  }, []);
 
   useEffect(() => {
     if (
@@ -36,6 +40,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       pathname === '/payment' ||
       pathname === '/policy' ||
       pathname === '/delivery' ||
+      pathname === '/order' ||
       pathname === '/cancellation' ||
       pathname === '/catalog' ||
       isCatalogItemPage || isCategoryPage

@@ -1,18 +1,19 @@
+
 export interface ICartItem {
-  _id: string;
-  clientId: string;
   productId: string;
-  type: string
   name: string;
-  price: number;
   img: string;
-  size: string; 
-  category: string;
+  size: string;
   color: string;
-  inStock: string;
+  compositions:string;
   count: number;
-  totalPrice: string 
+  price: number;
+  totalPrice: number;
+  clientId: string;
+  category: string;
+  inStock: number;
 }
+
 
 export interface IAddProductToCartFx {
   productId: string

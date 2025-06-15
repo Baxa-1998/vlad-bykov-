@@ -1,64 +1,58 @@
-import { ObjectId } from 'mongodb'
-import { NextResponse } from 'next/server'
-import clientPromise from '@/app/lib/mongodb'
+// app/api/cart/add/route.ts
+import { NextResponse } from 'next/server';
+import { ObjectId } from 'mongodb';
+import clientPromise from '@/app/lib/mongodb';
 
 export async function POST(req: Request) {
   try {
-    const db = (await clientPromise).db()
-    const reqBody = await req.json()
+    const db = (await clientPromise).db();
+    const body = await req.json();
 
-    const requiredFields = ['productId', 'size', 'count', 'clientId', 'category']
-    const missingFields = requiredFields.filter((field) => !reqBody[field])
+    const { productId, category, count, size, color, clientId } = body;
+        console.log('category:', category);
+    console.log('productId:', productId);
+    console.log('body:', body);
 
-    if (missingFields.length > 0) {
+    if (!productId || !category || !count || !size || !clientId) {
       return NextResponse.json(
-        {
-          message: `Missing fields: ${missingFields.join(', ')}`,
-          status: 400,
-        },
+        { error: 'Некоторые обязательные поля отсутствуют' },
         { status: 400 }
-      )
+      );
     }
 
-    const productItem = await db
-      .collection(reqBody.category)
-      .findOne({ _id: new ObjectId(reqBody.productId) })
+    const product = await db
+      .collection(category)
+      .findOne({ _id: new ObjectId(productId) });
+      
 
-    if (!productItem) {
-      return NextResponse.json(
-        {
-          message: 'Product not found',
-          status: 404,
-        },
-        { status: 404 }
-      )
+    if (!product) {
+      return NextResponse.json({ error: 'Товар не найден' }, { status: 404 });
     }
 
     const newCartItem = {
-      productId: productItem._id,
-      image: productItem.img?.[0] || null,
-      name: productItem.name,
-      size: productItem.type === 'accessory' ? '' : reqBody.size,
-      count: reqBody.count,
-      price: productItem.price,
-      totalPrice: productItem.price * reqBody.count,
-      inStock: productItem.inStock,
-      clientId: reqBody.clientId,
-      color: productItem.characteristics?.color || '',
-      category: productItem.category,
-    }
+      productId: product._id,
+      name: product.name,
+      img: product.img?.[0] || '',
+      size,
+      color,
+      count,
+      price: product.price,
+      totalPrice: product.price * count,
+      inStock: product.inStock,
+      category: product.category,
+      clientId,
+    };
 
-    const { insertedId } = await db.collection('cart').insertOne(newCartItem)
+    const { insertedId } = await db.collection('cart').insertOne(newCartItem);
 
     return NextResponse.json({
-      status: 201,
       newCartItem: { _id: insertedId, ...newCartItem },
-    })
+    });
   } catch (error) {
-    console.error('Ошибка при добавлении товара в корзину:', error)
+    console.error('[API /cart/add] Ошибка:', error);
     return NextResponse.json(
-      { error: 'Не удалось добавить товар в корзину' },
+      { error: 'Ошибка сервера при добавлении товара в корзину' },
       { status: 500 }
-    )
+    );
   }
 }

@@ -10,48 +10,57 @@ import { useUnit } from 'effector-react';
 import { $allGoods } from '@/app/context/goods';
 import { IGoodsItemProps } from '@/app/types/modules';
 import { useLang } from '@/app/hooks/useLang';
-import { useCartAction } from '@/app/hooks/useCartAction';
-import { useCartByAuth } from '@/app/hooks/useCartByAuth';
-import { $cartFromLs } from '@/app/context/cart';
+
+
+
+import {  addItemToCart } from '@/app/lib/utils/cart';
+import { openCartPopup } from '@/app/context/modals';
+
 
 const ProductPage = () => {
+  // тут я получаю конкретный продукт и его свойства
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  // const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  // const [selectedColor, setSelectedColor] = useState('');
+  const [spinner, setSpinner] = useState(false); 
+
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState('');
   const goods: IGoodsItemProps[] = useUnit($allGoods);
+  // item это конкретный продукт которые находит в goods по его id
   const item = goods.find((i) => i._id === id);
   const [expanded, setExpanded] = useState(false);
-    const currentCartByAuth = useCartByAuth()
-  const { translations, lang } = useLang();
 
+  const { translations, lang } = useLang();
+  const [count, setCount] = useState(1);
+  
  
 
-
-const {
-  handleAddToCart,
-  setSelectedSize,
-  setSelectedColor,
-  count,
-  selectedSize,
-  selectedColor,
-  setCount
-} = useCartAction();
-
 const addToCart = () => {
+  if (!item) {
+    alert('Товар ещё загружается...');
+    return;
+  }
+
   if (!selectedSize) {
     alert('Пожалуйста, выберите размер');
     return;
   }
+
   if (!selectedColor) {
     alert('Пожалуйста, выберите цвет');
     return;
   }
+addItemToCart(item, setSpinner, count, selectedSize, selectedColor);
+  openCartPopup();
 
-  setSelectedSize(selectedSize);
-  setSelectedColor(selectedColor);
-  handleAddToCart(count); // теперь selectedSize и selectedColor внутри хука корректные
 };
+
+ 
+
+
+
+
+
 
 
 
@@ -88,7 +97,7 @@ const addToCart = () => {
     }
   }, [item]);
   
-  console.log(currentCartByAuth);
+
   
 
    if (!item) return <div>Товар не найден</div>;

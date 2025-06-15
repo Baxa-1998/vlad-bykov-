@@ -1,5 +1,6 @@
 import { Db, MongoClient } from 'mongodb';
 import { shuffle } from './common';
+import { NextResponse } from 'next/server';
 
 export const getDbAndReqBody = async (clientPromise: Promise<MongoClient>, req: Request | null) => {
   const db = (await clientPromise).db(process.env.NEXT_PUBLIC_DB_NAME);
@@ -45,4 +46,25 @@ export const getClothGoods = async (db: Db) => {
 export const getShoes = async (db: Db) => {
   return db.collection('cloth').find({ category: 'shoes' }).toArray();
 };
+
+
+
+export const getDataFromDBByCollection = async (
+  clientPromise: Promise<MongoClient>,
+  collection: string
+) => {
+  try {
+    const client = await clientPromise
+    const db = client.db()
+
+    const items = await db.collection(collection).find({}).toArray()
+
+    return NextResponse.json(items)
+  } catch (error) {
+    console.error('Ошибка при получении данных:', error)
+    return NextResponse.json({ error: 'Не удалось получить данные' }, { status: 500 })
+  }
+}
+
+
 

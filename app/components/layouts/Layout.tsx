@@ -16,14 +16,19 @@ import { CurrencyModal } from '../modules/Header/CurrencyModal';
 
 import { usePathname } from 'next/navigation';
 import { MainPageGate } from '@/app/context/goods';
+import { $cartFromLs } from '@/app/context/cart';
+import { useCartByAuth } from '@/app/hooks/useCartByAuth';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const searchModal = useUnit($searchModal);
   const currencyModal = useUnit($currencyModal);
     const pathname = usePathname();
  const isCatalogItemPage = pathname.startsWith('/catalog/') && pathname.split('/').length === 3;
+ const isCategoryPage = pathname.startsWith('/category/') && pathname.split('/').length === 3;
 
   useGate(MainPageGate);
+  const currentCartByAuth = useCartByAuth()
+  console.log(currentCartByAuth);
 
   useEffect(() => {
     if (
@@ -33,7 +38,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       pathname === '/delivery' ||
       pathname === '/cancellation' ||
       pathname === '/catalog' ||
-      isCatalogItemPage
+      isCatalogItemPage || isCategoryPage
     ) {
       addScrollToBody();
     } else {

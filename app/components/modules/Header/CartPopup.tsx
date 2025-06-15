@@ -7,9 +7,11 @@ import { useUnit } from 'effector-react';
 import { $cartModal, closeCartPopup } from '@/app/context/modals';
 import { Button } from '../../elements/Button';
 import { useLang } from '@/app/hooks/useLang';
+import { $cartFromLs } from '@/app/context/cart';
 export const CartPopup = () => {
   const {translations, lang} = useLang()
   const open = useUnit($cartModal)
+
 
   const handleClosePopup = () =>{
     closeCartPopup()

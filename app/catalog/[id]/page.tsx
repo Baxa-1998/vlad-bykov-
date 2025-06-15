@@ -10,24 +10,57 @@ import { useUnit } from 'effector-react';
 import { $allGoods } from '@/app/context/goods';
 import { IGoodsItemProps } from '@/app/types/modules';
 import { useLang } from '@/app/hooks/useLang';
+import { useCartAction } from '@/app/hooks/useCartAction';
+import { useCartByAuth } from '@/app/hooks/useCartByAuth';
+import { $cartFromLs } from '@/app/context/cart';
 
 const ProductPage = () => {
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState('');
+  // const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  // const [selectedColor, setSelectedColor] = useState('');
   const goods: IGoodsItemProps[] = useUnit($allGoods);
   const item = goods.find((i) => i._id === id);
   const [expanded, setExpanded] = useState(false);
+    const currentCartByAuth = useCartByAuth()
   const { translations, lang } = useLang();
-  console.log(item);
+
+ 
+
+
+const {
+  handleAddToCart,
+  setSelectedSize,
+  setSelectedColor,
+  count,
+  selectedSize,
+  selectedColor,
+  setCount
+} = useCartAction();
+
+const addToCart = () => {
+  if (!selectedSize) {
+    alert('Пожалуйста, выберите размер');
+    return;
+  }
+  if (!selectedColor) {
+    alert('Пожалуйста, выберите цвет');
+    return;
+  }
+
+  setSelectedSize(selectedSize);
+  setSelectedColor(selectedColor);
+  handleAddToCart(count); // теперь selectedSize и selectedColor внутри хука корректные
+};
+
+
 
   const toggleDescription = () => setExpanded(!expanded);
 
   const [open, setOpen] = useState(false);
 
  
-  console.log(item);
+ 
 
   //  установка размеров если обувь или одежда
   useEffect(() => {
@@ -54,6 +87,9 @@ const ProductPage = () => {
       }
     }
   }, [item]);
+  
+  console.log(currentCartByAuth);
+  
 
    if (!item) return <div>Товар не найден</div>;
   return (
@@ -127,7 +163,7 @@ const ProductPage = () => {
           <h3>
             {translations[lang].productItem.inStock} {item.inStock}
           </h3>
-          <Button className={styles.productBtn}>Добавить в корзину</Button>
+          <Button onClick={addToCart} className={styles.productBtn}>Добавить в корзину</Button>
 
           <div className={styles.productAvailableColors} onClick={() => setOpen(!open)}>
             <h2>БОЛЬШЕ ЦВЕТОВ</h2>

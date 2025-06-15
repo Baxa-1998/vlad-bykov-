@@ -8,6 +8,7 @@ import { useLang } from '../hooks/useLang';
 import { IGoodsItemProps } from '../types/modules';
 import { useUnit } from 'effector-react';
 import { $allGoods } from '../context/goods';
+import { Pagination } from '../components/elements/Pagination';
 
 export default function CatalogPage() {
   const goods: IGoodsItemProps[] = useUnit($allGoods);
@@ -20,7 +21,18 @@ export default function CatalogPage() {
 
   const men = goods.filter((item) => item.type === 'men');
   const women = goods.filter((item) => item.type === 'women');
-  const isNew = goods.filter((item) => item.isNew === true);
+  const isNew = goods.filter((item) => item.isNew === true)
+
+  const currentCollection =
+  collectionSelected === 0 ? isNew :
+  collectionSelected === 1 ? men :
+  women;
+
+const startIndex = (currentPage - 1) * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const paginatedItems = currentCollection.slice(startIndex, endIndex);
+
+const totalPages = Math.ceil(currentCollection.length / itemsPerPage);
 
 
   const titles = [
@@ -35,7 +47,7 @@ export default function CatalogPage() {
   };
 
   // Пагинация
-  const totalPages = Math.ceil(goods.length / itemsPerPage);
+  // const totalPages = Math.ceil(goods.length / itemsPerPage);
 
 
 
@@ -58,24 +70,20 @@ export default function CatalogPage() {
         </div>
         {/* товары */}
         <div className={styles.catalogItems}>
-          {(collectionSelected === 0 ? isNew : collectionSelected === 1 ? men : women).map(
-            (item) => (
-              <Link href={`/catalog/${item._id}`} key={item._id}>
-                <Catalog key={item._id} item={item} />
-              </Link>
-            ),
-          )}
+      {paginatedItems.map((item) => (
+    <Link href={`/catalog/${item._id}`} key={item._id}>
+      <Catalog item={item} />
+    </Link>
+  ))}
         </div>
 
         <div className={styles.catalogPagination}>
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index + 1)}
-              className={currentPage === index + 1 ? styles.activePage : ''}>
-              {index + 1}
-            </button>
-          ))}
+     <Pagination
+  totalPages={totalPages}
+  currentPage={currentPage}
+  onPageChange={setCurrentPage}
+/>
+  
         </div>
       </div>
     </section>

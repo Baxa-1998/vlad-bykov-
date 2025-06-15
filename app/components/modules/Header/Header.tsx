@@ -20,11 +20,15 @@ import { $location, fetchLocationFx } from '@/app/context/country';
 import { CartPopup } from './CartPopup';
 import { useTransitionRouter } from 'next-view-transitions';
 import { slideInOut } from '@/app/lib/utils/animations';
+import { useCartByAuth } from '@/app/hooks/useCartByAuth';
 export const Header = () => {
   const { lang, translations } = useLang();
   const router = useTransitionRouter();
   const location = useUnit($location);
   const isCurrencyModal = useUnit($currencyModal);
+  const currentCartByAuth = useCartByAuth()
+  console.log(currentCartByAuth);
+  
   // function slideInOut() {
   //   document.documentElement.animate(
   //     [

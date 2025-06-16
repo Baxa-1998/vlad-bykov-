@@ -2,6 +2,8 @@ import React from 'react';
 interface IButtonProps {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
+
 
 }
 export const Button = ({ children, className, ...props }: IButtonProps) => {

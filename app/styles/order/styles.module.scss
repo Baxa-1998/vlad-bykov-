@@ -5,7 +5,13 @@
   padding-right: 72px;
   padding-bottom: 64px;
   .orderWrapper {
-    width: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    .orderInput{
+      width: 50%;
+    }
 
     h3 {
       color: #023524;
@@ -309,5 +315,106 @@
       }
       }
     }
+    .orderSummary{ 
+      width: 30%;
+   
+      height: fit-content;
+      .orderSummaryWrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        .orderSummaryItem{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          div{
+            display: flex;
+               .orderSummaryInfo{
+                display: flex;
+                flex-direction: column;
+               
+          h2{
+            color: #000000; 
+            font-family: 'Optima', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 0px;
+          }
+          p{
+            line-height: 0px;
+          }
+         }
+
+          }
+      
+          
+        }
+        .orderSummaryTotal{
+          margin-top: 24px;
+          height: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          h5{
+            color: #000000; 
+            font-family: 'Optima', sans-serif;
+            font-weight: 400;
+
+
+          }
+          p{
+            color: #91A29B;
+            font-size: 14px;
+          }
+        }
+        .orderSummaryDelivery{
+          height: 25px;
+   display: flex;
+          align-items: center;
+          justify-content: space-between;
+          h5{
+            color: #000000; 
+            font-family: 'Optima', sans-serif;
+            font-weight: 400;
+
+
+          }
+          p{
+            color: #91A29B;
+            font-size: 14px;
+          }
+        }
+        .finalPrice{
+          height: 40px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          h5{
+            font-size: 20px;
+            font-family: 'Charis SIL', sans-serif !important;
+            color: #000000;
+               font-weight: 400;
+          }
+          p{
+            font-size: 20px;
+            color: #023524;
+                 font-family: 'Charis SIL', sans-serif !important;
+                 font-weight: 400;
+
+          }
+        }
+        .orderSummaryBtn{
+          background: #023524;
+          font-size: 20px;
+          color: #F9F6E3;
+          font-family: 'Optima', sans-serif;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    
   }
+  }
+  
 }

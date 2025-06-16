@@ -1,14 +1,17 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/app/styles/order/styles.module.scss';
 import { $cart } from '@/app/context/cart';
 import { useUnit } from 'effector-react';
 import { Input } from '../../elements/Input';
 import { $location } from '@/app/context/country';
 import Image from 'next/image';
+import { ICartItem } from '@/app/types/cart';
+import { Button } from '../../elements/Button';
 
 export const Order = () => {
-  const cart = useUnit($cart);
+  const cart: ICartItem[] = useUnit($cart);
+
   const location = useUnit($location);
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.count, 0);
   const countryData = [
@@ -33,6 +36,60 @@ export const Order = () => {
       currency: 'RUB',
     },
   ];
+  const deliveryMethods = [
+    { label: 'Экспресс 48–72 часа', price: '9235 ₽' },
+    { label: 'Самовывоз', price: '0 ₽' },
+    { label: 'Курьер до двери', price: '700 ₽' },
+  ];
+  const paymentMethods = [
+    { label: 'Pay Pal', img: '/img/order-payment.svg' },
+    { label: 'Visa', img: '/img/order-payment2.svg' },
+    { label: 'UnionPay', img: '/img/order-payment3.svg' },
+  ];
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    company: '',
+    address: '',
+    apartment: '',
+    country: location?.country_name || '',
+    cardNumber: '',
+    saveForNext: true,
+    subscribeNews: false,
+    cardDate: '',
+    cardCode: '',
+    cardHolder: '',
+    deliveryMethod: '',
+    paymentMethod: '',
+  });
+
+  const handleSubmit = async () => {
+    const res = await fetch('/api/send-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...formData,
+        cartItems: cart,
+        totalPrice,
+      }),
+    });
+
+    if (res.ok) {
+      alert('Заказ отправлен!');
+    } else {
+      alert('Ошибка при отправке заказа');
+    }
+  };
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // SSR отрендерит пусто — значит совпадёт с клиентом
+
+  // ...весь остальной код
 
   return (
     <div className={styles.orderWrapper}>
@@ -41,14 +98,22 @@ export const Order = () => {
         <form action="">
           <div className={styles.contactInput}>
             <h4 className={styles.orderTitle}>Контакы</h4>
-            <Input placeholder={'Имя'} type={'email'} />
+            <Input
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              placeholder={'Email'}
+              type={'email'}
+            />
           </div>
 
           <div className={styles.deliveryInput}>
             <h4 className={styles.orderTitle}>Доставка</h4>
             <div>
               <p>Страна/Регион</p>
-              <select required>
+              <select
+                value={formData.country}
+                onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                required>
                 <option defaultValue={location?.country_name} value="">
                   {location?.country_name}
                 </option>
@@ -60,23 +125,53 @@ export const Order = () => {
               </select>
             </div>
             <div className={styles.userInfo}>
-              <Input placeholder={'Имя'} type={'text'} />
-              <Input placeholder={'Фамилия'} type={'text'} />
+              <Input
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder={'Имя'}
+                type={'text'}
+              />
+              <Input
+                value={formData.surname}
+                onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
+                placeholder={'Фамилия'}
+                type={'text'}
+              />
             </div>
             <div className={styles.company}>
-              <Input placeholder={'Компания (необязательно)'} type={'text'} />
+              <Input
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                placeholder={'Компания (необязательно)'}
+                type={'text'}
+                required={false}
+              />
             </div>
             <div className={styles.adress}>
-              <Input placeholder={'Адресс'} type={'text'} />
+              <Input
+                value={formData.address}
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                placeholder={'Адресс'}
+                type={'text'}
+              />
               <Image src={'/img/order-search.svg'} width={15} height={15} alt="search" />
             </div>
             <div className={styles.appartment}>
-              <Input placeholder={'Апартаменты'} type={'text'} />
+              <Input
+                value={formData.apartment}
+                onChange={(e) => setFormData({ ...formData, apartment: e.target.value })}
+                placeholder={'Апартаменты'}
+                type={'text'}
+              />
             </div>
             <div className={styles.saveOrder}>
               <div>
                 <label className={styles.checkboxWrapper}>
-                  <input type="checkbox" />
+                  <input
+                    checked={formData.saveForNext}
+                    onChange={(e) => setFormData({ ...formData, saveForNext: e.target.checked })}
+                    type="checkbox"
+                  />
                   <span className={styles.checkmark}></span>
                 </label>
 
@@ -84,7 +179,11 @@ export const Order = () => {
               </div>
               <div>
                 <label className={styles.checkboxWrapper}>
-                  <input type="checkbox" />
+                  <input
+                    checked={formData.subscribeNews}
+                    onChange={(e) => setFormData({ ...formData, subscribeNews: e.target.checked })}
+                    type="checkbox"
+                  />
                   <span className={styles.checkmark}></span>
                 </label>
 
@@ -94,29 +193,27 @@ export const Order = () => {
             <div className={styles.methodDelivery}>
               <h4 className={styles.orderTitle}>Метод доставки</h4>
 
-              <div className={styles.methodWrapper}>
-                <div>
-                  <label className={styles.customCheckbox}>
-                    <input type="radio" name="delivery" />
-                    <span className={styles.checkmark2}></span>
-                  </label>
-                  <h4>Эскпресс 48-72 часа</h4>
+              {deliveryMethods.map((method) => (
+                <div key={method.label} className={styles.methodWrapper}>
+                  <div>
+                    <label className={styles.customCheckbox}>
+                      <input
+                        value={method.label}
+                        onChange={(e) =>
+                          setFormData({ ...formData, deliveryMethod: e.target.value })
+                        }
+                        type="radio"
+                        name="delivery"
+                      />
+                      <span className={styles.checkmark2}></span>
+                    </label>
+                    <h4>{method.label}</h4>
+                  </div>
+                  <h5>{method.price} ₽</h5>
                 </div>
-                <h5>9 235 ₽</h5>
-              </div>
+              ))}
 
-              <div className={styles.methodWrapper}>
-                <div>
-                  <label className={styles.customCheckbox}>
-                    <input type="radio" name="delivery" />
-                    <span className={styles.checkmark2}></span>
-                  </label>
-                  <h4>Самовывоз</h4>
-                </div>
-                <h5>0 ₽</h5>
-              </div>
-
-              <div className={styles.methodWrapper}>
+              {/* <div className={styles.methodWrapper}>
                 <div>
                   <label className={styles.customCheckbox}>
                     <input type="radio" name="delivery" />
@@ -125,55 +222,109 @@ export const Order = () => {
                   <h4>Курьер до двери</h4>
                 </div>
                 <h5>700 ₽</h5>
-              </div>
+              </div> */}
             </div>
             <div className={styles.payment}>
               <h4 className={styles.orderTitle}>Оплата</h4>
-              <Input placeholder={'Номер карты'} type={'number'} />
+              <Input
+                value={formData.cardNumber}
+                onChange={(e) => setFormData({ ...formData, cardNumber: e.target.value })}
+                placeholder={'Номер карты'}
+                type={'number'}
+              />
               <div className={styles.date}>
-                <Input placeholder={'ММ/ГГ'} type={'number'} />
-                <Input placeholder={'Секретный код'} type={'number'} />
+                <Input
+                  value={formData.cardDate}
+                  onChange={(e) => setFormData({ ...formData, cardDate: e.target.value })}
+                  placeholder={'ММ/ГГ'}
+                  type={'number'}
+                />
+                <Input
+                  value={formData.cardCode}
+                  onChange={(e) => setFormData({ ...formData, cardCode: e.target.value })}
+                  placeholder={'Секретный код'}
+                  type={'number'}
+                />
               </div>
-              <Input placeholder={'Держатель карты'} type={'text'} />
+              <Input
+                value={formData.cardHolder}
+                onChange={(e) => setFormData({ ...formData, cardHolder: e.target.value })}
+                placeholder={'Держатель карты'}
+                type={'text'}
+              />
               <div className={styles.carts}>
-                <div className={styles.methodWrapper}>
-                  <div>
-                    <label className={styles.customCheckbox}>
-                      <input type="radio" name="delivery" />
-                      <span className={styles.checkmark2}></span>
-                    </label>
-                    <h4>Pay Pal</h4>
+                {paymentMethods.map((method) => (
+                  <div key={method.label} className={styles.methodWrapper}>
+                    <div>
+                      <label className={styles.customCheckbox}>
+                        <input value={method.label} onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })} type="radio" name="payment" />
+                        <span className={styles.checkmark2}></span>
+                      </label>
+                      <h4>{method.label}</h4>
+                    </div>
+                    <Image src={method.img} width={38} height={34} alt={'payment'} />
                   </div>
-                  <Image src={'/img/order-payment.svg'} width={38} height={34} alt={'mastercard'}/>
-                </div>
+                ))}
 
-                <div className={styles.methodWrapper}>
-                  <div>
-                    <label className={styles.customCheckbox}>
-                      <input type="radio" name="delivery" />
-                      <span className={styles.checkmark2}></span>
-                    </label>
-                    <h4>Visa</h4>
-                  </div>
-                <Image src={'/img/order-payment2.svg'} width={38} height={34} alt={'mastercard'}/>
-                </div>
+        
+              
+                
 
-                <div className={styles.methodWrapper}>
-                  <div>
-                    <label className={styles.customCheckbox}>
-                      <input type="radio" name="delivery" />
-                      <span className={styles.checkmark2}></span>
-                    </label>
-                    <h4>UnionPay</h4>
-                  </div>
-                 <Image src={'/img/order-payment3.svg'} width={38} height={34} alt={'mastercard'}/>
-                </div>
+
+
+
+
+            
+
+
+
+
+
+
               </div>
             </div>
           </div>
         </form>
       </div>
-      <div className={styles.orderTotal}></div>
+
+
+
+
+
+      <div className={styles.orderSummary}>
+        <div className={styles.orderSummaryWrapper}>
+          {cart?.map((item) => (
+            <div key={item.clientId} className={styles.orderSummaryItem}>
+              <div>
+                <Image src={item?.img} width={80} height={80} alt={'cart'} />
+
+                <div className={styles.orderSummaryInfo}>
+                  <p className={styles.orderSummarySize}>{item.size}</p>
+                  <h2 className={styles.orderSummaryName}>{item.name}</h2>
+                </div>
+              </div>
+              <div>
+                <span>{item.price} ₽</span>
+              </div>
+            </div>
+          ))}
+          <div className={styles.orderSummaryTotal}>
+            <h5>{cart.length} товара</h5>
+            <p>{totalPrice}</p>
+          </div>
+          <div className={styles.orderSummaryDelivery}>
+            <h5>Доставка</h5>
+            <p>9 235 ₽</p>
+          </div>
+          <div className={styles.finalPrice}>
+            <h5>Итого</h5>
+            <p>{totalPrice}</p>
+          </div>
+          <Button onClick={handleSubmit} className={styles.orderSummaryBtn}>
+            Оформить заказ
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

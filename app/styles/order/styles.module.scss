@@ -61,7 +61,7 @@
         gap: 20px;
         div {
           input {
-            width: 100% ;
+            width: 100%;
             height: 60px;
           }
         }
@@ -70,7 +70,7 @@
         div {
           input {
             width: 100%;
-              height: 60px;
+            height: 60px;
           }
         }
       }
@@ -86,99 +86,228 @@
         div {
           input {
             width: 100%;
-              height: 60px;
+            height: 60px;
           }
         }
       }
-      .appartment { 
+      .appartment {
         div {
-          input{
+          input {
             width: 100%;
-              height: 60px;
+            height: 60px;
           }
         }
+      }
+      .saveOrder {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        label {
+          display: block;
+          position: static;
         }
-        .saveOrder{
+        .checkboxWrapper {
+          position: relative;
           display: flex;
           align-items: center;
-          flex-direction: column;
-          label{
-            display: block;
-            position: static;
+
+          width: 24px;
+          height: 24px;
+
+          // сам чекбокс – делаем его невидимым, но оставляем размер кликабельным
+          input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            margin: 0;
+            cursor: pointer;
+            z-index: 2;
           }
-.checkboxWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
- 
-  width: 24px;
-  height: 24px;
- 
 
-  // сам чекбокс – делаем его невидимым, но оставляем размер кликабельным
-  input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    margin: 0;
-    cursor: pointer;
-    z-index: 2;
-  }
+          // обводка и фон
+          .checkmark {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border: 2px solid #023524;
+            border-radius: 4px;
 
-  // обводка и фон
-  .checkmark {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: white;
-    border: 2px solid #023524;
-    border-radius: 4px;
+            // центрируем «галочку» при checked
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none; // чтобы клики проходили до input
 
-    // центрируем «галочку» при checked
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none; // чтобы клики проходили до input
+            &::before {
+              content: '';
+              font-size: 16px;
+              display: none;
+            }
+          }
 
-    &::before {
-      content: "";
-      font-size: 16px;
-      display: none;
-    }
-  }
+          // когда input.checked — меняем фон и показываем галочку
+          input:checked + .checkmark {
+            background-color: none;
 
+            &::before {
+              content: '✔';
+              display: block;
+              color: #023524;
+            }
+          }
+        }
+        h5 {
+          margin-left: 15px;
+          color: #000000;
+          line-height: 0px;
+          font-size: 16px;
+          font-weight: 400;
+          font-family: 'Optima', sans-serif !important;
+        }
 
-  // когда input.checked — меняем фон и показываем галочку
-  input:checked + .checkmark {
-    background-color: none;
-
-    &::before {
-      content: "✔";
-      display: block;
-      color: #023524;
-    }
-
-  }
-
-}
-   h5{
-    margin-left: 15px;
-    color: #000000;
-    line-height: 0px;
-    font-size: 16px;
-    font-weight: 400;
-    font-family: 'Optima', sans-serif !important;
-  }
-
+        div {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .methodDelivery {
+        border: 1px solid #91A29B40;
+        padding-left: 16px;
+        .methodWrapper{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           div{
             display: flex;
             align-items: center;
+            gap: 12px;
+            h4{
+              font-weight: 400;
+              font-size: 16px;
+              font-family: 'Optima', sans-serif !important;
+              color: #000000;
+            }
+     .customCheckbox {
+  input {
+    display: none;
+
+    &:checked + .checkmark2::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+    }
+  }
+
+  .checkmark2 {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 2px solid #000;
+    position: relative;
+    cursor: pointer;
+  }
+}
+
+          }
+          h5{
+            width: 70px;
+            font-family: 'Optima',sans-serif !important;
+            font-weight: 400;
+            font-size: 16px;
+            color: #000000;
+          }
+        
+
+        }
+      
+      }
+      .payment{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        div{
+          input{
+            width: 100%;
+            height: 60px;
+            padding-left: 20px;
           }
         }
+        .date{
+          display: flex;
+           
+        gap: 40px;
+         div {
+          input {
+            width: 100%;
+            height: 60px;
+          }
+        }
+        }
+          .carts {
+        border: 1px solid #91A29B40;
+        padding-left: 16px;
+        padding-right: 16px;
+        .methodWrapper{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          div{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            h4{
+              font-weight: 400;
+              font-size: 16px;
+              font-family: 'Optima', sans-serif !important;
+              color: #000000;
+            }
+     .customCheckbox {
+  input {
+    display: none;
 
+    &:checked + .checkmark2::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+    }
+  }
+
+  .checkmark2 {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 2px solid #000;
+    position: relative;
+    cursor: pointer;
+  }
+}
+
+          }
+          h5{
+            width: 70px;
+            font-family: 'Optima',sans-serif !important;
+            font-weight: 400;
+            font-size: 16px;
+            color: #000000;
+          }
+        
+
+        }
+      
+      }
+      }
     }
   }
 }

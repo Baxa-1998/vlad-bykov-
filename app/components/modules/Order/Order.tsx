@@ -67,38 +67,109 @@ export const Order = () => {
               <Input placeholder={'Компания (необязательно)'} type={'text'} />
             </div>
             <div className={styles.adress}>
-              <Input placeholder={'Адресс'} type={'text'} /> 
-              <Image src={'/img/order-search.svg'} width={15} height={15} alt='search'/>
+              <Input placeholder={'Адресс'} type={'text'} />
+              <Image src={'/img/order-search.svg'} width={15} height={15} alt="search" />
             </div>
-              <div className={styles.appartment}>
-              <Input placeholder={'Апартаменты'} type={'text'} /> 
-
-            </div> 
+            <div className={styles.appartment}>
+              <Input placeholder={'Апартаменты'} type={'text'} />
+            </div>
             <div className={styles.saveOrder}>
               <div>
-                      <label className={styles.checkboxWrapper}>
-  <input type="checkbox" />
-  <span className={styles.checkmark}></span>
-     
-</label>
+                <label className={styles.checkboxWrapper}>
+                  <input type="checkbox" />
+                  <span className={styles.checkmark}></span>
+                </label>
 
- <h5>Сохранить для следующих заказов</h5>
+                <h5>Сохранить для следующих заказов</h5>
               </div>
-                      <div>
-                      <label className={styles.checkboxWrapper}>
-  <input type="checkbox" />
-  <span className={styles.checkmark}></span>
-     
-</label>
+              <div>
+                <label className={styles.checkboxWrapper}>
+                  <input type="checkbox" />
+                  <span className={styles.checkmark}></span>
+                </label>
 
- <h5>Сохранить для следующих заказов</h5>
+                <h5>Отправлять новости и акции</h5>
               </div>
-
- 
- 
-           
             </div>
-              
+            <div className={styles.methodDelivery}>
+              <h4 className={styles.orderTitle}>Метод доставки</h4>
+
+              <div className={styles.methodWrapper}>
+                <div>
+                  <label className={styles.customCheckbox}>
+                    <input type="radio" name="delivery" />
+                    <span className={styles.checkmark2}></span>
+                  </label>
+                  <h4>Эскпресс 48-72 часа</h4>
+                </div>
+                <h5>9 235 ₽</h5>
+              </div>
+
+              <div className={styles.methodWrapper}>
+                <div>
+                  <label className={styles.customCheckbox}>
+                    <input type="radio" name="delivery" />
+                    <span className={styles.checkmark2}></span>
+                  </label>
+                  <h4>Самовывоз</h4>
+                </div>
+                <h5>0 ₽</h5>
+              </div>
+
+              <div className={styles.methodWrapper}>
+                <div>
+                  <label className={styles.customCheckbox}>
+                    <input type="radio" name="delivery" />
+                    <span className={styles.checkmark2}></span>
+                  </label>
+                  <h4>Курьер до двери</h4>
+                </div>
+                <h5>700 ₽</h5>
+              </div>
+            </div>
+            <div className={styles.payment}>
+              <h4 className={styles.orderTitle}>Оплата</h4>
+              <Input placeholder={'Номер карты'} type={'number'} />
+              <div className={styles.date}>
+                <Input placeholder={'ММ/ГГ'} type={'number'} />
+                <Input placeholder={'Секретный код'} type={'number'} />
+              </div>
+              <Input placeholder={'Держатель карты'} type={'text'} />
+              <div className={styles.carts}>
+                <div className={styles.methodWrapper}>
+                  <div>
+                    <label className={styles.customCheckbox}>
+                      <input type="radio" name="delivery" />
+                      <span className={styles.checkmark2}></span>
+                    </label>
+                    <h4>Pay Pal</h4>
+                  </div>
+                  <Image src={'/img/order-payment.svg'} width={38} height={34} alt={'mastercard'}/>
+                </div>
+
+                <div className={styles.methodWrapper}>
+                  <div>
+                    <label className={styles.customCheckbox}>
+                      <input type="radio" name="delivery" />
+                      <span className={styles.checkmark2}></span>
+                    </label>
+                    <h4>Visa</h4>
+                  </div>
+                <Image src={'/img/order-payment2.svg'} width={38} height={34} alt={'mastercard'}/>
+                </div>
+
+                <div className={styles.methodWrapper}>
+                  <div>
+                    <label className={styles.customCheckbox}>
+                      <input type="radio" name="delivery" />
+                      <span className={styles.checkmark2}></span>
+                    </label>
+                    <h4>UnionPay</h4>
+                  </div>
+                 <Image src={'/img/order-payment3.svg'} width={38} height={34} alt={'mastercard'}/>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </div>

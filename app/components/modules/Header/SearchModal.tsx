@@ -27,7 +27,7 @@ export const SearchModal = () => {
     setQuery(e.target.value);
   };
 
-console.log(filteredGoods);
+
 
 
 
@@ -40,9 +40,7 @@ console.log(filteredGoods);
             <Image src={'/img/global-search.svg'} width={18} height={18} alt='search' />
             <input value={query} onChange={handleChange} type="text" placeholder={translations[lang].header.search}/>
           </label>
-        </div>
-
-           <div className="search-modal__results">
+                <div className="search-modal__results">
         {query && filteredGoods.length === 0 && (
           <p className="search-modal__no-results">
             такого товара нет
@@ -65,6 +63,9 @@ console.log(filteredGoods);
           </div>
         ))}
       </div>
+        </div>
+
+     
      
     </div>
   );

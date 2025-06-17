@@ -6,7 +6,9 @@
   left: 50%;
   transform: translateX(-50%);
   // background-color: #FFFFFF;
-
+.search-modal__results{
+  display: flex;
+}
   z-index: 101;
   .search-modal__top {
     .search-modal__label {
@@ -27,6 +29,9 @@
         font-weight: 400;
       }
     }
+  }
+  .search-modal__results{
+    background: white;
   }
   @media (max-width: 540px){
     .search-modal__top {
@@ -69,7 +74,7 @@
   display: block;
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+
 }
 
 .search-modal__input {

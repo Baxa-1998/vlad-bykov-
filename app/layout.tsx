@@ -14,8 +14,7 @@ import './globalStyles/normalize.scss'
 import { Layout } from "./components/layouts/Layout";
 import {ViewTransitions} from 'next-view-transitions'
 import '@/app/context/cart';
-import { useEffect } from "react";
-import { initLocation } from "./context/country";
+
 
 
 

@@ -5,7 +5,7 @@ import { Header } from '../modules/Header/Header';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SearchModal } from '../modules/Header/SearchModal';
 import { useGate, useUnit } from 'effector-react';
-import { $currencyModal, $searchModal } from '@/app/context/modals';
+import { $searchModal } from '@/app/context/modals';
 import {
   addScrollToBody,
   handleCloseSearchModal,

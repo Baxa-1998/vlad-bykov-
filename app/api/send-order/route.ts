@@ -1,4 +1,5 @@
 // app/api/send-order/route.ts 
+import { ICartItem } from '@/app/types/cart';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
 
 📦 Товары:
 ${data.cartItems
-  .map((item: any) => `— ${item.name} | ${item.size} | ${item.count} шт. | ${item.price}₽`)
+  .map((item: ICartItem) => `— ${item.name} | ${item.size} | ${item.count} шт. | ${item.price}₽`)
   .join('\n')}
 
 💰 Общая сумма: ${data.totalPrice}₽

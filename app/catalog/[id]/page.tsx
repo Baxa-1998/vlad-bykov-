@@ -21,7 +21,7 @@ const ProductPage = () => {
   // тут я получаю конкретный продукт и его свойства
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [spinner, setSpinner] = useState(false); 
+  const [ setSpinner] = useState(false); 
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState('');
@@ -31,7 +31,7 @@ const ProductPage = () => {
   const [expanded, setExpanded] = useState(false);
 
   const { translations, lang } = useLang();
-  const [count, setCount] = useState(1);
+  const [count] = useState(1);
   
  
 

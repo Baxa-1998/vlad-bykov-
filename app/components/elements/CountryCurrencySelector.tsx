@@ -6,7 +6,7 @@ import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import { useUnit } from 'effector-react';
 import Image from 'next/image';
 
-import { useState } from 'react';
+
 
 interface CountryOption {
   country: string;

@@ -10,8 +10,7 @@ type CartItemProps = {
   item: ICartItem
 }
 export const CartItem = ({item}: CartItemProps) => {
-  const inc = useUnit(increaseCount);
-  const dec = useUnit(decreaseCount);
+
 
   const {translations, lang} = useLang()
   return (

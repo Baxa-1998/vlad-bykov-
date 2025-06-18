@@ -7,7 +7,7 @@ import { Menu } from './Menu';
 import {
   $currencyModal,
   openCartPopup,
-  openCurrencyModal,
+
   toggleCurrencyModal,
   toggleSearchModal,
 } from '@/app/context/modals';
@@ -26,7 +26,7 @@ import { CountryCurrencySelector } from '../../elements/CountryCurrencySelector'
 export const Header = () => {
   const { lang, translations } = useLang();
   const router = useTransitionRouter();
-  const location = useUnit($location);
+
   const isCurrencyModal = useUnit($currencyModal);
 
 

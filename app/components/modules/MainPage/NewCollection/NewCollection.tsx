@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '@/app/styles/main-page/index.module.scss';
 import Image from 'next/image';
 import { Button } from '@/app/components/elements/Button';
@@ -8,6 +8,8 @@ import {  $menProducts, $newProducts,  $womenProducts } from '@/app/context/good
 import { useLang } from '@/app/hooks/useLang';
 import { IGoodsItemProps } from '@/app/types/modules';
 import { Link, useTransitionRouter } from 'next-view-transitions';
+import { $currencyRates, $location } from '@/app/context/country';
+import { convertPrice } from '@/app/lib/utils/convert-price';
 
 export const NewCollection = () => {
   const [collectionSelected, setCollectionSelected] = React.useState(0);
@@ -17,10 +19,35 @@ export const NewCollection = () => {
   const womenGoods: IGoodsItemProps[] = useUnit($womenProducts);
 
   const router = useTransitionRouter();
+    const location = useUnit($location);
+  const rates = useUnit($currencyRates);
+
+  
+
+
+
+const { currencyCode, currencySymbol } = React.useMemo(() => {
+  return {
+    currencyCode: location?.currency.code || 'RUB',
+    currencySymbol: location?.currency.symbol || '₽',
+  };
+}, [location]);
+
+  
+
+
+  
+  
+
+  
+  // const convertedPrice = convertPrice(items, rates, currencyCode);
 
   
  
-
+useEffect(() => {
+  console.log('Location loaded:', location);
+  console.log('Currency symbol:', location?.currency.symbol);
+}, [location]);
   const titles = [
     translations[lang].category.news,
     translations[lang].category.men,
@@ -52,19 +79,26 @@ export const NewCollection = () => {
             : collectionSelected === 1
             ? menGoods
             : womenGoods
-          ).map((item) => (
-            <Link key={item._id} href={`/catalog/${item._id}`}>
-            <div key={item._id} className={styles.newCollectionItem}>
-              <Image width={300} height={300} src={item.img[0]} alt="collection" />
-              <span className={styles.newCollectionItemTitle}>
-                {item.characteristics.compositions.split('/')}
-              </span>
-              <h4 className={styles.newCollectionItemName}>{item.characteristics.collection}</h4>
-              <p className={styles.newCollectionItemPrice}>{item.price} ₽</p>
-            </div>    
-            </Link>
+          )
+     .map((item) => {
+  const convertedPrice = convertPrice(item.price, rates, currencyCode);
+  return (
+    <Link key={item._id} href={`/catalog/${item._id}`}>
+      <div className={styles.newCollectionItem}>
+        <Image width={300} height={300} src={item.img[0]} alt="collection" />
+        <span className={styles.newCollectionItemTitle}>
+          {item.characteristics.compositions.split('/')}
+        </span>
+        <h4 className={styles.newCollectionItemName}>{item.characteristics.collection}</h4>
+        <p className={styles.newCollectionItemPrice}>
+          {/* тут получаю в рублях */}
+          {convertedPrice.toFixed(0)} {currencySymbol} 
           
-          ))}
+        </p>
+      </div>
+    </Link>
+  );
+})}
         </div>
         <div className={styles.newCollectionBtnWrapper}>
           <Link

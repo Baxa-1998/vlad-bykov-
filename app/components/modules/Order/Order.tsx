@@ -54,6 +54,8 @@ export const Order = () => {
     address: '',
     apartment: '',
     country: location?.country_name || '',
+    city: '', 
+    zipCode: '',
     cardNumber: '',
     saveForNext: true,
     subscribeNews: false,
@@ -124,7 +126,9 @@ export const Order = () => {
                 ))}
               </select>
             </div>
-            <div className={styles.userInfo}>
+        
+          </div>
+              <div className={styles.userInfo}>
               <Input
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -164,6 +168,33 @@ export const Order = () => {
                 type={'text'}
               />
             </div>
+
+
+
+
+
+
+            <div className={styles.city}>
+                  <Input
+                value={formData.zipCode}
+                onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
+                placeholder={'Почтовый индекс'}
+                type={'text'}
+              />
+              <Input
+                value={formData.city}
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                placeholder={'Город'}
+                type={'text'}
+              />
+
+            </div>
+
+
+
+
+
+
             <div className={styles.saveOrder}>
               <div>
                 <label className={styles.checkboxWrapper}>
@@ -209,7 +240,7 @@ export const Order = () => {
                     </label>
                     <h4>{method.label}</h4>
                   </div>
-                  <h5>{method.price} ₽</h5>
+                  <h5>{method.price}</h5>
                 </div>
               ))}
 
@@ -283,7 +314,6 @@ export const Order = () => {
 
               </div>
             </div>
-          </div>
         </form>
       </div>
 

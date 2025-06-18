@@ -1,12 +1,15 @@
-// app/api/send-order/route.ts
+// app/api/send-order/route.ts 
 import { NextRequest, NextResponse } from 'next/server';
 
-
-
 export async function POST(req: NextRequest) {
-    
   const TOKEN = process.env.NEXT_TELEGRAM_BOT_TOKEN;
-  const CHAT_ID = process.env.NEXT_TELEGRAM_CHAT_ID;
+
+  // ✅ Массив чатов (добавь дополнительные переменные в .env)
+  const CHAT_IDS = [
+    process.env.NEXT_TELEGRAM_CHAT_ID,
+    process.env.NEXT_TELEGRAM_CHAT_ID_2,
+  ].filter(Boolean); // удалит undefined, если переменная не указана
+
   try {
     const data = await req.json();
 
@@ -17,6 +20,8 @@ export async function POST(req: NextRequest) {
 📧 Email: ${data.email}
 🏢 Компания: ${data.company}
 📍 Адрес: ${data.address}, ${data.apartment}
+🏙️ Город: ${data.city}
+📮 Почтовый индекс: ${data.zipCode}
 🌍 Страна: ${data.country}
 
 🚚 Метод доставки: ${data.deliveryMethod}
@@ -26,27 +31,33 @@ export async function POST(req: NextRequest) {
 💾 Сохранить для следующего раза: ${data.saveForNext ? 'Да' : 'Нет'}
 
 📦 Товары:
-${data.cartItems.map((item: any) =>
-  `— ${item.name} | ${item.size} | ${item.count} шт. | ${item.price}₽`
-).join('\n')}
+${data.cartItems
+  .map((item: any) => `— ${item.name} | ${item.size} | ${item.count} шт. | ${item.price}₽`)
+  .join('\n')}
 
 💰 Общая сумма: ${data.totalPrice}₽
 `;
 
-    const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message,
-        parse_mode: 'HTML',
-      }),
-    });
+    // ✅ Отправка сообщений во все чаты
+    const responses = await Promise.all(
+      CHAT_IDS.map(chatId =>
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: 'HTML',
+          }),
+        })
+      )
+    );
 
-    if (!res.ok) {
-      console.error('Ошибка Telegram:', await res.text());
+    const hasError = responses.some(res => !res.ok);
+    if (hasError) {
+      console.error('Ошибка Telegram:', await Promise.all(responses.map(r => r.text())));
       return NextResponse.json({ error: 'Ошибка Telegram' }, { status: 500 });
     }
 

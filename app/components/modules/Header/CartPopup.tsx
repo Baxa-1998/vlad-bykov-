@@ -53,7 +53,7 @@ export const CartPopup = () => {
           )}
         </div>
         <Link href={'/order'}>
-           <Button className="cart__btn">{translations[lang].cart.button} {totalPrice}₽ </Button>
+           <Button onClick={handleClosePopup} className="cart__btn">{translations[lang].cart.button} {totalPrice}₽ </Button>
         </Link>
      
       </div>

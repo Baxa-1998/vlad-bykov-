@@ -9,6 +9,7 @@ export const closeSearchModal = modals.createEvent();
 export const toggleSearchModal = modals.createEvent();
 export const toggleCurrencyModal = modals.createEvent();
 export const closeCurrencyModal = modals.createEvent();
+export const openCurrencyModal = modals.createEvent();
 export const openCartPopup = modals.createEvent();
 export const closeCartPopup = modals.createEvent();
 
@@ -37,4 +38,5 @@ export const $searchModal = modals
 
   .on(toggleCurrencyModal, (state) => !state)
   .on(closeCurrencyModal, () => false)
+    .on(openCurrencyModal, () => true)
 

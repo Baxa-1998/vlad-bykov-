@@ -7,6 +7,7 @@ import { Menu } from './Menu';
 import {
   $currencyModal,
   openCartPopup,
+  openCurrencyModal,
   toggleCurrencyModal,
   toggleSearchModal,
 } from '@/app/context/modals';
@@ -20,6 +21,7 @@ import { $location, fetchLocationFx } from '@/app/context/country';
 import { CartPopup } from './CartPopup';
 import { useTransitionRouter } from 'next-view-transitions';
 import { slideInOut } from '@/app/lib/utils/animations';
+import { CountryCurrencySelector } from '../../elements/CountryCurrencySelector';
 
 export const Header = () => {
   const { lang, translations } = useLang();
@@ -96,8 +98,8 @@ export const Header = () => {
 
   // Модалка открытые стран
   const handleOpenCurrencyModal = () => {
-    toggleCurrencyModal();
-    addOverflowHiddenToBody();
+    toggleCurrencyModal()
+  
   };
   return (
     <header className="header">
@@ -169,13 +171,11 @@ export const Header = () => {
 
         <div className="header__right_items">
           {/* <Button>ВСТУПИТЬ В КЛУБ</Button> */}
-          <div onClick={handleOpenCurrencyModal} className="currency__container">
-            <p>
-              {' '}
-              {location?.country_name} ({location?.currency.code})
-            </p>
+          <div  className="currency__container">
+       <CountryCurrencySelector/>
 
             <Image
+            onClick={handleOpenCurrencyModal}
               className={isCurrencyModal ? 'arrow-rotate' : ''}
               src={'/img/arrow_down.svg'}
               width={10}

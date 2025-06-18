@@ -12,27 +12,27 @@ import {
   removeScrollToBody,
 } from '@/app/lib/utils/common';
 import Footer from '../modules/Footer/Footer';
-import { CurrencyModal } from '../modules/Header/CurrencyModal';
+
 
 import { usePathname } from 'next/navigation';
 import { MainPageGate } from '@/app/context/goods';
 import '@/app/context/cart'; 
-
-import { $cart  } from '@/app/context/cart';
 import { initLocation } from '@/app/context/country';
+
+
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const searchModal = useUnit($searchModal);
-  const currencyModal = useUnit($currencyModal);
+
     const pathname = usePathname();
  const isCatalogItemPage = pathname.startsWith('/catalog/') && pathname.split('/').length === 3;
  const isCategoryPage = pathname.startsWith('/category/') && pathname.split('/').length === 3;
 
   useGate(MainPageGate);
+    useEffect(() => {
+    initLocation(); // запускаем автоопределение страны
+  }, []); 
 
-   useEffect(() => {
-    initLocation();
-  }, []);
 
   useEffect(() => {
     if (
@@ -67,7 +67,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           </motion.div>
         )}
       </AnimatePresence>
-      {currencyModal && <CurrencyModal />}
+      {/* {currencyModal && <CurrencyModal />} */}
 
       <div
         className={`header__search-overlay ${searchModal ? 'overlay-active' : ''}`}

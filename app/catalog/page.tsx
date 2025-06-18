@@ -59,7 +59,8 @@ const totalPages = Math.ceil(currentCollection.length / itemsPerPage);
     <section className={styles.catalog}>
       <div className={styles.catalogWrapper}>
         <div className={styles.catalogHeading}>
-          {titles.map((title, index) => (
+          <div>
+   {titles.map((title, index) => (
             <h3
               key={index}
               className={index === collectionSelected ? styles.active : ''}
@@ -67,6 +68,8 @@ const totalPages = Math.ceil(currentCollection.length / itemsPerPage);
               {title}
             </h3>
           ))}
+          </div>
+       
         </div>
         {/* товары */}
         <div className={styles.catalogItems}>

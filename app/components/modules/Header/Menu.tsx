@@ -12,6 +12,7 @@ import { $location, fetchLocationFx } from '@/app/context/country';
 import { useLang } from '@/app/hooks/useLang';
 import { useTransitionRouter } from 'next-view-transitions';
 import { slideInOut } from '@/app/lib/utils/animations';
+import { CountryCurrencySelector } from '../../elements/CountryCurrencySelector';
 
 export const Menu = () => {
   const handleOpenCurrencyModal = () => {
@@ -71,6 +72,7 @@ export const Menu = () => {
   // ];
   return (
     <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
+      <CountryCurrencySelector/>
       <ul>
         <Link onClick={(e) => handleClick(e, '/about')} href={'/about'}>
           <li>{translations[lang].header.about_brand}</li>{' '}
@@ -94,8 +96,10 @@ export const Menu = () => {
         <div onClick={handleOpenCurrencyModal} className="menu__container">
           <p>
             {' '}
-            {location?.country_name} ({location?.currency.code})
-          </p>
+        {location?.country_name || 'Выбор страны'} ({location?.currency.code}{' '}
+        {location?.currency.symbol || ''})
+          </p> 
+      
 
           <Image
             className={isCurrencyModal ? 'arrow-rotate' : ''}

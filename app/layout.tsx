@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import "./globalStyles/globals.scss";
 import "./globalStyles/header.scss";
@@ -13,6 +14,8 @@ import './globalStyles/normalize.scss'
 import { Layout } from "./components/layouts/Layout";
 import {ViewTransitions} from 'next-view-transitions'
 import '@/app/context/cart';
+import { useEffect } from "react";
+import { initLocation } from "./context/country";
 
 
 
@@ -25,7 +28,9 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) { 
+}>)
+ {
+
   return (
     <ViewTransitions>
       

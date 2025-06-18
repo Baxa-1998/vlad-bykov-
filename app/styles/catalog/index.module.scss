@@ -40,16 +40,14 @@
         margin-top: 20px;
         line-height: 15px;
         text-align: center;
-
-      
       }
-        a {
-          div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
+      a {
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
+      }
 
       h4 {
         font-size: 20px;
@@ -60,14 +58,14 @@
         text-align: center;
       }
       @media screen and (max-width: 540px) {
-        h5{
+        h5 {
           line-height: 0px;
         }
         h4 {
           font-size: 18px;
           line-height: 0px;
         }
-        p{
+        p {
           line-height: 0px;
         }
       }
@@ -94,6 +92,28 @@
         background: none;
         color: #91a29b40;
         cursor: pointer;
+      }
+    }
+  }
+  @media (max-width: 540px) {
+    .catalogWrapper {
+      .catalogHeading {
+        overflow: scroll;
+         div{
+             gap: 25px;
+        display: flex;
+        width: 1200px !important;
+        flex-wrap: nowrap;
+             padding-left: 200px;
+        h3{
+          width: 150px;
+          &:nth-child(1){
+            width: 200px;
+            
+          }
+     
+        }
+         }
       }
     }
   }

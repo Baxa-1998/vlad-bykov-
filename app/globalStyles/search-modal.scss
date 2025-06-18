@@ -27,12 +27,75 @@
         font-size: 28px;
         font-family: 'Charis SIL', sans-serif;
         font-weight: 400;
+        border-bottom: 1px solid #91A29B1A;
+        outline: none;
       }
     }
   }
-  .search-modal__results{
-    background: white;
+
+  .search-modal__wrapper{
+      background: white;
+      padding-top: 48px;
+      padding-bottom: 48px;
+ .search-modal__results{
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: fit-content;
+    width: 90%;
+    gap: 44px;
+
+    margin: 0 auto;
+    .search-modal__no-results{
+      font-size: 20px;
+      text-align: center;
+      margin-left: 50%;
+      transform: translate(-50%);
+    }
+    .search-modal__item{
+      width: 220px;
+      height: 466px;
+    
+      padding-bottom: 15px;
+      img{
+        width: 220px;
+        height: 340px;
+      }
+      .search-modal__item-info{
+        .search-modal__item-composition{
+          color: #023524;
+          font-family: 'Optima', sans-serif;
+          font-size: 16px;
+          text-align: center;
+
+        }
+        .search-modal__item-name{
+          color: #000000;
+          font-family: 'Optima', sans-serif;
+          font-size: 20px;
+          text-align: center;
+        }
+        .search-modal__item-price{
+          text-align: center;
+          color: #91A29B; 
+          font-size: 16px;
+          margin-top: 10px;
+        }
+      }
+
+    }
   }
+  .search-modal__btn{
+    color: white;
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-top: 32px;
+    border: none;
+
+  }
+  }
+ 
   @media (max-width: 540px){
     .search-modal__top {
       .search-modal__label{
@@ -44,6 +107,29 @@
           font-size: 20px;
         }
       }
+
+    
+    }
+    .search-modal__wrapper{
+      div{
+        height: fit-content;
+        background-color: white;
+      
+ .search-modal__results{
+         display: flex;
+  flex-wrap: wrap; 
+  align-items: flex-start;
+  justify-content: center;
+  gap: 44px;
+  width: 90%;
+  margin: 0 auto;
+  max-height: 60vh; 
+  overflow-y: auto; 
+
+       
+      }
+      }
+     
     }
   }
 }
@@ -113,7 +199,7 @@
 }
 
 .search-modal__links::-webkit-scrollbar {
-  height: 8px;
+  height: 4px;
 }
 
 .search-modal__links::-webkit-scrollbar-track {
@@ -121,12 +207,12 @@
 }
 
 .search-modal__links::-webkit-scrollbar-thumb {
-  background-color: #9466ff;
+  background-color: #023524;
   border-radius: 3px;
 }
 
 .search-modal__links::-webkit-scrollbar-thumb:hover {
-  background-color: #70f;
+  background-color: #023524;
 }
 
 .search-modal__links li:not(:last-child) {
@@ -154,7 +240,7 @@
 }
 
 .search-modal__results::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 .search-modal__results::-webkit-scrollbar-track {
@@ -162,12 +248,12 @@
 }
 
 .search-modal__results::-webkit-scrollbar-thumb {
-  background-color: #9466ff;
+  background-color: #023524;
   border-radius: 3px;
 }
 
 .search-modal__results::-webkit-scrollbar-thumb:hover {
-  background-color: #70f;
+  background-color: #023524;
 }
 
 .search-modal__results__item {

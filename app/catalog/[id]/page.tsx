@@ -21,7 +21,7 @@ const ProductPage = () => {
   // тут я получаю конкретный продукт и его свойства
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [ setSpinner] = useState(false); 
+
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState('');
@@ -50,7 +50,7 @@ const addToCart = () => {
     alert('Пожалуйста, выберите цвет');
     return;
   }
-addItemToCart(item, setSpinner, count, selectedSize, selectedColor);
+addItemToCart(item,  count, selectedSize, selectedColor);
   openCartPopup();
 
 };

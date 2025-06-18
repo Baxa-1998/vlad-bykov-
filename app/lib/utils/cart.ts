@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 export const addItemToCart = (
   product: IGoodsItemProps,
-  setSpinner: (loading: boolean) => void,
+  
   count: number,
   selectedSize: string,
   selectedColor: string

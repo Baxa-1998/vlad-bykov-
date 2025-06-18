@@ -1,5 +1,5 @@
 import { useUnit } from 'effector-react';
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { $currentProduct } from '../context/goods';
 
 import { isItemInList } from '../lib/utils/common';

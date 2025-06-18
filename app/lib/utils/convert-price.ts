@@ -11,7 +11,7 @@ export const convertPrice = (
   if (!currencyRates) return basePrice;
 
   const rates = currencyRates.rates;
-  const baseCurrency = currencyRates.base; // обычно 'EUR' в твоём случае
+
 
   const rateForRUB = rates['RUB'];
   const rateForTarget = rates[targetCurrencyCode];

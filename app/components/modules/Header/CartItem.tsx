@@ -1,9 +1,9 @@
 
-import { decreaseCount, increaseCount } from '@/app/context/cart';
+
 import { useLang } from '@/app/hooks/useLang';
 import { decrementCartItem, incrementCartItem } from '@/app/lib/utils/cart';
 import { ICartItem } from '@/app/types/cart';
-import { useUnit } from 'effector-react';
+
 import Image from 'next/image';
 import React from 'react';
 type CartItemProps = {

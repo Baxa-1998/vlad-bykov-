@@ -17,7 +17,7 @@ import { setLang } from '@/app/context/lang';
 import { AllowedLangs } from '@/app/constants/lang';
 import Image from 'next/image';
 import { Hamburger } from './Hamburger';
-import { $location, fetchLocationFx } from '@/app/context/country';
+import { fetchLocationFx } from '@/app/context/country';
 import { CartPopup } from './CartPopup';
 import { useTransitionRouter } from 'next-view-transitions';
 import { slideInOut } from '@/app/lib/utils/animations';

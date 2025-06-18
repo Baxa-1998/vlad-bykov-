@@ -39,6 +39,7 @@ export const addItemToCart = (
       size: selectedSize,
       color: selectedColor || product.characteristics?.colors?.[0] || '',
       inStock: product.inStock,
+      totalPrice: product.price * count,
     };
     updatedCart = [...cartFromLS, newItem];
     addProductToCart(newItem); // обновляем Effector

@@ -41,10 +41,11 @@ export interface IGoodsItemProps {
   description: string;
   price: number;
   img: string;
-  inStock: string;
+  inStock: number;
   isNew: boolean;
   category: string;
   type: string;
+  
   sizes: number[];
   characteristics: {
     compositions: string;

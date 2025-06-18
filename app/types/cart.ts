@@ -2,6 +2,7 @@
 export interface ICartItem {
   productId: string;
   name: string;
+   type: string;
   img: string;
   size: string;
   color: string;

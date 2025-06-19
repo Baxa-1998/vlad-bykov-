@@ -44,10 +44,10 @@ const { currencyCode, currencySymbol } = React.useMemo(() => {
 
   
  
-useEffect(() => {
-  console.log('Location loaded:', location);
-  console.log('Currency symbol:', location?.currency.symbol);
-}, [location]);
+// useEffect(() => {
+//   console.log('Location loaded:', location);
+//   console.log('Currency symbol:', location?.currency.symbol);
+// }, [location]);
   const titles = [
     translations[lang].category.news,
     translations[lang].category.men,

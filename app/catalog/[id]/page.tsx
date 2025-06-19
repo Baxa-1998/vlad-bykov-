@@ -14,11 +14,14 @@ import { useLang } from '@/app/hooks/useLang';
 import { addItemToCart } from '@/app/lib/utils/cart';
 import { openCartPopup } from '@/app/context/modals';
 import Link from 'next/link';
+import { convertPrice } from '@/app/lib/utils/convert-price';
+import { $currencyRates, $location } from '@/app/context/country';
 
 const ProductPage = () => {
   // тут я получаю конкретный продукт и его свойства
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const location = useUnit($location);
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState('');
@@ -56,6 +59,16 @@ const ProductPage = () => {
   const toggleDescription = () => setExpanded(!expanded);
 
   const [open, setOpen] = useState(false);
+  const rates = useUnit($currencyRates);
+
+  const { currencyCode, currencySymbol } = React.useMemo(() => {
+    return {
+      currencyCode: location?.currency.code || 'RUB',
+      currencySymbol: location?.currency.symbol || '₽',
+    };
+  }, [location]);
+
+  const convertedPrice = convertPrice(item?.price ?? 0, rates, currencyCode);
 
   //  установка размеров если обувь или одежда
   useEffect(() => {
@@ -124,7 +137,9 @@ const ProductPage = () => {
         <div className={styles.productInfo}>
           <h5>{item.characteristics.compositions.split('/')}</h5>
           <h4>{item.name}</h4>
-          <p>{item.price} ₽</p>
+          <p>
+            {convertedPrice.toFixed(0)} {currencySymbol}
+          </p>
           <div className={styles.productSize}>
             <p>{translations[lang].productItem.size}</p>
             <div className={styles.productSizeItems}>
@@ -238,6 +253,10 @@ const ProductPage = () => {
             </Link>
           ))}
         </div>
+        <Link href="/catalog">
+               <Button className={styles.recommendationBtn}>В КАТАЛОГ</Button>
+        </Link>
+ 
       </div>
     </div>
   );

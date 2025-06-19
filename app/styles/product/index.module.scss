@@ -207,7 +207,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-     
+     flex-wrap: wrap;
       width: 90%;
       margin: 0 auto;
         .recommendationItem{
@@ -242,6 +242,18 @@
       }
 
     }
+    }
+    .recommendationBtn{
+          color: white;
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-top: 32px;
+    border: none;
+    }
+    @media screen and (max-width: 540px){
+      .recommendationItems{
+        justify-content: center;
+      }
     }
   }
 

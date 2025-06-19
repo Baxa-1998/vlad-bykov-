@@ -433,6 +433,7 @@
   }
 
   @media (max-width: 900px) {
+
     .orderInput{
       width: 80%;
     }
@@ -445,6 +446,7 @@
     @media (max-width: 540px) {
       padding-left: 16px;
       padding-right: 16px;
+      padding-top: 64px;
    .orderWrapper{
   
     flex-direction: column;
@@ -466,7 +468,12 @@
       }
      
     }
+    .orderSummary{
+      width: 100%;
+    }
    }
    }   
+
   
 }
+

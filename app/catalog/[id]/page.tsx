@@ -240,18 +240,21 @@ const ProductPage = () => {
       <div className={styles.recommendation}>
         <h3>МЫ РЕКОМЕНДУЕМ</h3>
         <div className={styles.recommendationItems}>
-          {randomGoods.map((item) => (
+          {randomGoods.map((item) => {
+            const convertedPrice = convertPrice(item?.price ?? 0, rates, currencyCode);
+          return(
             <Link key={item._id} href={`/catalog/${item._id}`}>
               <div key={item._id} className={styles.recommendationItem}>
                 <Image src={item.img[0]} width={50} height={50} alt={item.name} />
                 <div className={styles.recommendationItemInfo}>
                   <p className={styles.composition}>{item.characteristics.compositions}</p>
                   <p className={styles.name}>{item.name}</p>
-                  <p className={styles.price}>{item.price} ₽</p>
+                  <p className={styles.price}>{convertedPrice.toFixed(0)} {currencySymbol}</p>
                 </div>
               </div>
             </Link>
-          ))}
+         );
+})}
         </div>
         <Link href="/catalog">
                <Button className={styles.recommendationBtn}>В КАТАЛОГ</Button>

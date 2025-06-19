@@ -155,10 +155,10 @@ const Footer = () => {
             style={{ width: 'fit-content', height: 'fit-content' }}
             alt="socials"
           />
-          <div className="footer__currency">
+          {/* <div className="footer__currency">
             <p>РОССИЯ (РУБ ₽)</p>
             <Image src={'/img/footer-arrow.svg'} width={10} height={6} alt="arrow" />
-          </div>
+          </div> */}
         </div>
         <div className="footer__payment">
           <Link href={'/'}>

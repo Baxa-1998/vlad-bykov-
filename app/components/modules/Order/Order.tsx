@@ -8,9 +8,11 @@ import { $location } from '@/app/context/country';
 import Image from 'next/image';
 import { ICartItem } from '@/app/types/cart';
 import { Button } from '../../elements/Button';
+import { useLang } from '@/app/hooks/useLang';
 
 export const Order = () => {
-  const cart: ICartItem[] = useUnit($cart);
+  const cart: ICartItem[] = useUnit($cart); 
+  const { translations, lang } = useLang();
 
   const location = useUnit($location);
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.count, 0);
@@ -96,10 +98,10 @@ export const Order = () => {
   return (
     <div className={styles.orderWrapper}>
       <div className={styles.orderInput}>
-        <h3>Оформление заказа</h3>
+        <h3>{translations[lang].order.main_title}</h3>
         <form action="">
           <div className={styles.contactInput}>
-            <h4 className={styles.orderTitle}>Контакы</h4>
+            <h4 className={styles.orderTitle}>{translations[lang].order.title1}</h4>
             <Input
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}

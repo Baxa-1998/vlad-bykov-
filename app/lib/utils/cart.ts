@@ -6,15 +6,15 @@ import toast from 'react-hot-toast';
 
 export const addItemToCart = (
   product: IGoodsItemProps,
-  
+
   count: number,
   selectedSize: string,
-  selectedColor: string
+  selectedColor: string,
 ) => {
   const cartFromLS: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
   const existingItem = cartFromLS.find(
-    (item) => item.productId === product._id && item.size === selectedSize
+    (item) => item.productId === product._id && item.size === selectedSize,
   );
 
   let updatedCart: ICartItem[];
@@ -23,7 +23,7 @@ export const addItemToCart = (
     updatedCart = cartFromLS.map((item) =>
       item.productId === product._id && item.size === selectedSize
         ? { ...item, count: item.count + count }
-        : item
+        : item,
     );
   } else {
     const newItem: ICartItem = {
@@ -53,10 +53,8 @@ export const addItemToCart = (
 
 export function incrementCartItem(productId: string, size: string) {
   const cart: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
-  const updated = cart.map(item =>
-    item.productId === productId && item.size === size
-      ? { ...item, count: item.count + 1 }
-      : item
+  const updated = cart.map((item) =>
+    item.productId === productId && item.size === size ? { ...item, count: item.count + 1 } : item,
   );
   localStorage.setItem('cart', JSON.stringify(updated));
   setCartFromLS(updated);
@@ -68,12 +66,12 @@ export function incrementCartItem(productId: string, size: string) {
 export function decrementCartItem(productId: string, size: string) {
   const cart: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
   const updated = cart
-    .map(item =>
+    .map((item) =>
       item.productId === productId && item.size === size
         ? { ...item, count: item.count - 1 }
-        : item
+        : item,
     )
-    .filter(item => item.count > 0);
+    .filter((item) => item.count > 0);
   localStorage.setItem('cart', JSON.stringify(updated));
   setCartFromLS(updated);
 }

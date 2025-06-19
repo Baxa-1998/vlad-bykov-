@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from '@/app/styles/main-page/index.module.scss';
 import Image from 'next/image';
 import { Button } from '@/app/components/elements/Button';

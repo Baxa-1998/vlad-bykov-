@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../modules/Header/Header';
 
 import { AnimatePresence, motion } from 'framer-motion';
@@ -18,11 +18,13 @@ import { usePathname } from 'next/navigation';
 import { MainPageGate } from '@/app/context/goods';
 import '@/app/context/cart'; 
 import { initLocation } from '@/app/context/country';
+import { Preloader } from '../elements/Preloader';
 
 
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const searchModal = useUnit($searchModal);
+  const [isLoading, setIsLoading] = useState(true);
 
     const pathname = usePathname();
  const isCatalogItemPage = pathname.startsWith('/catalog/') && pathname.split('/').length === 3;
@@ -51,8 +53,32 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    // Сработает после полной загрузки страницы (всех ресурсов)
+    const handleLoad = () => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000)
+      
+    };
+
+    if (document.readyState === 'complete') {
+      // если уже загружено
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+    }
+
+    return () => window.removeEventListener('load', handleLoad);
+  }, []);
+
   return (
-    <div className="container">
+    <>
+        {isLoading && (
+      <Preloader isHidden={!isLoading} />
+      )}
+       <div style={{ display: isLoading ? 'none' : 'block' }} className="container">
+    
       <Header />
 
       {children}
@@ -74,5 +100,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         onClick={handleCloseSearchModal}></div>
       <Footer />
     </div>
+    </>
+ 
   );
 };

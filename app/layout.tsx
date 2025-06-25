@@ -8,6 +8,7 @@ import "./globalStyles/search-modal.scss";
 import "./globalStyles/currency-modal.scss";
 import "./globalStyles/footer.scss";
 import "./globalStyles/hero.scss";
+import "./globalStyles/preloader.scss";
 import "./globalStyles/main-page.scss";
 import "./globalStyles/cart-popup.scss";
 import './globalStyles/normalize.scss'

@@ -8,7 +8,9 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         port: '3000',
         pathname: '/api/images*',
+
       },
+      {protocol: 'https', hostname: 'https://vlad-bykov-hq7d.vercel.app'}
     ],
   },
 };

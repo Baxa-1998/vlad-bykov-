@@ -1,7 +1,7 @@
 
 
 import { useLang } from '@/app/hooks/useLang';
-import { decrementCartItem, incrementCartItem } from '@/app/lib/utils/cart';
+import { decrementCartItem, incrementCartItem, removeCartItem } from '@/app/lib/utils/cart';
 import { ICartItem } from '@/app/types/cart';
 
 import Image from 'next/image';
@@ -30,8 +30,8 @@ export const CartItem = ({item}: CartItemProps) => {
             <span className='cart__counter_number'>{item.count}</span>
         <button onClick={() => incrementCartItem(item.productId, item.size)}>+</button>
           </div>
-
-          <div className="cart__delete">
+        {/* кнопка удалить */}
+          <div onClick={() => removeCartItem(item.productId, item.size)} className="cart__delete">
             {translations[lang].cart.remove}
           </div>
         </div>

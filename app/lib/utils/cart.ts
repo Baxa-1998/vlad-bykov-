@@ -1,5 +1,6 @@
 import { IGoodsItemProps } from '@/app/types/modules';
 import { ICartItem } from '@/app/types/cart';
+import { removeProductFromCart } from '@/app/context/cart';
 import { addProductToCart, setCartFromLS } from '@/app/context/cart';
 import { idGenerator } from './common';
 import toast from 'react-hot-toast';
@@ -51,6 +52,10 @@ export const addItemToCart = (
   toast.success('Товар добавлен в корзину');
 };
 
+
+export function removeCartItem(productId: string, size: string) {
+  removeProductFromCart({ productId, size });
+}
 export function incrementCartItem(productId: string, size: string) {
   const cart: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
   const updated = cart.map((item) =>

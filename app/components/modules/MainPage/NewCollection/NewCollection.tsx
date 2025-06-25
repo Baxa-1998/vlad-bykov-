@@ -85,7 +85,7 @@ const { currencyCode, currencySymbol } = React.useMemo(() => {
   return (
     <Link key={item._id} href={`/catalog/${item._id}`}>
       <div className={styles.newCollectionItem}>
-        <Image width={300} height={300} src={item.img[0]} alt="collection" />
+        <Image width={300} height={300} src={item.img[0].url} alt="collection" />
         <span className={styles.newCollectionItemTitle}>
           {item.characteristics.compositions.split('/')}
         </span>

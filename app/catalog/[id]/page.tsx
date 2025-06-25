@@ -37,6 +37,7 @@ const ProductPage = () => {
   const { translations, lang } = useLang();
   const [count] = useState(1);
 
+
   const addToCart = () => {
     if (!item) {
       alert('Товар ещё загружается...');
@@ -89,7 +90,7 @@ const ProductPage = () => {
   useEffect(() => {
     if (item?.img) {
       if (Array.isArray(item.img)) {
-        setSelectedImage(item.img[0]);
+        setSelectedImage(item.img[0].url);
       } else {
         setSelectedImage(item.img);
       }
@@ -103,22 +104,22 @@ const ProductPage = () => {
         <div className={styles.productImages}>
           <div className={styles.productColors}>
             {Array.isArray(item.img) &&
-              item.img.map((img) => (
-                <div key={img} className={styles.colorOption}>
+              item.img.map((img, idx) => (
+                <div key={idx} className={styles.colorOption}>
                   {/* Кружочек — виден только на мобильных */}
                   <div
-                    onClick={() => setSelectedImage(img)}
-                    className={`${styles.circle} ${selectedImage === img ? styles.active : ''}`}
+                    onClick={() => setSelectedImage(img.url)}
+                    className={`${styles.circle} ${selectedImage === img.url ? styles.active : ''}`}
                   />
 
                   {/* Миниатюра — видна только на десктопе */}
                   <Image
                     width={60}
                     height={60}
-                    src={img}
-                    alt="collection"
-                    onClick={() => setSelectedImage(img)}
-                    className={`${styles.thumbnail} ${selectedImage === img ? styles.active : ''}`}
+                    src={img.url}
+                    alt={img.desc}
+                    onClick={() => setSelectedImage(img.url)}
+                    className={`${styles.thumbnail} ${selectedImage === img.url ? styles.active : ''}`}
                   />
                 </div>
               ))}
@@ -244,8 +245,8 @@ const ProductPage = () => {
             const convertedPrice = convertPrice(item?.price ?? 0, rates, currencyCode);
           return(
             <Link key={item._id} href={`/catalog/${item._id}`}>
-              <div key={item._id} className={styles.recommendationItem}>
-                <Image src={item.img[0]} width={50} height={50} alt={item.name} />
+              <div  className={styles.recommendationItem}>
+                <Image src={item.img[0].url} width={50} height={50} alt={item.name} />
                 <div className={styles.recommendationItemInfo}>
                   <p className={styles.composition}>{item.characteristics.compositions}</p>
                   <p className={styles.name}>{item.name}</p>

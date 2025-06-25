@@ -36,7 +36,7 @@ const paginatedItems = products.slice(startIndex, endIndex);
           {paginatedItems.map((product) => (
             <Link key={product._id} href={`/catalog/${product._id}`}>
             <div key={product._id} className={styles.newCollectionItem}>
-              <Image width={300} height={300} src={product.img[0]} alt="collection" />
+              <Image width={300} height={300} src={product.img[0].url} alt="collection" />
               <span className={styles.newCollectionItemTitle}>
                 {product.characteristics.compositions.split('/')}
               </span>

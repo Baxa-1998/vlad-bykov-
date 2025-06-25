@@ -40,7 +40,7 @@ export interface IGoodsItemProps {
   name: string;
   description: string;
   price: number;
-  img: string;
+  img: {url: string; desc: string}[];
   inStock: number;
   isNew: boolean;
   category: string;

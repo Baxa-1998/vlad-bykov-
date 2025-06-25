@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/app/lib/mongodb";
-import { getClothGoods, getDbAndReqBody,  } from "@/app/lib/utils/api-routes";
+import {  getDbAndReqBody,  } from "@/app/lib/utils/api-routes";
 
 
 

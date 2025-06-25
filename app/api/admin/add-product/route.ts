@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+
 import { corsHeaders } from '@/app/constants/corsHeaders';
 import clientPromise from '@/app/lib/mongodb';
 import { getDbAndReqBody } from '@/app/lib/utils/api-routes';

@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ id: session.id });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Ошибка Stripe Checkout:', err);
     return new NextResponse('Ошибка сервера при создании Stripe-сессии', { status: 500 });
   }

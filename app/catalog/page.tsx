@@ -32,8 +32,7 @@ export default function CatalogPage() {
 
   // Основные коллекции
   const isNew = goods.filter((item) => item.isNew === true);
-  const menGoods = goods.filter((item) => item.type === 'men');
-  const womenGoods = goods.filter((item) => item.type === 'women');
+
 
   // Вычисляем текущую коллекцию с учётом пола и подкатегории
 const currentCollection = useMemo(() => {

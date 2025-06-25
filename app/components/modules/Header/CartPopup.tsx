@@ -19,7 +19,7 @@ export const CartPopup = () => {
  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.count, 0);
    const rates = useUnit($currencyRates);
  
-   const { currencyCode, currencySymbol } = useMemo(() => {
+   const { currencyCode } = useMemo(() => {
      return {
        currencyCode: location?.currency.code || 'RUB',
        currencySymbol: location?.currency.symbol || '₽',

@@ -9,7 +9,7 @@ export async function DELETE(req: Request) {
     const { db } = await getDbAndReqBody(clientPromise, null);
     const url = new URL(req.url);
     const id = url.searchParams.get('id');
-    const category = url.searchParams.get('category');
+    
 
     await db.collection('cloth').deleteOne({ _id: new ObjectId(id as string) });
 

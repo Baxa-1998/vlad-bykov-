@@ -11,6 +11,7 @@ import { $allGoods } from '../context/goods';
 import { Pagination } from '../components/elements/Pagination';
 import { $currencyRates, $location } from '../context/country';
 import { convertPrice } from '../lib/utils/convert-price';
+type Subcategory = 'all' | 'clothes' | 'accessories' | 'shoes';
 
 export default function CatalogPage() {
   const goods: IGoodsItemProps[] = useUnit($allGoods);
@@ -101,7 +102,8 @@ const currentCollection = useMemo(() => {
         }
         onClick={() => setSelectedSubcategory(sub)}
       >
-        {translations[lang].subcategory?.[sub] || sub}
+        {translations[lang].subcategory?.[sub as Subcategory] || sub
+}
       </button>
     ))}
   </div>

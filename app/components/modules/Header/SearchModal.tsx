@@ -53,7 +53,7 @@ export const SearchModal = () => {
                   <Link key={item._id} href={`/catalog/${item._id}`}>
                     <div onClick={closeModal} className="search-modal__item">
                       <Image
-                        src={item.img[0]}
+                        src={item.img[0].url}
                         width={50}
                         height={50}
                         alt={item.name}

@@ -8,20 +8,21 @@ import Image from 'next/image';
 import React from 'react';
 type CartItemProps = {
   item: ICartItem
+  convertedPrice: number
 }
-export const CartItem = ({item}: CartItemProps) => {
+export const CartItem = ({item, convertedPrice}: CartItemProps) => {
 
 
   const {translations, lang} = useLang()
   return (
     <div className="cart__item">
       <div className="cart__img">
-        <Image src={item.img} width={128} height={192} alt="cart-item" />
+        <Image src={item.img.url} width={128} height={192} alt="cart-item" />
       </div>
       <div className="cart__info">
         <h3 className="cart__info_heading">{item.name}</h3>
         <h2 className="cart__info_title">{item.compositions}</h2>
-        <span className="cart__info_price">{item.price} ₽</span>
+        <span className="cart__info_price">{convertedPrice}</span>
         <p className="cart__info_size">{item.size}</p>
 
         <div className="cart__order_wrapper">

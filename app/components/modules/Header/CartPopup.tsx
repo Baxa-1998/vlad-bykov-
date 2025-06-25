@@ -5,15 +5,30 @@ import { $cartModal, closeCartPopup } from '@/app/context/modals';
 import { Button } from '../../elements/Button';
 import { useLang } from '@/app/hooks/useLang';
 import { $cart } from '@/app/context/cart';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { $currencyRates, $location } from '@/app/context/country';
+import { convertPrice } from '@/app/lib/utils/convert-price';
 export const CartPopup = () => {
   const { translations, lang } = useLang();
   const open = useUnit($cartModal);
 
   const cart = useUnit($cart);
- 
+  
+   const location = useUnit($location);
  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.count, 0);
+   const rates = useUnit($currencyRates);
+ 
+   const { currencyCode, currencySymbol } = useMemo(() => {
+     return {
+       currencyCode: location?.currency.code || 'RUB',
+       currencySymbol: location?.currency.symbol || '₽',
+     };
+   }, [location]);
+ 
+   const convertedPrice = convertPrice(totalPrice ?? 0, rates, currencyCode);
+   console.log(convertedPrice);
+   
  
 
   const [hasMounted, setHasMounted] = useState(false);
@@ -49,11 +64,13 @@ export const CartPopup = () => {
           {cart.length === 0 ? (
             <h2 className="cart__list-empty">Ваша корзина пуста</h2>
           ) : (
-            cart.map((item) => <CartItem key={item.clientId} item={item} />)
+            cart.map((item) =>
+ 
+              <CartItem   convertedPrice={convertPrice(item.price, rates, currencyCode)} key={item.clientId} item={item} />)
           )}
         </div>
         <Link href={'/order'}>
-           <Button onClick={handleClosePopup} className="cart__btn">{translations[lang].cart.button} {totalPrice}₽ </Button>
+           <Button onClick={handleClosePopup} className="cart__btn">{translations[lang].cart.button} {convertedPrice.toFixed(0)} </Button>
         </Link>
      
       </div>

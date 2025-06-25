@@ -10,13 +10,20 @@ import { ICartItem } from '@/app/types/cart';
 import { Button } from '../../elements/Button';
 import { useLang } from '@/app/hooks/useLang';
 import { convertPrice } from '@/app/lib/utils/convert-price';
+import { loadStripe } from '@stripe/stripe-js';
 
 export const Order = () => {
   const cart: ICartItem[] = useUnit($cart);
   const { translations, lang } = useLang();
+console.log(cart);
+
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  console.log(stripePromise);
 
   const location = useUnit($location);
+
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.count, 0);
+
   const countryData = [
     {
       id: 1,
@@ -59,12 +66,10 @@ export const Order = () => {
     country: location?.country_name || '',
     city: '',
     zipCode: '',
-    cardNumber: '',
+
     saveForNext: true,
     subscribeNews: false,
-    cardDate: '',
-    cardCode: '',
-    cardHolder: '',
+
     deliveryMethod: '',
     paymentMethod: '',
   });
@@ -81,7 +86,10 @@ export const Order = () => {
   const convertedPrice = convertPrice(totalPrice ?? 0, rates, currencyCode);
 
   const handleSubmit = async () => {
-    const res = await fetch('/api/send-order', {
+    console.log(totalPrice);
+    
+    // отправка данных в Telegram
+    await fetch('/api/send-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -91,10 +99,26 @@ export const Order = () => {
       }),
     });
 
-    if (res.ok) {
-      alert('Заказ отправлен!');
+    // если выбрана оплата через Stripe
+    if (['Visa', 'UnionPay', 'Pay Pal'].includes(formData.paymentMethod)) {
+      const stripe = await stripePromise;
+
+      const res = await fetch('/api/checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+         totalPrice,
+    currency: 'RUB', // всегда передаём RUB
+        }),
+      });
+
+      const data = await res.json();
+
+      await stripe?.redirectToCheckout({
+        sessionId: data.id,
+      });
     } else {
-      alert('Ошибка при отправке заказа');
+      alert('Заказ оформлен!');
     }
   };
   const [mounted, setMounted] = useState(false);
@@ -255,34 +279,10 @@ export const Order = () => {
                 <h5>700 ₽</h5>
               </div> */}
           </div>
+
           <div className={styles.payment}>
             <h4 className={styles.orderTitle}>Оплата</h4>
-            <Input
-              value={formData.cardNumber}
-              onChange={(e) => setFormData({ ...formData, cardNumber: e.target.value })}
-              placeholder={'Номер карты'}
-              type={'number'}
-            />
-            <div className={styles.date}>
-              <Input
-                value={formData.cardDate}
-                onChange={(e) => setFormData({ ...formData, cardDate: e.target.value })}
-                placeholder={'ММ/ГГ'}
-                type={'number'}
-              />
-              <Input
-                value={formData.cardCode}
-                onChange={(e) => setFormData({ ...formData, cardCode: e.target.value })}
-                placeholder={'Секретный код'}
-                type={'number'}
-              />
-            </div>
-            <Input
-              value={formData.cardHolder}
-              onChange={(e) => setFormData({ ...formData, cardHolder: e.target.value })}
-              placeholder={'Держатель карты'}
-              type={'text'}
-            />
+
             <div className={styles.carts}>
               {paymentMethods.map((method) => (
                 <div key={method.label} className={styles.methodWrapper}>
@@ -315,7 +315,7 @@ export const Order = () => {
             return (
               <div key={item.clientId} className={styles.orderSummaryItem}>
                 <div>
-                  <Image src={item?.img} width={80} height={80} alt={'cart'} />
+                  <Image src={item?.img.url} width={80} height={80} alt={'cart'} />
 
                   <div className={styles.orderSummaryInfo}>
                     <p className={styles.orderSummarySize}>{item.size}</p>

@@ -1,0 +1,29 @@
+.success {
+  position: fixed;
+  background: #023524;
+  width: 100%;
+  height: 100vh;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .successWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3 {
+      text-align: center;
+      font-size: 56px;
+      color: #f9f6e3;
+      font-family: 'Charis SIL', sans-serif !important;
+      font-weight: 400;
+    }
+    button{
+      width: 325px;
+      height: 56px;
+      background: none;
+      border: 1px solid #f9f6e3;
+      color: #f9f6e3;
+    }
+  }
+}

@@ -3,7 +3,7 @@ export interface ICartItem {
   productId: string;
   name: string;
    type: string;
-  img: string;
+  img: {url: string};
   size: string;
   color: string;
   compositions:string;

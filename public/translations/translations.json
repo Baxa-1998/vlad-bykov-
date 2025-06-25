@@ -261,6 +261,12 @@
       "orange": "orange",
       "black": "black"
     },
+        "subcategory": {
+          "all": "All",
+  "clothes": "Clothes",
+  "accessories": "Accessories",
+  "shoes": "Shoes"
+},
     "product": {
       "available": "Available",
       "not_available": "Not available",
@@ -615,6 +621,12 @@
       "orange": "оранжевая",
       "black": "черная"
     },
+    "subcategory": {
+      "all": "Все товары",
+  "clothes": "Одежда",
+  "accessories": "Аксессуары",
+  "shoes": "Обувь"
+},
     "product": {
       "available": "Есть в наличии",
       "not_available": "Нет в наличии",

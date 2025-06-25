@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const TOKEN = process.env.NEXT_TELEGRAM_BOT_TOKEN;
+  
 
   // ✅ Массив чатов (добавь дополнительные переменные в .env)
   const CHAT_IDS = [

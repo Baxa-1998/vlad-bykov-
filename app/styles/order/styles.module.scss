@@ -11,6 +11,7 @@
     gap: 50px;
     .orderInput{
       width: 50%;
+  
     }
 
     h3 {
@@ -37,6 +38,7 @@
           input {
             width: 100%;
             height: 60px;
+            padding-left: 16px;
           }
         }
       }
@@ -55,7 +57,7 @@
             color: #023524;
           }
           select {
-            width: 100%;
+            width: 103%;
             height: 60px;
             border: 1px solid #91a29b40;
             outline: none;
@@ -65,23 +67,26 @@
       }
       .userInfo {
         display: flex;
-        gap: 20px;
+        gap: 36px;
         margin-bottom: 20px;
         div {
           input {
             width: 100%;
-            height: 60px;
+            height: 60px; 
+            padding-left: 16px;
+       
           }
         }
       }
       .city{
              display: flex;
                 margin-bottom: 20px;
-                gap: 20px;
+                gap: 36px;
         div {
           input {
             width: 100%;
             height: 60px;
+              padding-left: 16px;
           }
         }
       }
@@ -91,6 +96,7 @@
           input {
             width: 100%;
             height: 60px;
+             padding-left: 16px;
           }
         }
       }
@@ -108,6 +114,7 @@
           input {
             width: 100%;
             height: 60px;
+              padding-left: 16px;
           }
         }
       }
@@ -117,6 +124,7 @@
           input {
             width: 100%;
             height: 60px;
+              padding-left: 16px;
           }
         }
       }
@@ -141,6 +149,7 @@
             position: absolute;
             top: 0;
             left: 0;
+              padding-left: 16px;
             width: 100%;
             height: 100%;
             opacity: 0;
@@ -345,6 +354,7 @@
           align-items: center;
           div{
             display: flex;
+            gap: 15px;
                .orderSummaryInfo{
                 display: flex;
                 flex-direction: column;

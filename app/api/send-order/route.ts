@@ -9,7 +9,8 @@ export async function POST(req: NextRequest) {
   // ✅ Массив чатов (добавь дополнительные переменные в .env)
   const CHAT_IDS = [
     process.env.NEXT_TELEGRAM_CHAT_ID,
-    process.env.NEXT_TELEGRAM_CHAT_ID_2,
+
+    
   ].filter(Boolean); // удалит undefined, если переменная не указана
 
   try {

@@ -74,10 +74,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-        {isLoading && (
+        {/* {isLoading && (
       <Preloader isHidden={!isLoading} />
-      )}
-       <div style={{ display: isLoading ? 'none' : 'block' }} className="container">
+      )} */}
+       {/* <div style={{ display: isLoading ? 'none' : 'block' }} className="container"> */}
     
       <Header />
 
@@ -99,7 +99,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         className={`header__search-overlay ${searchModal ? 'overlay-active' : ''}`}
         onClick={handleCloseSearchModal}></div>
       <Footer />
-    </div>
+    {/* </div> */}
     </>
  
   );

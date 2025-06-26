@@ -54,8 +54,9 @@ export const SearchModal = () => {
                     <div onClick={closeModal} className="search-modal__item">
                       <Image
                         src={item.img[0].url}
-                        width={50}
-                        height={50}
+                              //  src={'/img/collections/Collection1.svg'}
+                        width={220}
+                        height={340}
                         alt={item.name}
                         className="search-modal__item-img"
                       />

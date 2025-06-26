@@ -116,7 +116,8 @@ const ProductPage = () => {
                   <Image
                     width={60}
                     height={60}
-                    src={img.url}
+                    // src={img.url}
+                         src={'/img/collections/Collection1.svg'}
                     alt={img.desc}
                     onClick={() => setSelectedImage(img.url)}
                     className={`${styles.thumbnail} ${selectedImage === img.url ? styles.active : ''}`}
@@ -246,7 +247,10 @@ const ProductPage = () => {
           return(
             <Link key={item._id} href={`/catalog/${item._id}`}>
               <div  className={styles.recommendationItem}>
-                <Image src={item.img[0].url} width={50} height={50} alt={item.name} />
+                <Image
+                    //  src={'/img/collections/Collection1.svg'}
+                 src={item.img[0].url}
+                  width={220} height={340} alt={item.name} />
                 <div className={styles.recommendationItemInfo}>
                   <p className={styles.composition}>{item.characteristics.compositions}</p>
                   <p className={styles.name}>{item.name}</p>

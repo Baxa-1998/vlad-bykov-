@@ -15,7 +15,7 @@ import { loadStripe } from '@stripe/stripe-js';
 export const Order = () => {
   const cart: ICartItem[] = useUnit($cart);
   const { translations, lang } = useLang();
-console.log(cart);
+  console.log(cart);
 
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
   console.log(stripePromise);
@@ -47,9 +47,9 @@ console.log(cart);
     },
   ];
   const deliveryMethods = [
-    { label: 'Экспресс 48–72 часа', price: '9235 ₽' },
-    { label: 'Самовывоз', price: '0 ₽' },
-    { label: 'Курьер до двери', price: '700 ₽' },
+    { label: translations[lang].order.input_delivery1, price: '9235 ₽' },
+    { label: translations[lang].order.input_delivery2, price: '0 ₽' },
+    { label: translations[lang].order.input_delivery3, price: '700 ₽' },
   ];
   const paymentMethods = [
     { label: 'Pay Pal', img: '/img/order-payment.svg' },
@@ -86,39 +86,50 @@ console.log(cart);
   const convertedPrice = convertPrice(totalPrice ?? 0, rates, currencyCode);
 
   const handleSubmit = async () => {
-    console.log(totalPrice);
-    
-    // отправка данных в Telegram
-    await fetch('/api/send-order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...formData,
-        cartItems: cart,
-        totalPrice,
-      }),
-    });
-
-    // если выбрана оплата через Stripe
-    if (['Visa', 'UnionPay', 'Pay Pal'].includes(formData.paymentMethod)) {
-      const stripe = await stripePromise;
-
-      const res = await fetch('/api/checkout-session', {
+    if (
+      formData.email === '' ||
+      formData.name === '' ||
+      formData.surname === '' ||
+      formData.address === '' ||
+      formData.city === '' ||
+      formData.zipCode === '' ||
+      formData.deliveryMethod === '' ||
+      formData.paymentMethod === ''
+    ) {
+      alert('Заполните всю форму');
+    } else {
+      // отправка данных в Telegram
+      await fetch('/api/send-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-         totalPrice,
-    currency: 'RUB', // всегда передаём RUB
+          ...formData,
+          cartItems: cart,
+          totalPrice,
         }),
       });
 
-      const data = await res.json();
+      // если выбрана оплата через Stripe
+      if (['Visa', 'UnionPay', 'Pay Pal'].includes(formData.paymentMethod)) {
+        const stripe = await stripePromise;
 
-      await stripe?.redirectToCheckout({
-        sessionId: data.id,
-      });
-    } else {
-      alert('Заказ оформлен!');
+        const res = await fetch('/api/checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            totalPrice,
+            currency: 'RUB', // всегда передаём RUB
+          }),
+        });
+
+        const data = await res.json();
+
+        await stripe?.redirectToCheckout({
+          sessionId: data.id,
+        });
+      } else {
+        alert('Заказ оформлен!');
+      }
     }
   };
   const [mounted, setMounted] = useState(false);
@@ -147,9 +158,9 @@ console.log(cart);
           </div>
 
           <div className={styles.deliveryInput}>
-            <h4 className={styles.orderTitle}>Доставка</h4>
+            <h4 className={styles.orderTitle}>{translations[lang].order.title2}</h4>
             <div>
-              <p>Страна/Регион</p>
+              <p>{translations[lang].order.input_country}</p>
               <select
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value })}
@@ -169,13 +180,13 @@ console.log(cart);
             <Input
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              placeholder={'Имя'}
+              placeholder={translations[lang].order.input_name}
               type={'text'}
             />
             <Input
               value={formData.surname}
               onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
-              placeholder={'Фамилия'}
+              placeholder={translations[lang].order.input_surname}
               type={'text'}
             />
           </div>
@@ -183,7 +194,7 @@ console.log(cart);
             <Input
               value={formData.company}
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-              placeholder={'Компания (необязательно)'}
+              placeholder={translations[lang].order.input_company}
               type={'text'}
               required={false}
             />
@@ -192,7 +203,7 @@ console.log(cart);
             <Input
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              placeholder={'Адресс'}
+              placeholder={translations[lang].order.input_adress}
               type={'text'}
             />
             <Image src={'/img/order-search.svg'} width={15} height={15} alt="search" />
@@ -201,7 +212,7 @@ console.log(cart);
             <Input
               value={formData.apartment}
               onChange={(e) => setFormData({ ...formData, apartment: e.target.value })}
-              placeholder={'Апартаменты'}
+              placeholder={translations[lang].order.input_appartment}
               type={'text'}
             />
           </div>
@@ -210,13 +221,13 @@ console.log(cart);
             <Input
               value={formData.zipCode}
               onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
-              placeholder={'Почтовый индекс'}
+              placeholder={translations[lang].order.input_index}
               type={'text'}
             />
             <Input
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-              placeholder={'Город'}
+              placeholder={translations[lang].order.input_city}
               type={'text'}
             />
           </div>
@@ -232,7 +243,7 @@ console.log(cart);
                 <span className={styles.checkmark}></span>
               </label>
 
-              <h5>Сохранить для следующих заказов</h5>
+              <h5>{translations[lang].order.save_for_next_time}</h5>
             </div>
             <div>
               <label className={styles.checkboxWrapper}>
@@ -244,11 +255,11 @@ console.log(cart);
                 <span className={styles.checkmark}></span>
               </label>
 
-              <h5>Отправлять новости и акции</h5>
+              <h5>{translations[lang].order.get_news}</h5>
             </div>
           </div>
           <div className={styles.methodDelivery}>
-            <h4 className={styles.orderTitle}>Метод доставки</h4>
+            <h4 className={styles.orderTitle}>{translations[lang].order.title3}</h4>
 
             {deliveryMethods.map((method) => (
               <div key={method.label} className={styles.methodWrapper}>
@@ -281,7 +292,7 @@ console.log(cart);
           </div>
 
           <div className={styles.payment}>
-            <h4 className={styles.orderTitle}>Оплата</h4>
+            <h4 className={styles.orderTitle}>{translations[lang].order.title4}</h4>
 
             <div className={styles.carts}>
               {paymentMethods.map((method) => (
@@ -331,18 +342,20 @@ console.log(cart);
             );
           })}
           <div className={styles.orderSummaryTotal}>
-            <h5>{cart.length} товара</h5>
+            <h5>
+              {cart.length} {translations[lang].order.item_count}
+            </h5>
             <p>
               {' '}
               {convertedPrice.toFixed(0)} {currencySymbol}
             </p>
           </div>
           <div className={styles.orderSummaryDelivery}>
-            <h5>Доставка</h5>
-            <p>9 235 ₽</p>
+            <h5>{translations[lang].order.title2}</h5>
+            <p>0 ₽</p>
           </div>
           <div className={styles.finalPrice}>
-            <h5>Итого</h5>
+            <h5>{translations[lang].order.total}</h5>
             <p>
               {convertedPrice.toFixed(0)} {currencySymbol}
             </p>

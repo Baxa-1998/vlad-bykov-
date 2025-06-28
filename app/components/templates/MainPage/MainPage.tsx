@@ -16,8 +16,9 @@ import { Category } from '../../modules/MainPage/Category/Category';
 import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandStatement';
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
-import { useGate } from 'effector-react';
+import { useGate, useUnit } from 'effector-react';
 import { MainPageGate } from '@/app/context/goods';
+import { $footerIsShow, hideFooter, showFooter } from '@/app/context/modals';
 
 
 export default function MainPage() {
@@ -25,6 +26,7 @@ export default function MainPage() {
   const [activeSwiper, setActiveSwiper] = useState(false);
   const lastSlideRef = useRef<HTMLDivElement>(null);
   const fourthSlideRef = useRef<HTMLDivElement>(null);
+    const isShowFooter = useUnit($footerIsShow);
   // хук изменение ширины
   const isMedia540 = useMediaQuery(540);
   useGate(MainPageGate);
@@ -38,9 +40,19 @@ export default function MainPage() {
 
   const handleSlideChange = (swiper: SwiperType) => {
     const { activeIndex, isEnd } = swiper;
+    if(!isEnd){
+ hideFooter()
+      // showFooter()
+     
+      
+      
+    }else{
+         showFooter()
 
-    console.log('activeIndex:', activeIndex);
-    console.log('isEnd:', isEnd);
+      
+    }
+
+  
 
     // === Условия для 4-го слайда или последнего слайда ===
     if ((activeIndex === 4 && isMedia540) || isEnd) {

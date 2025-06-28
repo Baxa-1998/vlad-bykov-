@@ -17,7 +17,10 @@ export const CartItem = ({item, convertedPrice}: CartItemProps) => {
   return (
     <div className="cart__item">
       <div className="cart__img">
-        <Image src={item.img.url} width={128} height={192} alt="cart-item" />
+        <Image 
+        src={item.img.url}     
+          // src={'/img/collections/Collection1.svg'}
+           width={128} height={192} alt="cart-item" />
       </div>
       <div className="cart__info">
         <h3 className="cart__info_heading">{item.name}</h3>

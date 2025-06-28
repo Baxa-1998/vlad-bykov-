@@ -5,7 +5,7 @@ import { Header } from '../modules/Header/Header';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SearchModal } from '../modules/Header/SearchModal';
 import { useGate, useUnit } from 'effector-react';
-import { $searchModal } from '@/app/context/modals';
+import { $footerIsShow, $searchModal } from '@/app/context/modals';
 import {
   addScrollToBody,
   handleCloseSearchModal,
@@ -13,28 +13,26 @@ import {
 } from '@/app/lib/utils/common';
 import Footer from '../modules/Footer/Footer';
 
-
 import { usePathname } from 'next/navigation';
 import { MainPageGate } from '@/app/context/goods';
-import '@/app/context/cart'; 
+import '@/app/context/cart';
 import { initLocation } from '@/app/context/country';
 import { Preloader } from '../elements/Preloader';
-
-
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const searchModal = useUnit($searchModal);
   const [isLoading, setIsLoading] = useState(true);
+  const isShowFooter = useUnit($footerIsShow);
 
-    const pathname = usePathname();
- const isCatalogItemPage = pathname.startsWith('/catalog/') && pathname.split('/').length === 3;
- const isCategoryPage = pathname.startsWith('/category/') && pathname.split('/').length === 3;
+
+  const pathname = usePathname();
+  const isCatalogItemPage = pathname.startsWith('/catalog/') && pathname.split('/').length === 3;
+  const isCategoryPage = pathname.startsWith('/category/') && pathname.split('/').length === 3;
 
   useGate(MainPageGate);
-    useEffect(() => {
+  useEffect(() => {
     initLocation(); // запускаем автоопределение страны
-  }, []); 
-
+  }, []);
 
   useEffect(() => {
     if (
@@ -45,7 +43,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       pathname === '/order' ||
       pathname === '/cancellation' ||
       pathname === '/catalog' ||
-      isCatalogItemPage || isCategoryPage
+      isCatalogItemPage ||
+      isCategoryPage
     ) {
       addScrollToBody();
     } else {
@@ -58,8 +57,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     const handleLoad = () => {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000)
-      
+      }, 1000);
     };
 
     if (document.readyState === 'complete') {
@@ -74,33 +72,31 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-        {isLoading && (
-      <Preloader isHidden={!isLoading} />
-      )}
-       <div style={{ display: isLoading ? 'none' : 'block' }} className="container">
-    
-      <Header />
+      {isLoading && <Preloader isHidden={!isLoading} />}
+      <div style={{ display: isLoading ? 'none' : 'block' }} className="container">
+        <Header />
 
-      {children}
+        {children}
 
-      <AnimatePresence>
-        {searchModal && (
-          <motion.div
-            initial={{ opacity: 0, zIndex: 3 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}>
-            <SearchModal />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      {/* {currencyModal && <CurrencyModal />} */}
+        <AnimatePresence>
+          {searchModal && (
+            <motion.div
+              initial={{ opacity: 0, zIndex: 3 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}>
+              <SearchModal />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {/* {currencyModal && <CurrencyModal />} */}
 
-      <div
-        className={`header__search-overlay ${searchModal ? 'overlay-active' : ''}`}
-        onClick={handleCloseSearchModal}></div>
-      <Footer />
-    </div>
+        <div
+          className={`header__search-overlay ${searchModal ? 'overlay-active' : ''}`}
+          onClick={handleCloseSearchModal}></div>
+        {isShowFooter && <Footer />}
+
+        {/* <Footer /> */}
+      </div>
     </>
- 
   );
 };

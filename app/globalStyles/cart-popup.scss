@@ -11,6 +11,7 @@
   transform: translate(100%);
   transition: 0.4s ease-in-out;
   .cart__wrapper {
+      max-height: 100vh;
     margin: 0 auto;
     .cart__top {
       display: flex;
@@ -44,14 +45,16 @@
       }
     }
     .cart__list {
+      
       display: flex;
+        flex: 1; // занимает всё доступное пространство
       flex-direction: column;
 
       width: 85%;
-     height: 62vh;
+     height: 60vh;
      overflow-y: scroll;
       margin: 0 auto;
-      padding-top: 23px;
+      padding-top: 10px;
       .cart__item {
         display: flex;
 
@@ -124,6 +127,7 @@
       transform: translate(-50%);
       margin-top: 24px;
       cursor: pointer;
+          flex-shrink: 0; // Не сжимается при недостатке места
     }
   }
   @media screen and (max-width: 540px){
@@ -137,6 +141,11 @@
       .cart__list{
         width: 90%;
         height: 50vh;
+           flex: 1; // Растягивается на всю оставшуюся высоту
+    overflow-y: auto;
+    padding-top: 23px;
+    width: 85%;
+    margin: 0 auto;
         .cart__item{
           .cart__info{
             .cart__info_heading{

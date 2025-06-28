@@ -47,12 +47,12 @@ export const fetchLocationFx = createEffect(async (): Promise<LocationData> => {
 export const fetchCurrencyRatesFx = createEffect(async (currencyCode: string) => {
   const res = await fetch(`/api/currency?base=${currencyCode}`);
   if (!res.ok) {
-    console.error('Currency API error:', res.statusText);
+   
     return { rates: {} }; // безопасная заглушка
   }
 
   const data = await res.json();
-  console.log('fetchCurrencyRatesFx response:', data);
+
   return data;
 });
 

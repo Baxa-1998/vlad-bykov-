@@ -1,5 +1,26 @@
+@font-face {
+  font-family: 'Optima';
+src: url('/fonts/Optima-normal.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Charis SIL';
+  src: url('/fonts/CharisSIL-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Cormorant;
+  src: url('../../public/fonts/Cormorant-Bold.ttf');
+  font-style: normal;
+  font-weight: 700;
+}
+
 body {
-  font-family: 'Optima' !important;
+   font-family: 'Optima', sans-serif;
   font-weight: 400;
   background-color: #023524;
   color: #6a6a6a;
@@ -54,17 +75,17 @@ a {
   z-index: auto !important;
 }
 
-::view-transition-image-pari(root){
+::view-transition-image-pari(root) {
   isolation: isolate;
-  will-change: transform, opacity, clip-path; 
+  will-change: transform, opacity, clip-path;
   z-index: 1;
-} 
+}
 ::view-transition-new(root) {
   z-index: 10000;
   animation: none !important;
 }
 
-::view-transition-old(root){
+::view-transition-old(root) {
   z-index: 1;
   animation: none !important;
 }
@@ -72,8 +93,6 @@ a {
 // .input-wrapper {
 //   position: relative;
 
- 
- 
 // }
 
 // input {
@@ -131,27 +150,6 @@ a {
 //   font-weight: 500;
 
 // }
-
-@font-face {
-  font-family: 'Optima';
-  src: url('/fonts/Optima-Medium.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Charis SIL';
-  src: url('/fonts/CharisSIL-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-display: swap;
-  font-family: Cormorant;
-  src: url('../../public/fonts/Cormorant-Bold.ttf');
-  font-style: normal;
-  font-weight: 700;
-}
 
 .overflow-hidden {
   overflow: hidden;

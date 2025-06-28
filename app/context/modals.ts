@@ -12,11 +12,20 @@ export const closeCurrencyModal = modals.createEvent();
 export const openCurrencyModal = modals.createEvent();
 export const openCartPopup = modals.createEvent();
 export const closeCartPopup = modals.createEvent();
+export const showFooter = modals.createEvent();
+export const hideFooter = modals.createEvent();
 
 export const $menuIsOpen = modals
   .createStore(false)
   .on(openMenu, () => true)
   .on(closeMenu, () => false);
+
+
+  export const $footerIsShow = modals
+  .createStore(false)
+  .on(showFooter, () => true)
+  .on(hideFooter, () => false)
+ 
 
 export const $searchModal = modals
   .createStore(false)

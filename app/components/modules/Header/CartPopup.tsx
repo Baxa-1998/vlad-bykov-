@@ -27,7 +27,7 @@ export const CartPopup = () => {
    }, [location]);
  
    const convertedPrice = convertPrice(totalPrice ?? 0, rates, currencyCode);
-   console.log(convertedPrice);
+ 
    
  
 

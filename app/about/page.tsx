@@ -13,6 +13,7 @@ import AboutSection3 from '../components/modules/About/AboutSection3';
 import AboutSection4 from '../components/modules/About/AboutSection4';
 import AboutSection5 from '../components/modules/About/AboutSection5';
 import type { Swiper as SwiperType } from 'swiper';
+import { hideFooter, showFooter } from '../context/modals';
 
 export default function AboutPage() {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -20,6 +21,12 @@ export default function AboutPage() {
   const [activeSwiper, setActiveSwiper] = useState(false);
   const handleSlideChange = (swiper: SwiperType) => {
     const isLast = swiper.isEnd;
+    if (!isLast) {
+      hideFooter();
+      // showFooter()
+    } else {
+      showFooter();
+    }
     if (isLast) {
       swiper.mousewheel.disable();
       document.body.style.overflow = 'visible';
@@ -74,8 +81,7 @@ export default function AboutPage() {
         modules={[Mousewheel, Pagination]}
         className="mySwiper"
         onSlideChange={handleSlideChange}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        >
+        onSwiper={(swiper) => (swiperRef.current = swiper)}>
         <SwiperSlide>
           <AboutSection />
         </SwiperSlide>

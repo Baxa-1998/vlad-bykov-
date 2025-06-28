@@ -47,8 +47,21 @@
       "delivery": "Free delivery", 
       "from": "from", 
       "button": "Place an order" , 
-       "remove": "Remove"
+       "remove": "Remove",
+      "empty": "Cart is empty"
       
+
+    },
+     "alerts":{
+
+      "loading_item": "Item is still loading...",
+      "choose_size": "Choose size", 
+      "choose_color": "Please choose color",
+      "add_to_cart": "Add items to cart",
+      "fill_form": "Fill out the form", 
+      "order_success": "Order successfully placed"
+  
+
 
     },
     "hero": {
@@ -116,6 +129,12 @@
        "button": "Add to cart",
        "colors": "MORE COLORS", 
        "more": "more",
+        "color": "Colors", 
+             "not_fount": "Product not found",
+       "show": "Show",
+       "hide": "Hide",
+       "recomendation": "We recommend",
+       "add_to_cart": "Add to cart",
        "question1": "Details",
        "question2": "Information about delivery",
        "question3": "Refund",
@@ -263,7 +282,7 @@
     },
         "subcategory": {
           "all": "All",
-  "clothes": "Clothes",
+  "cloth": "Clothes",
   "accessories": "Accessories",
   "shoes": "Shoes"
 },
@@ -413,8 +432,19 @@
       "delivery": "Бесплатная доставка", 
       "from": "от", 
       "button": "Оформить заказ",
-      "remove": "Удалить"
+      "remove": "Удалить",
+            "empty": "Ваша корзина пуста"
       
+
+    },
+    "alerts":{
+      "loading_item": "Товар ещё загружается...",
+      "choose_size": "Выберите размер", 
+      "choose_color": "Пожалуйста, выберите цвет",
+      "add_to_cart": "Добавьте товары в корзину",
+      "fill_form": "Заполните всю форму", 
+      "order_success": "Заказ успешно оформлен"
+
 
     },
      "hero": {
@@ -476,6 +506,12 @@
        "button": "Добавить в корзину",
        "colors": "БОЛЬШЕ ЦВЕТОВ", 
        "more": "узнать больше",
+       "color": "Цвета", 
+       "not_fount": "Товар не найден",
+       "show": "Показать",
+       "hide": "Скрыть",
+       "recomendation": "Мы рекомендуем",
+       "add_to_cart": "Добавить в корзину",
        "question1": "Детали",
        "question2": "Информация о доставке",
        "question3": "Возврат",
@@ -625,7 +661,7 @@
     },
     "subcategory": {
       "all": "Все товары",
-  "clothes": "Одежда",
+  "cloth": "Одежда",
   "accessories": "Аксессуары",
   "shoes": "Обувь"
 },

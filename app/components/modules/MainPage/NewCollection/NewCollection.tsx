@@ -20,6 +20,8 @@ export const NewCollection = () => {
   const menGoods: IGoodsItemProps[] = useUnit($menProducts);
   const womenGoods: IGoodsItemProps[] = useUnit($womenProducts);
 
+
+
   const router = useTransitionRouter();
   const location = useUnit($location);
   const rates = useUnit($currencyRates);
@@ -62,7 +64,9 @@ export const NewCollection = () => {
             ))}
           </div>
         </div>
+        
         <div className={styles.newCollectionItems}>
+          {/* Тут я должен отрендерить  */}
           {(collectionSelected === 0
             ? newGoods
             : collectionSelected === 1
@@ -70,6 +74,7 @@ export const NewCollection = () => {
             : womenGoods
           ).map((item) => {
             const convertedPrice = convertPrice(item.price, rates, currencyCode);
+                const langContent = item.content?.[lang];
             return (
               <Link key={item._id} href={`/catalog/${item._id}`}>
                 <div className={styles.newCollectionItem}>
@@ -83,8 +88,8 @@ export const NewCollection = () => {
                   <Image
                     width={300}
                     height={300}
-                    src ={item.img[0]?.url}
-                    // src={'/img/collections/Collection1.svg'}
+                    // src ={item.img[0]?.url}
+                    src={'/img/collections/Collection1.svg'}
                     alt="collection"
                     onLoadingComplete={() => setIsLoading(false)}
                     style={{
@@ -93,10 +98,10 @@ export const NewCollection = () => {
                     }}
                   />
                   <span className={styles.newCollectionItemTitle}>
-                    {item.characteristics.compositions.split('/')}
+                           {langContent?.characteristics?.compositions}
                   </span>
                   <h4 className={styles.newCollectionItemName}>
-                    {item.characteristics.collection}
+                     {langContent?.name}
                   </h4>
                   <p className={styles.newCollectionItemPrice}>
                     {/* тут получаю в рублях */}
@@ -107,6 +112,8 @@ export const NewCollection = () => {
             );
           })}
         </div>
+
+
         <div className={styles.newCollectionBtnWrapper}>
           <Link
             onClick={(e) => {

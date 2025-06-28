@@ -37,23 +37,23 @@ const ProductPage = () => {
   const { translations, lang } = useLang();
   const [count] = useState(1);
 
-
   const addToCart = () => {
     if (!item) {
-      alert('Товар ещё загружается...');
+      alert(translations[lang].alerts.loading_item);
       return;
     }
 
     if (!selectedSize) {
-      alert('Пожалуйста, выберите размер');
+      alert(translations[lang].alerts.choose_size);
       return;
     }
 
     if (!selectedColor) {
-      alert('Пожалуйста, выберите цвет');
+      alert(translations[lang].alerts.choose_color);
       return;
     }
-    addItemToCart(item, count, selectedSize, selectedColor);
+
+    addItemToCart(item,lang, count, selectedSize, selectedColor, );
     openCartPopup();
   };
 
@@ -97,7 +97,7 @@ const ProductPage = () => {
     }
   }, [item]);
 
-  if (!item) return <div>Товар не найден</div>;
+  if (!item) return <div>{translations[lang].productItem.not_fount}</div>;
   return (
     <div className={styles.product}>
       <div className={styles.productTop}>
@@ -116,11 +116,14 @@ const ProductPage = () => {
                   <Image
                     width={60}
                     height={60}
-                    src={img.url}
-                          // src={'/img/collections/Collection1.svg'}
-                    alt={img.desc}
+                    // src={img.url}
+                    src={'/img/collections/Collection1.svg'}
+                    // alt={img.desc}
+                    alt="collection"
                     onClick={() => setSelectedImage(img.url)}
-                    className={`${styles.thumbnail} ${selectedImage === img.url ? styles.active : ''}`}
+                    className={`${styles.thumbnail} ${
+                      selectedImage === '/img/collections/Collection1.svg' ? styles.active : ''
+                    }`}
                   />
                 </div>
               ))}
@@ -137,7 +140,7 @@ const ProductPage = () => {
         </div>
 
         <div className={styles.productInfo}>
-          <h5>{item.characteristics.compositions.split('/')}</h5>
+          <h5>{item.content[lang].characteristics.compositions.split('/')}</h5>
           <h4>{item.name}</h4>
           <p>
             {convertedPrice.toFixed(0)} {currencySymbol}
@@ -174,23 +177,23 @@ const ProductPage = () => {
             {translations[lang].productItem.inStock} {item.inStock}
           </h3>
           <Button onClick={addToCart} className={styles.productBtn}>
-            Добавить в корзину
+         {translations[lang].productItem.add_to_cart} 
           </Button>
 
           <div className={styles.productAvailableColors} onClick={() => setOpen(!open)}>
-            <h2>БОЛЬШЕ ЦВЕТОВ</h2>
+            <h2>{translations[lang].productItem.colors}</h2>
             <p>
               {`${
                 selectedColor !== ''
                   ? selectedColor
-                  : item.characteristics.colors.length + ' цвета '
+                  : item.content[lang].characteristics.colors.length + translations[lang].productItem.colors
               }`}{' '}
               <Image src="/img/colors_forward.svg" width={10} height={10} alt="arrow" />
             </p>
 
             {open && (
               <ul className={styles.dropdownList}>
-                {item.characteristics.colors.map((color) => (
+                {item.content[lang].characteristics.colors.map((color) => (
                   <li
                     key={color}
                     onClick={(e) => {
@@ -206,9 +209,9 @@ const ProductPage = () => {
           </div>
 
           <div className={styles.productDescription}>
-            <p className={expanded ? styles.expanded : styles.collapsed}>{item.description}</p>
+            <p className={expanded ? styles.expanded : styles.collapsed}>{item.content[lang].description}</p>
 
-            <button onClick={toggleDescription}>{expanded ? 'Скрыть' : 'Узнать больше'}</button>
+            <button onClick={toggleDescription}>{expanded ? translations[lang].productItem.hide : translations[lang].productItem.hide }</button>
           </div>
         </div>
       </div>
@@ -244,27 +247,37 @@ const ProductPage = () => {
         <div className={styles.recommendationItems}>
           {randomGoods.map((item) => {
             const convertedPrice = convertPrice(item?.price ?? 0, rates, currencyCode);
-          return(
-            <Link key={item._id} href={`/catalog/${item._id}`}>
-              <div  className={styles.recommendationItem}>
-                <Image
-                    //  src={'/img/collections/Collection1.svg'}
-                 src={item.img[0].url}
-                  width={220} height={340} alt={item.name} />
-                <div className={styles.recommendationItemInfo}>
-                  <p className={styles.composition}>{item.characteristics.compositions}</p>
-                  <p className={styles.name}>{item.name}</p>
-                  <p className={styles.price}>{convertedPrice.toFixed(0)} {currencySymbol}</p>
+            const langContent = item.content?.[lang];
+   
+            
+            
+            return (
+              <Link key={item._id} href={`/catalog/${item._id}`}>
+                <div className={styles.recommendationItem}>
+                  <Image
+                    src={'/img/collections/Collection1.svg'}
+                    // src={item.img[0].url}
+                    width={220}
+                    height={340}
+                    alt={'recommendation-img'}
+                  />
+                  <div className={styles.recommendationItemInfo}>
+                    <p className={styles.composition}>
+                      {langContent?.characteristics?.compositions}
+                    </p>
+                    <p className={styles.name}> {langContent?.name}</p>
+                    <p className={styles.price}>
+                      {convertedPrice.toFixed(0)} {currencySymbol}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-         );
-})}
+              </Link>
+            );
+          })}
         </div>
         <Link href="/catalog">
-               <Button className={styles.recommendationBtn}>В КАТАЛОГ</Button>
+          <Button className={styles.recommendationBtn}>В КАТАЛОГ</Button>
         </Link>
- 
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import { $allGoods } from '../context/goods';
 import { Pagination } from '../components/elements/Pagination';
 import { $currencyRates, $location } from '../context/country';
 import { convertPrice } from '../lib/utils/convert-price';
-type Subcategory = 'all' | 'clothes' | 'accessories' | 'shoes';
+type Subcategory = 'all' | 'cloth' | 'accessories' | 'shoes';
 
 export default function CatalogPage() {
   const goods: IGoodsItemProps[] = useUnit($allGoods);
@@ -50,7 +50,7 @@ const currentCollection = useMemo(() => {
   );
 }, [collectionSelected, selectedSubcategory, goods]);
 
-  const subcategories = ['all','clothes', 'accessories', 'shoes']; // добавь такие категории в товары
+  const subcategories = ['all','cloth', 'accessories', 'shoes']; // добавь такие категории в товары
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

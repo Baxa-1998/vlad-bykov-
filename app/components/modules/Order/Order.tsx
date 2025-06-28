@@ -96,7 +96,7 @@ export const Order = () => {
       formData.deliveryMethod === '' ||
       formData.paymentMethod === ''
     ) {
-      alert('Заполните всю форму');
+      alert(translations[lang].alerts.fill_form);
     } else {
       // отправка данных в Telegram
       await fetch('/api/send-order', {
@@ -128,7 +128,7 @@ export const Order = () => {
           sessionId: data.id,
         });
       } else {
-        alert('Заказ оформлен!');
+        alert(translations[lang].alerts.order_success);
       }
     }
   };
@@ -137,6 +137,7 @@ export const Order = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+  console.log(cart);
 
   if (!mounted) return null; // SSR отрендерит пусто — значит совпадёт с клиентом
 
@@ -326,7 +327,13 @@ export const Order = () => {
             return (
               <div key={item.clientId} className={styles.orderSummaryItem}>
                 <div>
-                  <Image src={item?.img.url} width={80} height={80} alt={'cart'} />
+                  <Image
+                    src={'/img/collections/Collection1.svg'}
+                    // src={item?.img.url}
+                    width={80}
+                    height={80}
+                    alt={'cart'}
+                  />
 
                   <div className={styles.orderSummaryInfo}>
                     <p className={styles.orderSummarySize}>{item.size}</p>
@@ -361,7 +368,7 @@ export const Order = () => {
             </p>
           </div>
           <Button onClick={handleSubmit} className={styles.orderSummaryBtn}>
-            Оформить заказ
+            {translations[lang].order.btn}
           </Button>
         </div>
       </div>

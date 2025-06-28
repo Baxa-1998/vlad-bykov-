@@ -33,7 +33,15 @@ export interface ICatalogProps {
   price: number;
 }
 
-
+export interface IContent {
+  name: string;
+  description: string;
+  characteristics: {
+    compositions: string;
+    collection: string;
+    colors: string[];
+  };
+}
 
 export interface IGoodsItemProps {
     _id: string; 
@@ -47,9 +55,9 @@ export interface IGoodsItemProps {
   type: string;
   
   sizes: number[];
-  characteristics: {
-    compositions: string;
-    collection: string;
-    colors: string[];
-}
+    content: {
+    ru: IContent;
+    en: IContent;
+    [lang: string]: IContent; // расширение на будущие языки
+  };
 }

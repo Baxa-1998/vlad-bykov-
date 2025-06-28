@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 export const addItemToCart = (
   product: IGoodsItemProps,
-
+  lang: 'ru' | 'en',
   count: number,
   selectedSize: string,
   selectedColor: string,
@@ -27,21 +27,24 @@ export const addItemToCart = (
         : item,
     );
   } else {
-    const newItem: ICartItem = {
-      clientId: idGenerator(),
-      productId: product._id,
-      name: product.name,
-      img: product.img?.[0] || '',
-      category: product.category,
-      type: product.type,
-      price: product.price,
-      count,
-      compositions: product.characteristics?.compositions || '',
-      size: selectedSize,
-      color: selectedColor || product.characteristics?.colors?.[0] || '',
-      inStock: product.inStock,
-      totalPrice: product.price * count,
-    };
+  const newItem: ICartItem = {
+  clientId: idGenerator(),
+  productId: product._id,
+  name: product.content[lang]?.name || '',
+  img: product.img?.[0] || { url: '', desc: '' },
+  category: product.category,
+  type: product.type,
+  
+  price: product.price,
+  count: Number(count), // ⬅️ убедись, что число
+  content: product.content,
+  size: selectedSize,
+  color: selectedColor || product.content[lang]?.characteristics?.colors?.[0] || '',
+  inStock: product.inStock,
+  totalPrice: product.price * Number(count), // ⬅️ фикс
+  compositions: product.content[lang]?.characteristics?.compositions || '',
+ 
+};
     updatedCart = [...cartFromLS, newItem];
     addProductToCart(newItem); // обновляем Effector
   }
@@ -51,7 +54,6 @@ export const addItemToCart = (
 
   toast.success('Товар добавлен в корзину');
 };
-
 
 export function removeCartItem(productId: string, size: string) {
   removeProductFromCart({ productId, size });

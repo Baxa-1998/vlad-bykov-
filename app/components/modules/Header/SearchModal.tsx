@@ -18,15 +18,15 @@ export const SearchModal = () => {
   const filteredGoods = useMemo(() => {
     const lowerQuery = query.toLowerCase().trim();
     if (!lowerQuery) return [];
-    return goods.filter((item) => item.name.toLowerCase().includes(lowerQuery));
+    return goods.filter((item) => item.content[lang].name.toLowerCase().includes(lowerQuery));
   }, [goods, query]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
-  const closeModal = () =>{
-    toggleSearchModal()
-  }
+  const closeModal = () => {
+    toggleSearchModal();
+  };
   return (
     <div className="search-modal">
       {/* <button onClick={handleCloseSearchModal} className="btn-reset search-modal__close"/> */}
@@ -46,7 +46,9 @@ export const SearchModal = () => {
             <div>
               <div className="search-modal__results">
                 {query && filteredGoods.length === 0 && (
-                  <p className="search-modal__no-results">такого товара нет</p>
+                  <p className="search-modal__no-results">
+                    {translations[lang].productItem.not_fount}
+                  </p>
                 )}
 
                 {filteredGoods.map((item) => (
@@ -54,7 +56,7 @@ export const SearchModal = () => {
                     <div onClick={closeModal} className="search-modal__item">
                       <Image
                         src={item.img[0].url}
-                              //  src={'/img/collections/Collection1.svg'}
+                        //  src={'/img/collections/Collection1.svg'}
                         width={220}
                         height={340}
                         alt={item.name}
@@ -62,9 +64,9 @@ export const SearchModal = () => {
                       />
                       <div className="search-modal__item-info">
                         <p className="search-modal__item-composition">
-                          {item.characteristics.compositions}
+                          {item.content[lang].characteristics.compositions}
                         </p>
-                        <p className="search-modal__item-name">{item.name}</p>
+                        <p className="search-modal__item-name">{item.content[lang].name}</p>
                         <p className="search-modal__item-price">{item.price} ₽</p>
                       </div>
                     </div>
@@ -73,7 +75,7 @@ export const SearchModal = () => {
               </div>
               <Link href={'/catalog'}>
                 <Button onClick={closeModal} className="search-modal__btn">
-                  В каталог
+                  {translations[lang].category.button}
                 </Button>
               </Link>
             </div>

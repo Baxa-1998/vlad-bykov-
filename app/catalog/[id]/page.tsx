@@ -53,7 +53,7 @@ const ProductPage = () => {
       return;
     }
 
-    addItemToCart(item,lang, count, selectedSize, selectedColor, );
+    addItemToCart(item, lang, count, selectedSize, selectedColor);
     openCartPopup();
   };
 
@@ -116,10 +116,10 @@ const ProductPage = () => {
                   <Image
                     width={60}
                     height={60}
-                    // src={img.url}
-                    src={'/img/collections/Collection1.svg'}
-                    // alt={img.desc}
-                    alt="collection"
+                    src={img.url}
+                    // src={'/img/collections/Collection1.svg'}
+                    alt={img.desc}
+                    // alt="collection"
                     onClick={() => setSelectedImage(img.url)}
                     className={`${styles.thumbnail} ${
                       selectedImage === '/img/collections/Collection1.svg' ? styles.active : ''
@@ -177,7 +177,7 @@ const ProductPage = () => {
             {translations[lang].productItem.inStock} {item.inStock}
           </h3>
           <Button onClick={addToCart} className={styles.productBtn}>
-         {translations[lang].productItem.add_to_cart} 
+            {translations[lang].productItem.add_to_cart}
           </Button>
 
           <div className={styles.productAvailableColors} onClick={() => setOpen(!open)}>
@@ -186,7 +186,8 @@ const ProductPage = () => {
               {`${
                 selectedColor !== ''
                   ? selectedColor
-                  : item.content[lang].characteristics.colors.length + translations[lang].productItem.colors
+                  : item.content[lang].characteristics.colors.length +
+                    translations[lang].productItem.colors
               }`}{' '}
               <Image src="/img/colors_forward.svg" width={10} height={10} alt="arrow" />
             </p>
@@ -209,9 +210,13 @@ const ProductPage = () => {
           </div>
 
           <div className={styles.productDescription}>
-            <p className={expanded ? styles.expanded : styles.collapsed}>{item.content[lang].description}</p>
+            <p className={expanded ? styles.expanded : styles.collapsed}>
+              {item.content[lang].description}
+            </p>
 
-            <button onClick={toggleDescription}>{expanded ? translations[lang].productItem.hide : translations[lang].productItem.hide }</button>
+            <button onClick={toggleDescription}>
+              {expanded ? translations[lang].productItem.hide : translations[lang].productItem.hide}
+            </button>
           </div>
         </div>
       </div>
@@ -243,20 +248,18 @@ const ProductPage = () => {
         </Accordion>
       </div>
       <div className={styles.recommendation}>
-        <h3>МЫ РЕКОМЕНДУЕМ</h3>
+        <h3>{translations[lang].productItem.recomendation}</h3>
         <div className={styles.recommendationItems}>
           {randomGoods.map((item) => {
             const convertedPrice = convertPrice(item?.price ?? 0, rates, currencyCode);
             const langContent = item.content?.[lang];
-   
-            
-            
+
             return (
               <Link key={item._id} href={`/catalog/${item._id}`}>
                 <div className={styles.recommendationItem}>
                   <Image
-                    src={'/img/collections/Collection1.svg'}
-                    // src={item.img[0].url}
+                    // src={'/img/collections/Collection1.svg'}
+                    src={item.img[0].url}
                     width={220}
                     height={340}
                     alt={'recommendation-img'}
@@ -276,7 +279,10 @@ const ProductPage = () => {
           })}
         </div>
         <Link href="/catalog">
-          <Button className={styles.recommendationBtn}>В КАТАЛОГ</Button>
+          <Button className={styles.recommendationBtn}>
+            {' '}
+            {translations[lang].category.button}
+          </Button>
         </Link>
       </div>
     </div>

@@ -88,8 +88,8 @@ export const NewCollection = () => {
                   <Image
                     width={300}
                     height={300}
-                    // src ={item.img[0]?.url}
-                    src={'/img/collections/Collection1.svg'}
+                    src ={item.img[0]?.url}
+                    // src={'/img/collections/Collection1.svg'}
                     alt="collection"
                     onLoadingComplete={() => setIsLoading(false)}
                     style={{

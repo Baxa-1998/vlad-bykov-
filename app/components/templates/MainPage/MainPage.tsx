@@ -16,7 +16,7 @@ import { Category } from '../../modules/MainPage/Category/Category';
 import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandStatement';
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
-import { useGate, useUnit } from 'effector-react';
+import { useGate } from 'effector-react';
 import { MainPageGate } from '@/app/context/goods';
 import {  hideFooter, showFooter } from '@/app/context/modals';
 

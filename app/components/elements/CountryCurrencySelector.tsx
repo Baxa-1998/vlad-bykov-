@@ -17,7 +17,7 @@ interface CountryOption {
   };
 }
 
-// 🔻 Добавь нужные страны и валюты
+
 const COUNTRY_OPTIONS: CountryOption[] = [
   {
     country: 'Россия',
@@ -51,14 +51,7 @@ const COUNTRY_OPTIONS: CountryOption[] = [
       symbol: '£',
     },
   },
-  {
-    country: 'Узбекистан',
-    currency: {
-      name: 'Сум',
-      code: 'UZS',
-      symbol: 'сум',
-    },
-  },
+ 
 ];
 
 export const CountryCurrencySelector = () => {

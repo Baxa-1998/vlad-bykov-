@@ -21,10 +21,10 @@ export const Catalog = ({ item, convertedPrice, currencySymbol }: ICatalogProps)
     <div className={styles.catalogItem}>
      
         <Image
-          // src={item.img[0]?.url}
-              src={'/img/collections/Collection1.svg'}
-          width={300}
-          height={300}
+          src={item.img[0]?.url}
+         
+          width={224}
+          height={340}
           alt={'collection item'}
                   onLoadingComplete={() => setIsLoading(false)}
         style={{

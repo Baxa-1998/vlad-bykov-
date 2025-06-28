@@ -18,7 +18,7 @@ import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import { useGate, useUnit } from 'effector-react';
 import { MainPageGate } from '@/app/context/goods';
-import { $footerIsShow, hideFooter, showFooter } from '@/app/context/modals';
+import {  hideFooter, showFooter } from '@/app/context/modals';
 
 
 export default function MainPage() {
@@ -26,7 +26,6 @@ export default function MainPage() {
   const [activeSwiper, setActiveSwiper] = useState(false);
   const lastSlideRef = useRef<HTMLDivElement>(null);
   const fourthSlideRef = useRef<HTMLDivElement>(null);
-    const isShowFooter = useUnit($footerIsShow);
   // хук изменение ширины
   const isMedia540 = useMediaQuery(540);
   useGate(MainPageGate);

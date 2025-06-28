@@ -328,8 +328,8 @@ export const Order = () => {
               <div key={item.clientId} className={styles.orderSummaryItem}>
                 <div>
                   <Image
-                    src={'/img/collections/Collection1.svg'}
-                    // src={item?.img.url}
+               
+                    src={item?.img.url}
                     width={80}
                     height={80}
                     alt={'cart'}
@@ -337,7 +337,7 @@ export const Order = () => {
 
                   <div className={styles.orderSummaryInfo}>
                     <p className={styles.orderSummarySize}>{item.size}</p>
-                    <h2 className={styles.orderSummaryName}>{item.name}</h2>
+                    <h2 className={styles.orderSummaryName}>{item.content[lang].name}</h2>
                   </div>
                 </div>
                 <div>

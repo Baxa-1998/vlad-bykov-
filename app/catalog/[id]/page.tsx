@@ -28,7 +28,7 @@ const ProductPage = () => {
   const goods: IGoodsItemProps[] = useUnit($allGoods);
   // получаю рандомные 5 товаров
   const randomGoods = goods.sort(() => Math.random() - 0.5).slice(0, 5);
-  console.log(randomGoods);
+
 
   // item это конкретный продукт которые находит в goods по его id
   const item = goods.find((i) => i._id === id);

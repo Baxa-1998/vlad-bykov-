@@ -15,10 +15,10 @@ import { loadStripe } from '@stripe/stripe-js';
 export const Order = () => {
   const cart: ICartItem[] = useUnit($cart);
   const { translations, lang } = useLang();
-  console.log(cart);
+
 
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-  console.log(stripePromise);
+
 
   const location = useUnit($location);
 
@@ -137,7 +137,7 @@ export const Order = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
-  console.log(cart);
+
 
   if (!mounted) return null; // SSR отрендерит пусто — значит совпадёт с клиентом
 

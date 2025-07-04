@@ -29,8 +29,7 @@ export async function DELETE(req: Request) {
         },
       });
     
-console.log('Parsed IDs:', parsedIds)
-console.log('Collection:', collection)
+
   
 
     return NextResponse.json(

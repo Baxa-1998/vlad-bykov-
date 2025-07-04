@@ -11,8 +11,8 @@ type CartItemProps = {
 };
 export const CartItem = ({ item, convertedPrice, currencySymbol }: CartItemProps) => {
   const { translations, lang } = useLang();
-  console.log(item);
-  
+  const langContent = item.content[lang];
+
   return (
     <div className="cart__item">
       <div className="cart__img">
@@ -25,8 +25,8 @@ export const CartItem = ({ item, convertedPrice, currencySymbol }: CartItemProps
         />
       </div>
       <div className="cart__info">
-        <h3 className="cart__info_heading">{item.name}</h3>
-        <h2 className="cart__info_title">{item.compositions}</h2>
+        <h3 className="cart__info_heading">{langContent?.name}</h3>
+        <h2 className="cart__info_title">{langContent?.characteristics.compositions}</h2>
         <span className="cart__info_price">
           {convertedPrice.toFixed(0)} {currencySymbol}
         </span>

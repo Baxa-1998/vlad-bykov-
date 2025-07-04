@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     };
 
     const { insertedId } = await db.collection('cloth').insertOne(newProduct);
-    console.log('Категория при вставке:', reqBody.category);
+ 
 
     return NextResponse.json(
       {

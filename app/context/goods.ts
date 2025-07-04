@@ -18,7 +18,7 @@ const goodsStoreInstance = (effect: Effect<void, [], Error>) =>
     .createStore([])
     .on(effect.done, (_, { result }) => result)
     .on(effect.fail, (_, { error }) => {
-      console.log(error.message);
+    
     });
 
 const goodSampleInstance = (effect: Effect<void, [], Error>, gate: Gate<unknown>) =>

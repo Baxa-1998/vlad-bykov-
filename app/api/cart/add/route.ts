@@ -9,9 +9,7 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const { productId, category, count, size, color, clientId } = body;
-        console.log('category:', category);
-    console.log('productId:', productId);
-    console.log('body:', body);
+
 
     if (!productId || !category || !count || !size || !clientId) {
       return NextResponse.json(

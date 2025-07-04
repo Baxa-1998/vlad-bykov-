@@ -7,30 +7,21 @@ import { getDbAndReqBody } from '@/app/lib/utils/api-routes';
 export async function POST(req: NextRequest) {
   const TOKEN = process.env.NEXT_TELEGRAM_BOT_TOKEN;
 
-  const CHAT_IDS = [
-    process.env.NEXT_TELEGRAM_CHAT_ID,
-  ].filter(Boolean);
+  const CHAT_IDS = [process.env.NEXT_TELEGRAM_CHAT_ID].filter(Boolean);
 
   try {
     const data = await req.json();
     const { cartItems } = data;
 
     // ✅ Подключение к базе с твоим способом
- const {db} = await getDbAndReqBody(clientPromise, null)   
-
-
-    
-
+    const { db } = await getDbAndReqBody(clientPromise, null);
 
     // ✅ Обновляем inStock
-for (const item of cartItems) {
-  const res = await db.collection('cloth').updateOne(
-    { _id: new ObjectId(item.productId) },
-    { $inc: { inStock: -item.count } }
-  );
-
-  
-}
+    for (const item of cartItems) {
+      await db
+        .collection('cloth')
+        .updateOne({ _id: new ObjectId(item.productId) }, { $inc: { inStock: -item.count } });
+    }
 
     // ✅ Отправка в Telegram
     const message = `
@@ -54,7 +45,7 @@ ${cartItems
 `;
 
     const responses = await Promise.all(
-      CHAT_IDS.map(chatId =>
+      CHAT_IDS.map((chatId) =>
         fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -63,13 +54,13 @@ ${cartItems
             text: message,
             parse_mode: 'HTML',
           }),
-        })
-      )
+        }),
+      ),
     );
 
-    const hasError = responses.some(res => !res.ok);
+    const hasError = responses.some((res) => !res.ok);
     if (hasError) {
-      console.error('Ошибка Telegram:', await Promise.all(responses.map(r => r.text())));
+      console.error('Ошибка Telegram:', await Promise.all(responses.map((r) => r.text())));
       return NextResponse.json({ error: 'Ошибка Telegram' }, { status: 500 });
     }
 

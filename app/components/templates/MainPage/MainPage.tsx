@@ -54,12 +54,15 @@ export default function MainPage() {
       swiper.allowTouchMove = false;
       document.body.style.overflow = 'visible';
       swiper.el.classList.remove('swiper-disabled-scroll');
-    } else if (isBrandStatementSlide && isMedia540) {
-      swiper.mousewheel.enable();
-      swiper.allowTouchMove = true;
-      document.body.style.overflow = 'visible';
-      swiper.el.classList.remove('swiper-disabled-scroll');
-    } else if (isJoinClubDesktop) {
+    } 
+ else if (isBrandStatementSlide && isMedia540 && isLastSlide) {
+  swiper.mousewheel.enable(); // ⬅️ Оставляем mousewheel включённым
+  swiper.allowTouchMove = true; // ⬅️ Оставляем свайп включённым
+  document.body.style.overflow = 'visible';
+  swiper.el.classList.remove('swiper-disabled-scroll');
+}
+    
+    else if (isJoinClubDesktop) {
       // ✅ Вот здесь теперь будет включаться прокрутка на JoinClub на десктопе
       swiper.mousewheel.disable(); // если не хочешь, можешь оставить enable
       swiper.allowTouchMove = false;
@@ -185,7 +188,7 @@ export default function MainPage() {
             ref={isMedia540 ? lastSlideRef : null}
             className="brand-statement-slide"
             style={{
-              height: '100vh',
+              height: '150vh',
 
               overflowY: 'auto',
               background: '#fff',

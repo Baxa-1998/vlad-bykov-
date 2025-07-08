@@ -20,6 +20,7 @@ import { MainPageGate } from '@/app/context/goods';
 import { hideFooter, showFooter } from '@/app/context/modals';
 
 export default function MainPage() {
+  const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
   const isMedia540 = useMediaQuery(540);
@@ -150,6 +151,62 @@ export default function MainPage() {
     };
   }, [isMedia540]);
 
+  useEffect(() => {
+  if (isMedia540 && swiperRef.current) {
+    const swiper = swiperRef.current;
+    const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
+
+    if (isLastSlide) {
+      document.body.style.overflow = 'visible';
+    }
+  }
+}, [isMedia540, activeIndex]);
+
+
+
+
+useEffect(() => {
+  const el = lastSlideRef.current;
+
+  if (!el || !isMedia540) return;
+
+  let startY = 0;
+  let currentY = 0;
+
+  const onTouchStart = (e: TouchEvent) => {
+    startY = e.touches[0].clientY;
+  };
+
+  const onTouchMove = (e: TouchEvent) => {
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+
+    const atTop = el.scrollTop === 0;
+    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight;
+
+    // ↓ пользователь тянет вверх (вниз по экрану)
+    const isScrollingDown = diff < 0;
+
+    // ↑ пользователь тянет вниз (вверх по экрану)
+    const isScrollingUp = diff > 0;
+
+    if (
+      (isScrollingDown && !atBottom) || 
+      (isScrollingUp && !atTop)
+    ) {
+      e.stopPropagation(); // ⬅️ предотврати всплытие — важно!
+    }
+  };
+
+  el.addEventListener('touchstart', onTouchStart, { passive: true });
+  el.addEventListener('touchmove', onTouchMove, { passive: false });
+
+  return () => {
+    el.removeEventListener('touchstart', onTouchStart);
+    el.removeEventListener('touchmove', onTouchMove);
+  };
+}, [isMedia540]);
+
   return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
       <Swiper
@@ -158,6 +215,9 @@ export default function MainPage() {
         direction={'vertical'}
         onReachEnd={handleReachEnd}
         slidesPerView={1}
+        nested={true}
+          touchStartPreventDefault={false}
+  touchMoveStopPropagation={false}
         spaceBetween={30}
         mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
         pagination={{ clickable: true }}
@@ -189,9 +249,12 @@ export default function MainPage() {
             className="brand-statement-slide"
             style={{
               height: '150vh',
-
+                 WebkitOverflowScrolling: 'touch', 
+                     overscrollBehavior: 'contain',
+    touchAction: 'pan-y',
               overflowY: 'auto',
-              background: '#fff',
+              background: '#fff', 
+
             }}>
             <BrandStatement />
           </div>

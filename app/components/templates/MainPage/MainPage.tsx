@@ -1,61 +1,67 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { Hero } from '../../modules/MainPage/Hero/Hero';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 import { Mousewheel, Pagination } from 'swiper/modules';
 
+import { Hero } from '../../modules/MainPage/Hero/Hero';
 import { Partners } from '../../modules/MainPage/Partners/Partners';
 import { NewCollection } from '../../modules/MainPage/NewCollection/NewCollection';
 import { HistoryBrand } from '../../modules/MainPage/HistoryBrand/HistoryBrand';
 import { Category } from '../../modules/MainPage/Category/Category';
 import { BrandStatement } from '../../modules/MainPage/BrandStatement/BrandStatement';
 import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
+
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import { useGate } from 'effector-react';
 import { MainPageGate } from '@/app/context/goods';
-import {  hideFooter, showFooter } from '@/app/context/modals';
-
+import { hideFooter, showFooter } from '@/app/context/modals';
 
 export default function MainPage() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
-  const lastSlideRef = useRef<HTMLDivElement>(null);
-  const fourthSlideRef = useRef<HTMLDivElement>(null);
-  // хук изменение ширины
   const isMedia540 = useMediaQuery(540);
+
+  const lastSlideRef = useRef<HTMLDivElement>(null);
+  const categorySlideRef = useRef<HTMLDivElement>(null);
+
   useGate(MainPageGate);
 
-  const handleReachEnd = () => {
-    if (swiperRef.current) {
-      swiperRef.current.mousewheel.disable();
-      document.body.style.overflow = 'visible';
-    }
-  };
-
   const handleSlideChange = (swiper: SwiperType) => {
-    const { activeIndex, isEnd } = swiper;
-    if(!isEnd){
- hideFooter()
-      // showFooter()
-     
-      
-      
-    }else{
-         showFooter()
+    const activeIndex = swiper.activeIndex;
+    const isLastSlide = activeIndex === swiper.slides.length - 1;
 
-      
+    // Footer
+    if (isLastSlide) {
+      showFooter();
+    } else {
+      hideFooter();
     }
 
-  
+    const isCategorySlide =
+      categorySlideRef.current?.closest('.swiper-slide') === swiper.slides[activeIndex];
 
-    // === Условия для 4-го слайда или последнего слайда ===
-    if ((activeIndex === 4 && isMedia540) || isEnd) {
+    const isBrandStatementSlide =
+      lastSlideRef.current?.closest('.swiper-slide') === swiper.slides[activeIndex];
+
+    // 🧩 Определяем, это JoinClub (последний слайд, и это не мобилка)
+    const isJoinClubDesktop = !isMedia540 && isLastSlide;
+
+    if (isCategorySlide && isMedia540) {
       swiper.mousewheel.disable();
+      swiper.allowTouchMove = false;
+      document.body.style.overflow = 'visible';
+      swiper.el.classList.remove('swiper-disabled-scroll');
+    } else if (isBrandStatementSlide && isMedia540) {
+      swiper.mousewheel.enable();
+      swiper.allowTouchMove = true;
+      document.body.style.overflow = 'visible';
+      swiper.el.classList.remove('swiper-disabled-scroll');
+    } else if (isJoinClubDesktop) {
+      // ✅ Вот здесь теперь будет включаться прокрутка на JoinClub на десктопе
+      swiper.mousewheel.disable(); // если не хочешь, можешь оставить enable
       swiper.allowTouchMove = false;
       document.body.style.overflow = 'visible';
       swiper.el.classList.remove('swiper-disabled-scroll');
@@ -66,72 +72,82 @@ export default function MainPage() {
       swiper.el.classList.add('swiper-disabled-scroll');
     }
 
-    // === Дополнительная пользовательская логика ===
-    if (activeIndex === 2 || activeIndex === 6) {
-      setActiveSwiper(true);
-    } else {
-      setActiveSwiper(false);
-    }
+    setActiveSwiper(activeIndex === 2);
   };
 
-  // Следим за scroll в последнем слайде
+  const handleReachEnd = () => {
+    swiperRef.current?.mousewheel.disable();
+    document.body.style.overflow = 'visible';
+  };
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-
     const lastSlide = lastSlideRef.current;
-    const fourthSlide = fourthSlideRef.current;
-    if (!lastSlide || !fourthSlide) return;
+    const categorySlide = categorySlideRef.current;
+
+    if (!swiperRef.current) return;
 
     const handleLastSlideScroll = () => {
-      if (!swiperRef.current) return;
+      if (!lastSlide || !swiperRef.current) return;
 
-      if (lastSlide.scrollTop === 0) {
+      const scrollTop = lastSlide.scrollTop;
+      const maxScroll = lastSlide.scrollHeight - lastSlide.clientHeight;
+
+      // 🔽 Вниз — включаем свайп, но НЕ перелистываем
+      if (scrollTop >= maxScroll - 1) {
         swiperRef.current.mousewheel.enable();
-        swiperRef.current.slideTo(swiperRef.current.slides.length - 2);
+        swiperRef.current.allowTouchMove = true;
+        document.body.style.overflow = 'visible';
+      }
+
+      // 🔼 Вверх — включаем свайп назад только если прокрутили чуть больше порога
+      const SCROLL_TOP_THRESHOLD = 20;
+      if (scrollTop <= SCROLL_TOP_THRESHOLD) {
+        swiperRef.current.mousewheel.enable();
+        swiperRef.current.allowTouchMove = true;
+
+        // ❗️ НЕ перелистываем автоматически — даём пользователю самому свайпнуть
+        // swiperRef.current.slideTo(swiperRef.current.activeIndex - 1);
+
         document.body.style.overflow = 'hidden';
       }
     };
 
-    const handleFourthSlideScroll = () => {
-      if (!swiperRef.current) return;
+    const handleCategorySlideScroll = () => {
+      if (!categorySlide || !swiperRef.current) return;
 
-      const maxScroll = fourthSlide.scrollHeight - fourthSlide.clientHeight;
-      const scrollTop = fourthSlide.scrollTop;
+      const maxScroll = categorySlide.scrollHeight - categorySlide.clientHeight;
+      const scrollTop = categorySlide.scrollTop;
 
       if (scrollTop >= maxScroll) {
         swiperRef.current.mousewheel.enable();
         swiperRef.current.allowTouchMove = true;
-        swiperRef.current.slideTo(5);
-        document.body.style.overflow = 'hidden';
+        swiperRef.current.slideTo(swiperRef.current.activeIndex + 1);
       }
 
       if (scrollTop === 0) {
         swiperRef.current.mousewheel.enable();
         swiperRef.current.allowTouchMove = true;
-        swiperRef.current.slideTo(3);
-        document.body.style.overflow = 'hidden';
+        swiperRef.current.slideTo(swiperRef.current.activeIndex - 1);
       }
     };
 
-    lastSlide.addEventListener('scroll', handleLastSlideScroll);
+    if (lastSlide) {
+      lastSlide.addEventListener('scroll', handleLastSlideScroll);
+    }
 
-    if (isMedia540) {
-      fourthSlide.addEventListener('scroll', handleFourthSlideScroll);
+    if (isMedia540 && categorySlide) {
+      categorySlide.addEventListener('scroll', handleCategorySlideScroll);
     }
 
     return () => {
-      lastSlide.removeEventListener('scroll', handleLastSlideScroll);
-
-      if (isMedia540) {
-        fourthSlide.removeEventListener('scroll', handleFourthSlideScroll);
-      }
-
+      lastSlide?.removeEventListener('scroll', handleLastSlideScroll);
+      categorySlide?.removeEventListener('scroll', handleCategorySlideScroll);
       document.body.style.overflow = '';
     };
   }, [isMedia540]);
 
-  return ( 
- 
+  return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -156,37 +172,38 @@ export default function MainPage() {
         <SwiperSlide>
           <HistoryBrand />
         </SwiperSlide>
+
         <SwiperSlide>
           <div
-            ref={fourthSlideRef}
-            style={{
-              height: '100vh',
-              overflowY: 'auto',
-              background: '#ffff',
-            }}>
+            ref={categorySlideRef}
+            style={{ height: '100vh', overflowY: 'auto', background: '#fff' }}>
             <Category />
           </div>
-
-          {/* <Category /> */}
         </SwiperSlide>
-        <SwiperSlide>
-          <BrandStatement />
-        </SwiperSlide>
-
         <SwiperSlide>
           <div
-            ref={lastSlideRef}
+            ref={isMedia540 ? lastSlideRef : null}
+            className="brand-statement-slide"
             style={{
               height: '100vh',
+
               overflowY: 'auto',
-              background: '#ffff',
+              background: '#fff',
             }}>
-            <JoinClub />
+            <BrandStatement />
           </div>
         </SwiperSlide>
+
+        {!isMedia540 && (
+          <SwiperSlide>
+            <div
+              ref={lastSlideRef}
+              style={{ height: '100vh', overflowY: 'auto', background: '#fff' }}>
+              <JoinClub />
+            </div>
+          </SwiperSlide>
+        )}
       </Swiper>
     </div>
- 
-
   );
 }

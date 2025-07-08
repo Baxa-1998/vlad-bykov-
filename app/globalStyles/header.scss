@@ -148,7 +148,14 @@ text-transform: uppercase;
   .header{
     .header__container{
       .header__logo{
-        width: 120px;
+        margin-left: 20px;
+        .logo{
+          img{
+            width: 60px;
+            height: 50px;
+          }
+        }
+     
       }
     }
   }

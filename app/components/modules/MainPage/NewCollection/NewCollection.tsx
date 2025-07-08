@@ -66,7 +66,7 @@ export const NewCollection = () => {
         </div>
         
         <div className={styles.newCollectionItems}>
-          {/* Тут я должен отрендерить  */}
+     
           {(collectionSelected === 0
             ? newGoods
             : collectionSelected === 1
@@ -89,7 +89,7 @@ export const NewCollection = () => {
                     width={300}
                     height={300}
                     src ={item.img[0]?.url}
-                    // src={'/img/collections/Collection1.svg'}
+             
                     alt="collection"
                     onLoadingComplete={() => setIsLoading(false)}
                     style={{
@@ -104,7 +104,7 @@ export const NewCollection = () => {
                      {langContent?.name}
                   </h4>
                   <p className={styles.newCollectionItemPrice}>
-                    {/* тут получаю в рублях */}
+                 
                     {convertedPrice.toFixed(0)} {currencySymbol}
                   </p>
                 </div>

@@ -20,7 +20,7 @@ import { MainPageGate } from '@/app/context/goods';
 import { hideFooter, showFooter } from '@/app/context/modals';
 
 export default function MainPage() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
   const isMedia540 = useMediaQuery(540);

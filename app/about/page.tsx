@@ -14,13 +14,14 @@ import AboutSection4 from '../components/modules/About/AboutSection4';
 import AboutSection5 from '../components/modules/About/AboutSection5';
 import type { Swiper as SwiperType } from 'swiper';
 import { hideFooter, showFooter } from '../context/modals';
-
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 export default function AboutPage() {
   const swiperRef = useRef<SwiperType | null>(null);
   const lastSlideRef = useRef<HTMLDivElement>(null);
-  const [activeSwiper, setActiveSwiper] = useState(false); 
-  // const isMedia540 = useMediaQuery(540);
+  const [activeSwiper, setActiveSwiper] = useState(false);
+
+  const isMedia540 = useMediaQuery(540);
   const handleSlideChange = (swiper: SwiperType) => {
     const isLast = swiper.isEnd;
     if (!isLast) {
@@ -40,7 +41,7 @@ export default function AboutPage() {
     }
 
     // если последний слайд меняем стиль круга
-    if (swiper.activeIndex === swiper.slides.length - 1) {
+    if (swiper.activeIndex === 4) {
       setActiveSwiper(true);
     } else {
       setActiveSwiper(false);
@@ -72,6 +73,24 @@ export default function AboutPage() {
       document.body.style.overflow = ''; // очистка
     };
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      
+
+      if (scrollY === 0 && swiperRef.current) {
+        swiperRef.current.slideTo(2);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
       <Swiper
@@ -93,23 +112,37 @@ export default function AboutPage() {
         <SwiperSlide>
           <AboutSection3 />
         </SwiperSlide>
+
         <SwiperSlide>
-          <AboutSection4 />
-        </SwiperSlide>
-        <SwiperSlide className="last-slide">
           <div
             ref={lastSlideRef}
             style={{
               height: '100vh',
-              overflowY: 'auto',
+              overflowY: isMedia540 ? 'auto' : 'hidden',
               minHeight: '100vh',
               touchAction: 'auto', // ✅ Разрешаем touch scroll
               WebkitOverflowScrolling: 'touch', // ✅ плавный скролл на iOS
             }}>
-            {' '}
-            <AboutSection5 />
+            <AboutSection4 />
           </div>
         </SwiperSlide>
+
+        {!isMedia540 && (
+          <SwiperSlide className="last-slide">
+            <div
+              ref={lastSlideRef}
+              style={{
+                height: '100vh',
+                overflowY: 'auto',
+                minHeight: '100vh',
+                touchAction: 'auto', // ✅ Разрешаем touch scroll
+                WebkitOverflowScrolling: 'touch', // ✅ плавный скролл на iOS
+              }}>
+              {' '}
+              <AboutSection5 />
+            </div>
+          </SwiperSlide>
+        )}
       </Swiper>
       {/* <Footer/> */}
     </div>

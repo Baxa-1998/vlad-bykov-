@@ -60,7 +60,8 @@ export default function MainPage() {
       swiper.allowTouchMove = false;
       document.body.style.overflow = 'visible';
       swiper.el.classList.remove('swiper-disabled-scroll');
-    } else if (isBrandStatementSlide && isMedia540 && isLastSlide) {
+    } 
+    else if (isBrandStatementSlide && isMedia540 && isLastSlide) {
       swiper.mousewheel.disable();
       swiper.allowTouchMove = false;
       document.body.style.overflow = 'visible';

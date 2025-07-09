@@ -14,7 +14,7 @@ import AboutSection4 from '../components/modules/About/AboutSection4';
 import AboutSection5 from '../components/modules/About/AboutSection5';
 import type { Swiper as SwiperType } from 'swiper';
 import { hideFooter, showFooter } from '../context/modals';
-import { useMediaQuery } from '../hooks/useMediaQuery';
+
 
 export default function AboutPage() {
   const swiperRef = useRef<SwiperType | null>(null);

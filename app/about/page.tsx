@@ -20,7 +20,7 @@ export default function AboutPage() {
   const swiperRef = useRef<SwiperType | null>(null);
   const lastSlideRef = useRef<HTMLDivElement>(null);
   const [activeSwiper, setActiveSwiper] = useState(false); 
-  const isMedia540 = useMediaQuery(540);
+  // const isMedia540 = useMediaQuery(540);
   const handleSlideChange = (swiper: SwiperType) => {
     const isLast = swiper.isEnd;
     if (!isLast) {

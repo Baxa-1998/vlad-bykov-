@@ -14,11 +14,13 @@ import AboutSection4 from '../components/modules/About/AboutSection4';
 import AboutSection5 from '../components/modules/About/AboutSection5';
 import type { Swiper as SwiperType } from 'swiper';
 import { hideFooter, showFooter } from '../context/modals';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 export default function AboutPage() {
   const swiperRef = useRef<SwiperType | null>(null);
   const lastSlideRef = useRef<HTMLDivElement>(null);
-  const [activeSwiper, setActiveSwiper] = useState(false);
+  const [activeSwiper, setActiveSwiper] = useState(false); 
+  const isMedia540 = useMediaQuery(540);
   const handleSlideChange = (swiper: SwiperType) => {
     const isLast = swiper.isEnd;
     if (!isLast) {

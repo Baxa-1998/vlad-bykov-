@@ -50,20 +50,22 @@ export default function MainPage() {
     // 🧩 Определяем, это JoinClub (последний слайд, и это не мобилка)
     const isJoinClubDesktop = !isMedia540 && isLastSlide;
 
+    if (isBrandStatementSlide && lastSlideRef.current) {
+      const scrollTop = lastSlideRef.current.scrollTop;
+      console.log('Scroll внутри BrandStatement:', scrollTop);
+    }
+
     if (isCategorySlide && isMedia540) {
       swiper.mousewheel.disable();
       swiper.allowTouchMove = false;
       document.body.style.overflow = 'visible';
       swiper.el.classList.remove('swiper-disabled-scroll');
-    } 
- else if (isBrandStatementSlide && isMedia540 && isLastSlide) {
-  swiper.mousewheel.enable(); // ⬅️ Оставляем mousewheel включённым
-  swiper.allowTouchMove = true; // ⬅️ Оставляем свайп включённым
-  document.body.style.overflow = 'visible';
-  swiper.el.classList.remove('swiper-disabled-scroll');
-}
-    
-    else if (isJoinClubDesktop) {
+    } else if (isBrandStatementSlide && isMedia540 && isLastSlide) {
+      swiper.mousewheel.disable();
+      swiper.allowTouchMove = false;
+      document.body.style.overflow = 'visible';
+      swiper.el.classList.remove('swiper-disabled-scroll');
+    } else if (isJoinClubDesktop) {
       // ✅ Вот здесь теперь будет включаться прокрутка на JoinClub на десктопе
       swiper.mousewheel.disable(); // если не хочешь, можешь оставить enable
       swiper.allowTouchMove = false;
@@ -152,60 +154,69 @@ export default function MainPage() {
   }, [isMedia540]);
 
   useEffect(() => {
-  if (isMedia540 && swiperRef.current) {
-    const swiper = swiperRef.current;
-    const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
 
-    if (isLastSlide) {
-      document.body.style.overflow = 'visible';
-    }
-  }
-}, [isMedia540, activeIndex]);
+      if (scrollY === 0 && swiperRef.current) {
+        swiperRef.current.slideTo(4);
+      }
+    };
 
+    window.addEventListener('scroll', handleScroll);
 
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  // useEffect(() => {
+  //   if (isMedia540 && swiperRef.current) {
+  //     const swiper = swiperRef.current;
+  //     const isLastSlide = swiper.activeIndex === swiper.slides.length - 1;
 
+  //     if (isLastSlide) {
+  //       document.body.style.overflow = 'visible';
+  //     }
+  //   }
+  // }, [isMedia540, activeIndex]);
 
-useEffect(() => {
-  const el = lastSlideRef.current;
+  useEffect(() => {
+    const el = lastSlideRef.current;
 
-  if (!el || !isMedia540) return;
+    if (!el || !isMedia540) return;
 
-  let startY = 0;
-  let currentY = 0;
+    let startY = 0;
+    let currentY = 0;
 
-  const onTouchStart = (e: TouchEvent) => {
-    startY = e.touches[0].clientY;
-  };
+    const onTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+    };
 
-  const onTouchMove = (e: TouchEvent) => {
-    currentY = e.touches[0].clientY;
-    const diff = currentY - startY;
+    const onTouchMove = (e: TouchEvent) => {
+      currentY = e.touches[0].clientY;
+      const diff = currentY - startY;
 
-    const atTop = el.scrollTop === 0;
-    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight;
+      const atTop = el.scrollTop === 0;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight;
 
-    // ↓ пользователь тянет вверх (вниз по экрану)
-    const isScrollingDown = diff < 0;
+      // ↓ пользователь тянет вверх (вниз по экрану)
+      const isScrollingDown = diff < 0;
 
-    // ↑ пользователь тянет вниз (вверх по экрану)
-    const isScrollingUp = diff > 0;
+      // ↑ пользователь тянет вниз (вверх по экрану)
+      const isScrollingUp = diff > 0;
 
-    if (
-      (isScrollingDown && !atBottom) || 
-      (isScrollingUp && !atTop)
-    ) {
-      e.stopPropagation(); // ⬅️ предотврати всплытие — важно!
-    }
-  };
+      if ((isScrollingDown && !atBottom) || (isScrollingUp && !atTop)) {
+        e.stopPropagation(); // ⬅️ предотврати всплытие — важно!
+      }
+    };
 
-  el.addEventListener('touchstart', onTouchStart, { passive: true });
-  el.addEventListener('touchmove', onTouchMove, { passive: false });
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchmove', onTouchMove, { passive: false });
 
-  return () => {
-    el.removeEventListener('touchstart', onTouchStart);
-    el.removeEventListener('touchmove', onTouchMove);
-  };
-}, [isMedia540]);
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+    };
+  }, [isMedia540]);
 
   return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
@@ -216,8 +227,8 @@ useEffect(() => {
         onReachEnd={handleReachEnd}
         slidesPerView={1}
         nested={true}
-          touchStartPreventDefault={false}
-  touchMoveStopPropagation={false}
+        touchStartPreventDefault={false}
+        touchMoveStopPropagation={false}
         spaceBetween={30}
         mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
         pagination={{ clickable: true }}
@@ -248,13 +259,12 @@ useEffect(() => {
             ref={isMedia540 ? lastSlideRef : null}
             className="brand-statement-slide"
             style={{
-              height: '150vh',
-                 WebkitOverflowScrolling: 'touch', 
-                     overscrollBehavior: 'contain',
-    touchAction: 'pan-y',
+              height: '100vh',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain',
+              touchAction: 'pan-y',
               overflowY: 'auto',
-              background: '#fff', 
-
+              background: '#fff',
             }}>
             <BrandStatement />
           </div>

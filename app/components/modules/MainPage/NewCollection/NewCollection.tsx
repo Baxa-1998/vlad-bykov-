@@ -65,7 +65,7 @@ export const NewCollection = () => {
           </div>
         </div>
         
-        {/* <div className={styles.newCollectionItems}>
+        <div className={styles.newCollectionItems}>
      
           {(collectionSelected === 0
             ? newGoods
@@ -111,7 +111,7 @@ export const NewCollection = () => {
               </Link>
             );
           })}
-        </div> */}
+        </div>
 
 
         <div className={styles.newCollectionBtnWrapper}>

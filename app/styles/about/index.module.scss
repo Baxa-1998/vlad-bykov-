@@ -19,9 +19,9 @@
     h3 {
       margin-bottom: 120px;
       text-align: start;
-      color: #f9f6e3;
+      color: var(--primary-color);
       // font-family: 'Optima', sans-serif;
-      opacity: 80%;
+    
       font-weight: 400;
       font-size: 28px;
       white-space: pre-line;
@@ -67,9 +67,9 @@
     h3 {
       margin-bottom: 120px;
       text-align: start;
-      color: #f9f6e3;
+    color: var(--primary-color);
   
-      opacity: 80%;
+  
       font-weight: 400;
       font-size: 28px;
        white-space: pre-line;
@@ -118,7 +118,7 @@
     align-items: flex-start;
     h3 {
       text-align: start;
-      color: #f9f6e3;
+      color: var(--primary-color);
       font-family: 'Optima', sans-serif;
       opacity: 80%;
       font-weight: 400;
@@ -133,7 +133,7 @@
       border: 1px solid #f9f6e3;
       font-size: 24px;
       font-family: 'Optima', sans-serif;
-      color: #f9f6e3;
+      color: var(--primary-color);
     }
   }
   @media screen and (max-width: 540px) {
@@ -172,7 +172,7 @@
     text-align: start;
 
     h3 {
-      color: #ffffff;
+    color: var(--primary-color);
       font-size: 32px;
       font-family: 'Charis SIL', sans-serif !important;
       font-size: 32px;
@@ -182,9 +182,9 @@
     p {
       font-size: 20px;
       font-family: 'Optima', sans-serif;
-      color: #ffffff;
+    color: var(--primary-color);
       font-weight: 400;
-      opacity: 60%;
+    
       white-space: pre-line;
     }
   }

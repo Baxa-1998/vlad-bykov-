@@ -50,6 +50,7 @@ export const CartPopup = () => {
   const handleCloseCartPopup = () => {
     closeCartPopup();
   };
+  const deliveryThreshold = convertPrice(20000, rates, currencyCode);
 
   return (
     <div className={`cart-popup ${open ? 'cart-active' : ''}`}>
@@ -65,8 +66,13 @@ export const CartPopup = () => {
           />
         </div>
         <div className="delivery__info">
+          {/* тут надо сконвертировать 20 000 рублей  */}
           <p>
-            {translations[lang].cart.delivery} <span>{translations[lang].cart.from} 20 000 ₽</span>
+            {translations[lang].cart.delivery}{' '}
+            <span>
+              {' '}
+              {translations[lang].cart.from} {deliveryThreshold.toFixed(0)} {currencySymbol}
+            </span>
           </p>
         </div>
         <div className="cart__list">

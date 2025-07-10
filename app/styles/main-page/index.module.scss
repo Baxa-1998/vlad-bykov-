@@ -21,13 +21,13 @@
         font-family: 'Charis SIL', sans-serif !important;
         font-size: 32px;
         font-weight: 400;
-        color: rgba(255, 255, 255, 1);
+    color: var(--primary-color);
       }
       .partners__subtitle {
         font-family: 'Optima', sans-serif;
         font-size: 20px;
-        color: rgba(255, 255, 255, 1);
-        opacity: 60%;
+    color: var(--primary-color);
+    
       }
     }
 
@@ -207,7 +207,7 @@
 
     .historyBrandTitle {
       font-family: 'Charis SIL', sans-serif !important;
-      color: #f9f6e3;
+        color: var(--primary-color);
       font-size: 56px;
       font-weight: 400;
       margin-bottom: 15px;
@@ -217,7 +217,7 @@
       background: none;
       border: 1px solid #f9f6e3;
       font-size: 24px;
-      color: #f9f6e3;
+            color: var(--primary-color);
       padding-left: 32px;
       padding-right: 32px;
       padding-top: 14px;
@@ -228,6 +228,7 @@
       font-family: 'Optima', sans-serif;
       font-size: 24px;
       font-weight: 400;
+        color: var(--primary-color);
       margin-bottom: 20px;
     }
   }
@@ -302,13 +303,13 @@
         margin-left: 50%;
         transform: translate(-50%);
         background: none;
-        color: #f9f6e3;
+          color: var(--primary-color);
         border: 1px solid #f9f6e3;
         font-family: 'Optima', sans-serif;
         font-size: 16px;
       }
       h3 {
-        color: #f9f6e3;
+         color: var(--primary-color);
         font-family: 'Optima', sans-serif;
         font-weight: 400;
         font-size: 24px;
@@ -364,13 +365,13 @@
         margin-left: 50%;
         transform: translate(-50%);
         background: none;
-        color: #f9f6e3;
+       color: var(--primary-color);
         border: 1px solid #f9f6e3;
         font-family: 'Optima', sans-serif;
         font-size: 16px;
       }
       h3 {
-        color: #f9f6e3;
+       color: var(--primary-color);
         font-family: 'Optima', sans-serif;
         font-weight: 400;
         font-size: 24px;
@@ -480,7 +481,7 @@
 
     .brandStatementTitle {
       font-family: 'Charis SIL', sans-serif !important;
-      color: #f9f6e3;
+   color: var(--primary-color);
       font-size: 56px;
       font-weight: 400;
       margin-bottom: 15px;
@@ -489,6 +490,7 @@
     .brandStatementSubtitle {
       font-family: 'Optima', sans-serif;
       font-size: 24px;
+       color: var(--primary-color);
     }
   }
 

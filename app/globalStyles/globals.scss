@@ -19,6 +19,10 @@ src: url('/fonts/Optima-normal.ttf') format('truetype');
   font-weight: 700;
 }
 
+
+:root{
+  --primary-color: #c8b273;
+}
 body {
    font-family: 'Optima', sans-serif;
   font-weight: 400;

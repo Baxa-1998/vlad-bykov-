@@ -31,33 +31,33 @@ const Footer = () => {
               <li>{translations[lang].footer.link1}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/catalog', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/catalog'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/catalog', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/catalog'}>
               <li>{translations[lang].footer.link2}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/contacts', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/contacts'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/contacts', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/contacts'}>
               <li>{translations[lang].footer.link3}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/custom', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/custom'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/custom', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/custom'}>
               <li>{translations[lang].footer.link4}</li>
             </Link>
           </ul>
@@ -66,63 +66,63 @@ const Footer = () => {
           <h2 className="footer__links_title">{translations[lang].footer.heading2}</h2>
           <ul>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/delivery', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/delivery'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/delivery', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/delivery'}>
               <li>{translations[lang].footer.link5}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/cancellation', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/cancellation'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/cancellation', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/cancellation'}>
               <li>{translations[lang].footer.link6}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/faq', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/faq'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/faq', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/faq'}>
               <li>{translations[lang].footer.link7}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/payment', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/payment'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/payment', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/payment'}>
               <li>{translations[lang].footer.link8}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/policy', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/policy'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/policy', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/policy'}>
               <li>{translations[lang].footer.link9}</li>
             </Link>
             <Link
-             onClick={(e) => {
-                            e.preventDefault();
-                            router.push('/', {
-                              onTransitionReady: slideInOut,
-                            });
-                          }}
-            href={'/'}>
+              onClick={(e) => {
+                e.preventDefault();
+                router.push('/', {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+              href={'/'}>
               <li>{translations[lang].footer.link10}</li>
             </Link>
           </ul>
@@ -134,16 +134,16 @@ const Footer = () => {
       </div>
       <div className="footer__bottom">
         <div className="footer__socials">
-          <Link href={'/'}>
+          <Link href={'https://www.facebook.com/flvr.ru/about/?_rdr'}>
             <Image src={'/img/facebook.svg'} width={15} height={15} alt="socials" />
           </Link>
-          <Link href={'/'}>
+          <Link href={'https://www.instagram.com/vladbykovbrand/?igsh=MXBlZnN5ZnR5ZXkyOA%3D%3D#'}>
             <Image src={'/img/instagram.svg'} width={15} height={15} alt="socials" />
           </Link>
-          <Link href={'/'}>
+          <Link href={'https://youtube.com/@vladbykovbrand?si=utxwEA7nkkR-gGVW'}>
             <Image src={'/img/youtube.svg'} width={20} height={20} alt="socials" />
           </Link>
-          <Link href={'/'}>
+          <Link href={'https://www.tiktok.com/@vladbykovbrand'}>
             <Image src={'/img/tik-tok.svg'} width={20} height={20} alt="socials" />
           </Link>
         </div>

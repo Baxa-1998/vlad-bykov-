@@ -215,7 +215,7 @@
 
     .historyBrandBtn {
       background: none;
-      border: 1px solid #f9f6e3;
+      border: 1px solid var(--primary-color);
       font-size: 24px;
             color: var(--primary-color);
       padding-left: 32px;
@@ -304,7 +304,7 @@
         transform: translate(-50%);
         background: none;
           color: var(--primary-color);
-        border: 1px solid #f9f6e3;
+        border: 1px solid var(--primary-color);
         font-family: 'Optima', sans-serif;
         font-size: 16px;
       }
@@ -366,7 +366,7 @@
         transform: translate(-50%);
         background: none;
        color: var(--primary-color);
-        border: 1px solid #f9f6e3;
+        border: 1px solid var(--primary-color);
         font-family: 'Optima', sans-serif;
         font-size: 16px;
       }

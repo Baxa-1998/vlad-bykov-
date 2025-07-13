@@ -35,7 +35,7 @@ export default function MainPage() {
     const isLastSlide = activeIndex === swiper.slides.length - 1;
 
     // Footer
-    if (isLastSlide) {
+    if (isLastSlide || isMedia540) {
       showFooter();
     } else {
       hideFooter();
@@ -180,48 +180,68 @@ export default function MainPage() {
   //   }
   // }, [isMedia540, activeIndex]);
 
-  useEffect(() => {
-    const el = lastSlideRef.current;
+  // useEffect(() => {
+  //   const el = lastSlideRef.current;
 
-    if (!el || !isMedia540) return;
+  //   if (!el || !isMedia540) return;
 
-    let startY = 0;
-    let currentY = 0;
+  //   let startY = 0;
+  //   let currentY = 0;
 
-    const onTouchStart = (e: TouchEvent) => {
-      startY = e.touches[0].clientY;
-    };
+  //   const onTouchStart = (e: TouchEvent) => {
+  //     startY = e.touches[0].clientY;
+  //   };
 
-    const onTouchMove = (e: TouchEvent) => {
-      currentY = e.touches[0].clientY;
-      const diff = currentY - startY;
+  //   const onTouchMove = (e: TouchEvent) => {
+  //     currentY = e.touches[0].clientY;
+  //     const diff = currentY - startY;
 
-      const atTop = el.scrollTop === 0;
-      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight;
+  //     const atTop = el.scrollTop === 0;
+  //     const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight;
 
-      // ↓ пользователь тянет вверх (вниз по экрану)
-      const isScrollingDown = diff < 0;
+  //     // ↓ пользователь тянет вверх (вниз по экрану)
+  //     const isScrollingDown = diff < 0;
 
-      // ↑ пользователь тянет вниз (вверх по экрану)
-      const isScrollingUp = diff > 0;
+  //     // ↑ пользователь тянет вниз (вверх по экрану)
+  //     const isScrollingUp = diff > 0;
 
-      if ((isScrollingDown && !atBottom) || (isScrollingUp && !atTop)) {
-        e.stopPropagation(); // ⬅️ предотврати всплытие — важно!
-      }
-    };
+  //     if ((isScrollingDown && !atBottom) || (isScrollingUp && !atTop)) {
+  //       e.stopPropagation(); // ⬅️ предотврати всплытие — важно!
+  //     }
+  //   };
 
-    el.addEventListener('touchstart', onTouchStart, { passive: true });
-    el.addEventListener('touchmove', onTouchMove, { passive: false });
+  //   el.addEventListener('touchstart', onTouchStart, { passive: true });
+  //   el.addEventListener('touchmove', onTouchMove, { passive: false });
 
-    return () => {
-      el.removeEventListener('touchstart', onTouchStart);
-      el.removeEventListener('touchmove', onTouchMove);
-    };
-  }, [isMedia540]);
+  //   return () => {
+  //     el.removeEventListener('touchstart', onTouchStart);
+  //     el.removeEventListener('touchmove', onTouchMove);
+  //   };
+  // }, [isMedia540]);
+  useEffect(()=>{
+     if(isMedia540){
+      document.body.style.overflow = 'visible' 
+      showFooter();
+     }else{
+      document.body.style.overflow = 'hidden'
+     }
+  },[isMedia540])
 
   return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
-      <Swiper
+      {isMedia540 ? (
+        <>
+           <Hero/>
+        <Partners/>
+        <NewCollection />
+        <HistoryBrand />
+        <Category />
+        <BrandStatement />
+        </>
+     
+
+      ) : (
+        <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={handleSlideChange}
         direction={'vertical'}
@@ -281,6 +301,10 @@ export default function MainPage() {
           </SwiperSlide>
         )}
       </Swiper>
+      )
+    
+    } 
+    
     </div>
   );
 }

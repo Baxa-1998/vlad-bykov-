@@ -91,9 +91,28 @@ export default function AboutPage() {
     };
   }, []);
 
+    useEffect(()=>{
+     if(isMedia540){
+      document.body.style.overflow = 'visible' 
+      showFooter();
+     }else{
+      document.body.style.overflow = 'hidden'
+     }
+  },[isMedia540])
+
   return (
     <div className={activeSwiper ? 'on-third-slide' : ''}>
-      <Swiper
+    {isMedia540 ? (
+      <>
+      <AboutSection />
+      <AboutSection2 />
+      <AboutSection3 />
+      <AboutSection4 />
+  
+      </>
+    ):
+    (
+   <Swiper
         direction="vertical"
         slidesPerView={1}
         spaceBetween={30}
@@ -144,6 +163,9 @@ export default function AboutPage() {
           </SwiperSlide>
         )}
       </Swiper>
+    )
+    }
+   
       {/* <Footer/> */}
     </div>
   );

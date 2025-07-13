@@ -263,13 +263,18 @@
       }
     }
   }
-   @media screen and (max-width: 900px){
+   @media screen and (max-width: 900px){ 
+    height: fit-content;
     .customWrapper{
       flex-direction: column;
       .customItem{
         width: 100%;
         h3{
-          line-height: 0px;
+          line-height: 0px; 
+          margin-left: 15px;
+        }
+        p{
+          margin-left: 15px;
         }
       }
     }

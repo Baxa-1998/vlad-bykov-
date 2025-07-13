@@ -10,11 +10,13 @@ import { CustomTailoring1 } from '../components/modules/CustomTailoring/CustomTa
 import { CustomTailoring2 } from '../components/modules/CustomTailoring/CustomTailoring2';
 import { CustomTailoring3 } from '../components/modules/CustomTailoring/CustomTailoring3';
 import { hideFooter, showFooter } from '../context/modals';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 export default function CustomPage() {
   const swiperRef = useRef<SwiperType | null>(null);
   const lastSlideRef = useRef<HTMLDivElement>(null);
   const [activeSwiper, setActiveSwiper] = useState(false);
+  const isMedia540 = useMediaQuery(540);
 
   const handleSlideChange = (swiper: SwiperType) => {
     const isLast = swiper.isEnd;
@@ -99,38 +101,55 @@ export default function CustomPage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMedia540) {
+      document.body.style.overflow = 'visible';
+      showFooter();
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [isMedia540]);
+
   return (
     <div className={activeSwiper ? 'on-last-slide' : ''}>
-      <Swiper
-        direction="vertical"
-        slidesPerView={1}
-        spaceBetween={30}
-        mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
-        pagination={{ clickable: true }}
-        modules={[Mousewheel, Pagination]}
-        className="mySwiper"
-        onSlideChange={handleSlideChange}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}>
-        <SwiperSlide>
+      {isMedia540 ? (
+        <>
           <CustomTailoring1 />
-        </SwiperSlide>
-        <SwiperSlide>
           <CustomTailoring2 />
-        </SwiperSlide>
-        <SwiperSlide className="last-slide">
-          <div
-            ref={lastSlideRef}
-            style={{
-              height: '100vh',
-              overflowY: 'auto',
-              minHeight: '100vh',
-              touchAction: 'auto',
-              WebkitOverflowScrolling: 'touch',
-            }}>
-            <CustomTailoring3 />
-          </div>
-        </SwiperSlide>
-      </Swiper>
+          <CustomTailoring3 />
+        </>
+      ) : (
+        <Swiper
+          direction="vertical"
+          slidesPerView={1}
+          spaceBetween={30}
+          mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
+          pagination={{ clickable: true }}
+          modules={[Mousewheel, Pagination]}
+          className="mySwiper"
+          onSlideChange={handleSlideChange}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}>
+          <SwiperSlide>
+            <CustomTailoring1 />
+          </SwiperSlide>
+          <SwiperSlide>
+            <CustomTailoring2 />
+          </SwiperSlide>
+          <SwiperSlide className="last-slide">
+            <div
+              ref={lastSlideRef}
+              style={{
+                height: '100vh',
+                overflowY: 'auto',
+                minHeight: '100vh',
+                touchAction: 'auto',
+                WebkitOverflowScrolling: 'touch',
+              }}>
+              <CustomTailoring3 />
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      )}
     </div>
   );
 }

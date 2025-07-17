@@ -7,7 +7,7 @@ const fallbackSymbols: Record<string, string> = {
   GBP: "£",
   CNY: "¥",
   KZT: "₸",
-  // Добавь другие по необходимости
+ 
 };
 export interface LocationData {
   country_name: string;

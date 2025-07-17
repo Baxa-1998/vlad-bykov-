@@ -50,6 +50,16 @@ const COUNTRY_OPTIONS: CountryOption[] = [
       code: 'GBP',
       symbol: '£',
     },
+    
+  },
+    {
+    country: 'Казахстан',
+    currency: {
+      name: 'тенге',
+      code: 'KZT',
+      symbol: '₸',
+    },
+    
   },
  
 ];

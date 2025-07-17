@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Logo = () => (
 
-    <Image className='logo__img' src={logo} width={70} height={60} alt='Logo' />
+    <Image className='logo__img' src={logo} width={60} height={40} alt='Logo' />
  
 )
 

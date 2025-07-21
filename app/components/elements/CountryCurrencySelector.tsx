@@ -43,15 +43,7 @@ const COUNTRY_OPTIONS: CountryOption[] = [
       symbol: '€',
     },
   },
-  {
-    country: 'Великобритания',
-    currency: {
-      name: 'фунт',
-      code: 'GBP',
-      symbol: '£',
-    },
-    
-  },
+ 
     {
     country: 'Казахстан',
     currency: {

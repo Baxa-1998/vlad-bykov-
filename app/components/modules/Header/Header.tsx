@@ -89,7 +89,7 @@ export const Header = () => {
   // Модалка открытые поиска
   const handleOpenSearchMenu = () => {
     toggleSearchModal();
-    addOverflowHiddenToBody();
+    // addOverflowHiddenToBody();
   };
 
   const handleOpenCart = () => {

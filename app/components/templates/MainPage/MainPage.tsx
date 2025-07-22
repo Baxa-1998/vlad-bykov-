@@ -30,145 +30,144 @@ export default function MainPage() {
 
   useGate(MainPageGate);
 
-  const handleSlideChange = (swiper: SwiperType) => {
-    const activeIndex = swiper.activeIndex;
-    const isLastSlide = activeIndex === swiper.slides.length - 1;
+  // const handleSlideChange = (swiper: SwiperType) => {
+  //   const activeIndex = swiper.activeIndex;
+  //   const isLastSlide = activeIndex === swiper.slides.length - 1;
 
-    // Footer
-    if (isLastSlide || isMedia540) {
-      showFooter();
-    } else {
-      hideFooter();
-    }
+  //   // Footer
+  //   if (isLastSlide || isMedia540) {
+  //     showFooter();
+  //   } else {
+  //     hideFooter();
+  //   }
 
-    const isCategorySlide =
-      categorySlideRef.current?.closest('.swiper-slide') === swiper.slides[activeIndex];
+  //   const isCategorySlide =
+  //     categorySlideRef.current?.closest('.swiper-slide') === swiper.slides[activeIndex];
 
-    const isBrandStatementSlide =
-      lastSlideRef.current?.closest('.swiper-slide') === swiper.slides[activeIndex];
+  //   const isBrandStatementSlide =
+  //     lastSlideRef.current?.closest('.swiper-slide') === swiper.slides[activeIndex];
 
-    // 🧩 Определяем, это JoinClub (последний слайд, и это не мобилка)
-    const isJoinClubDesktop = !isMedia540 && isLastSlide;
+  //   // 🧩 Определяем, это JoinClub (последний слайд, и это не мобилка)
+  //   const isJoinClubDesktop = !isMedia540 && isLastSlide;
 
-    if (isBrandStatementSlide && lastSlideRef.current) {
-      const scrollTop = lastSlideRef.current.scrollTop;
-      console.log('Scroll внутри BrandStatement:', scrollTop);
-    }
+  //   if (isBrandStatementSlide && lastSlideRef.current) {
+  //     const scrollTop = lastSlideRef.current.scrollTop;
+  //     console.log('Scroll внутри BrandStatement:', scrollTop);
+  //   }
 
-    if (isCategorySlide && isMedia540) {
-      swiper.mousewheel.disable();
-      swiper.allowTouchMove = false;
-      document.body.style.overflow = 'visible';
-      swiper.el.classList.remove('swiper-disabled-scroll');
-    } 
-    else if (isBrandStatementSlide && isMedia540 && isLastSlide) {
-      swiper.mousewheel.disable();
-      swiper.allowTouchMove = false;
-      document.body.style.overflow = 'visible';
-      swiper.el.classList.remove('swiper-disabled-scroll');
-    } else if (isJoinClubDesktop) {
-      // ✅ Вот здесь теперь будет включаться прокрутка на JoinClub на десктопе
-      swiper.mousewheel.disable(); // если не хочешь, можешь оставить enable
-      swiper.allowTouchMove = false;
-      document.body.style.overflow = 'visible';
-      swiper.el.classList.remove('swiper-disabled-scroll');
-    } else {
-      swiper.mousewheel.enable();
-      swiper.allowTouchMove = true;
-      document.body.style.overflow = 'hidden';
-      swiper.el.classList.add('swiper-disabled-scroll');
-    }
+  //   if (isCategorySlide && isMedia540) {
+  //     swiper.mousewheel.disable();
+  //     swiper.allowTouchMove = false;
+  //     document.body.style.overflow = 'visible';
+  //     swiper.el.classList.remove('swiper-disabled-scroll');
+  //   } else if (isBrandStatementSlide && isMedia540 && isLastSlide) {
+  //     swiper.mousewheel.disable();
+  //     swiper.allowTouchMove = false;
+  //     document.body.style.overflow = 'visible';
+  //     swiper.el.classList.remove('swiper-disabled-scroll');
+  //   } else if (isJoinClubDesktop) {
+  //     // ✅ Вот здесь теперь будет включаться прокрутка на JoinClub на десктопе
+  //     swiper.mousewheel.disable(); // если не хочешь, можешь оставить enable
+  //     swiper.allowTouchMove = false;
+  //     document.body.style.overflow = 'visible';
+  //     swiper.el.classList.remove('swiper-disabled-scroll');
+  //   } else {
+  //     swiper.mousewheel.enable();
+  //     swiper.allowTouchMove = true;
+  //     document.body.style.overflow = 'hidden';
+  //     swiper.el.classList.add('swiper-disabled-scroll');
+  //   }
 
-    setActiveSwiper(activeIndex === 2);
-  };
+  //   setActiveSwiper(activeIndex === 2);
+  // };
 
-  const handleReachEnd = () => {
-    swiperRef.current?.mousewheel.disable();
-    document.body.style.overflow = 'visible';
-  };
+  // const handleReachEnd = () => {
+  //   swiperRef.current?.mousewheel.disable();
+  //   document.body.style.overflow = 'visible';
+  // };
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    const lastSlide = lastSlideRef.current;
-    const categorySlide = categorySlideRef.current;
+  // useEffect(() => {
+  //   document.body.style.overflow = 'hidden';
+  //   const lastSlide = lastSlideRef.current;
+  //   const categorySlide = categorySlideRef.current;
 
-    if (!swiperRef.current) return;
+  //   if (!swiperRef.current) return;
 
-    const handleLastSlideScroll = () => {
-      if (!lastSlide || !swiperRef.current) return;
+  //   const handleLastSlideScroll = () => {
+  //     if (!lastSlide || !swiperRef.current) return;
 
-      const scrollTop = lastSlide.scrollTop;
-      const maxScroll = lastSlide.scrollHeight - lastSlide.clientHeight;
+  //     const scrollTop = lastSlide.scrollTop;
+  //     const maxScroll = lastSlide.scrollHeight - lastSlide.clientHeight;
 
-      // 🔽 Вниз — включаем свайп, но НЕ перелистываем
-      if (scrollTop >= maxScroll - 1) {
-        swiperRef.current.mousewheel.enable();
-        swiperRef.current.allowTouchMove = true;
-        document.body.style.overflow = 'visible';
-      }
+  //     // 🔽 Вниз — включаем свайп, но НЕ перелистываем
+  //     if (scrollTop >= maxScroll - 1) {
+  //       swiperRef.current.mousewheel.enable();
+  //       swiperRef.current.allowTouchMove = true;
+  //       document.body.style.overflow = 'visible';
+  //     }
 
-      // 🔼 Вверх — включаем свайп назад только если прокрутили чуть больше порога
-      const SCROLL_TOP_THRESHOLD = 20;
-      if (scrollTop <= SCROLL_TOP_THRESHOLD) {
-        swiperRef.current.mousewheel.enable();
-        swiperRef.current.allowTouchMove = true;
+  //     // 🔼 Вверх — включаем свайп назад только если прокрутили чуть больше порога
+  //     const SCROLL_TOP_THRESHOLD = 20;
+  //     if (scrollTop <= SCROLL_TOP_THRESHOLD) {
+  //       swiperRef.current.mousewheel.enable();
+  //       swiperRef.current.allowTouchMove = true;
 
-        // ❗️ НЕ перелистываем автоматически — даём пользователю самому свайпнуть
-        // swiperRef.current.slideTo(swiperRef.current.activeIndex - 1);
+  //       // ❗️ НЕ перелистываем автоматически — даём пользователю самому свайпнуть
+  //       // swiperRef.current.slideTo(swiperRef.current.activeIndex - 1);
 
-        document.body.style.overflow = 'hidden';
-      }
-    };
+  //       document.body.style.overflow = 'hidden';
+  //     }
+  //   };
 
-    const handleCategorySlideScroll = () => {
-      if (!categorySlide || !swiperRef.current) return;
+  //   // const handleCategorySlideScroll = () => {
+  //   //   if (!categorySlide || !swiperRef.current) return;
 
-      const maxScroll = categorySlide.scrollHeight - categorySlide.clientHeight;
-      const scrollTop = categorySlide.scrollTop;
+  //   //   const maxScroll = categorySlide.scrollHeight - categorySlide.clientHeight;
+  //   //   const scrollTop = categorySlide.scrollTop;
 
-      if (scrollTop >= maxScroll) {
-        swiperRef.current.mousewheel.enable();
-        swiperRef.current.allowTouchMove = true;
-        swiperRef.current.slideTo(swiperRef.current.activeIndex + 1);
-      }
+  //   //   if (scrollTop >= maxScroll) {
+  //   //     swiperRef.current.mousewheel.enable();
+  //   //     swiperRef.current.allowTouchMove = true;
+  //   //     swiperRef.current.slideTo(swiperRef.current.activeIndex + 1);
+  //   //   }
 
-      if (scrollTop === 0) {
-        swiperRef.current.mousewheel.enable();
-        swiperRef.current.allowTouchMove = true;
-        swiperRef.current.slideTo(swiperRef.current.activeIndex - 1);
-      }
-    };
+  //   //   if (scrollTop === 0) {
+  //   //     swiperRef.current.mousewheel.enable();
+  //   //     swiperRef.current.allowTouchMove = true;
+  //   //     swiperRef.current.slideTo(swiperRef.current.activeIndex - 1);
+  //   //   }
+  //   // };
 
-    if (lastSlide) {
-      lastSlide.addEventListener('scroll', handleLastSlideScroll);
-    }
+  //   if (lastSlide) {
+  //     lastSlide.addEventListener('scroll', handleLastSlideScroll);
+  //   }
 
-    if (isMedia540 && categorySlide) {
-      categorySlide.addEventListener('scroll', handleCategorySlideScroll);
-    }
+  //   if (isMedia540 && categorySlide) {
+  //     categorySlide.addEventListener('scroll', handleCategorySlideScroll);
+  //   }
 
-    return () => {
-      lastSlide?.removeEventListener('scroll', handleLastSlideScroll);
-      categorySlide?.removeEventListener('scroll', handleCategorySlideScroll);
-      document.body.style.overflow = '';
-    };
-  }, [isMedia540]);
+  //   return () => {
+  //     lastSlide?.removeEventListener('scroll', handleLastSlideScroll);
+  //     categorySlide?.removeEventListener('scroll', handleCategorySlideScroll);
+  //     document.body.style.overflow = '';
+  //   };
+  // }, [isMedia540]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollY = window.scrollY;
 
-      if (scrollY === 0 && swiperRef.current) {
-        swiperRef.current.slideTo(4);
-      }
-    };
+  //     if (scrollY === 0 && swiperRef.current) {
+  //       swiperRef.current.slideTo(4);
+  //     }
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
   // useEffect(() => {
   //   if (isMedia540 && swiperRef.current) {
   //     const swiper = swiperRef.current;
@@ -218,64 +217,42 @@ export default function MainPage() {
   //     el.removeEventListener('touchmove', onTouchMove);
   //   };
   // }, [isMedia540]);
-  useEffect(()=>{
-     if(isMedia540){
-      document.body.style.overflow = 'visible' 
-      showFooter();
-     }else{
-      document.body.style.overflow = 'hidden'
-     }
-  },[isMedia540])
+  // useEffect(() => {
+  //   if (isMedia540) {
+  //     document.body.style.overflow = 'visible';
+  //     showFooter();
+  //   } else {
+  //     document.body.style.overflow = 'hidden';
+  //   }
+  // }, [isMedia540]);
 
   return (
-    <div className={activeSwiper ? 'on-third-slide' : ''}>
+    <div>
       {isMedia540 ? (
         <>
-           <Hero/>
-        <Partners/>
-        <NewCollection />
-        <HistoryBrand />
-        <Category />
-        <BrandStatement />
-        </>
-     
-
-      ) : (
-        <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        onSlideChange={handleSlideChange}
-        direction={'vertical'}
-        onReachEnd={handleReachEnd}
-        slidesPerView={1}
-        nested={true}
-        touchStartPreventDefault={false}
-        touchMoveStopPropagation={false}
-        spaceBetween={30}
-        mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
-        pagination={{ clickable: true }}
-        modules={[Mousewheel, Pagination]}
-        className="mySwiper">
-        <SwiperSlide>
           <Hero />
-        </SwiperSlide>
-        <SwiperSlide>
           <Partners />
-        </SwiperSlide>
-        <SwiperSlide>
           <NewCollection />
-        </SwiperSlide>
-        <SwiperSlide>
           <HistoryBrand />
-        </SwiperSlide>
+          <Category />
+          <BrandStatement />
+        </>
+      ) : (
+        <>
+          <Hero />
 
-        <SwiperSlide>
+          <Partners />
+
+          <NewCollection />
+
+          <HistoryBrand />
+
           <div
             ref={categorySlideRef}
             style={{ height: '100vh', overflowY: 'auto', background: '#fff' }}>
             <Category />
           </div>
-        </SwiperSlide>
-        <SwiperSlide>
+
           <div
             ref={isMedia540 ? lastSlideRef : null}
             className="brand-statement-slide"
@@ -289,22 +266,16 @@ export default function MainPage() {
             }}>
             <BrandStatement />
           </div>
-        </SwiperSlide>
 
-        {!isMedia540 && (
-          <SwiperSlide>
+          {!isMedia540 && (
             <div
               ref={lastSlideRef}
               style={{ height: '100vh', overflowY: 'auto', background: '#fff' }}>
               <JoinClub />
             </div>
-          </SwiperSlide>
-        )}
-      </Swiper>
-      )
-    
-    } 
-    
+          )}
+        </>
+      )}
     </div>
   );
 }

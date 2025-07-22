@@ -33,7 +33,7 @@ body {
   flex-direction: column;
   text-decoration: none;
   list-style: none;
-  overflow: hidden;
+
 }
 a {
   text-decoration: none;
@@ -155,9 +155,9 @@ a {
 
 // }
 
-.overflow-hidden {
-  overflow: hidden;
-}
+// .overflow-hidden {
+//   overflow: hidden;
+// }
 .brand-statement-slide{
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;

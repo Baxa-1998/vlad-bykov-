@@ -59,7 +59,7 @@ export const SearchModal = () => {
                         //  src={'/img/collections/Collection1.svg'}
                         width={220}
                         height={340}
-                        alt={item.name}
+                        alt={'item'}
                         className="search-modal__item-img"
                       />
                       <div className="search-modal__item-info">

@@ -118,7 +118,7 @@ const ProductPage = () => {
                     height={60}
                     src={img.url}
                     // src={'/img/collections/Collection1.svg'}
-                    alt={img.desc}
+                    alt={'collection'}
                     // alt="collection"
                     onClick={() => setSelectedImage(img.url)}
                     className={`${styles.thumbnail} ${

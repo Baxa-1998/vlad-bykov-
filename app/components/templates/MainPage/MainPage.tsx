@@ -1,10 +1,9 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import type { Swiper as SwiperType } from 'swiper';
+import React, {  useRef } from 'react';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Mousewheel, Pagination } from 'swiper/modules';
+
 
 import { Hero } from '../../modules/MainPage/Hero/Hero';
 import { Partners } from '../../modules/MainPage/Partners/Partners';
@@ -17,12 +16,11 @@ import { JoinClub } from '../../modules/MainPage/JoinClub/JoinClub';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import { useGate } from 'effector-react';
 import { MainPageGate } from '@/app/context/goods';
-import { hideFooter, showFooter } from '@/app/context/modals';
+
 
 export default function MainPage() {
   // const [activeIndex] = useState(0);
-  const swiperRef = useRef<SwiperType | null>(null);
-  const [activeSwiper, setActiveSwiper] = useState(false);
+
   const isMedia540 = useMediaQuery(540);
 
   const lastSlideRef = useRef<HTMLDivElement>(null);

@@ -13,7 +13,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 export default function CustomPage() {
 
   const lastSlideRef = useRef<HTMLDivElement>(null);
-  const [activeSwiper, setActiveSwiper] = useState(false);
+
   const isMedia540 = useMediaQuery(540);
 
   // const handleSlideChange = (swiper: SwiperType) => {
@@ -109,7 +109,7 @@ export default function CustomPage() {
   // }, [isMedia540]);
 
   return (
-    <div className={activeSwiper ? 'on-last-slide' : ''}>
+    <div >
       {isMedia540 ? (
         <>
           <CustomTailoring1 />

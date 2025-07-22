@@ -7,11 +7,9 @@ import { Menu } from './Menu';
 import {
   $currencyModal,
   openCartPopup,
-
   toggleCurrencyModal,
   toggleSearchModal,
 } from '@/app/context/modals';
-import { addOverflowHiddenToBody } from '@/app/lib/utils/common';
 import { useLang } from '@/app/hooks/useLang';
 import { setLang } from '@/app/context/lang';
 import { AllowedLangs } from '@/app/constants/lang';
@@ -29,8 +27,6 @@ export const Header = () => {
 
   const isCurrencyModal = useUnit($currencyModal);
 
-
-  
   // function slideInOut() {
   //   document.documentElement.animate(
   //     [
@@ -98,8 +94,7 @@ export const Header = () => {
 
   // Модалка открытые стран
   const handleOpenCurrencyModal = () => {
-    toggleCurrencyModal()
-  
+    toggleCurrencyModal();
   };
   return (
     <header className="header">
@@ -171,11 +166,11 @@ export const Header = () => {
 
         <div className="header__right_items">
           {/* <Button>ВСТУПИТЬ В КЛУБ</Button> */}
-          <div  className="currency__container">
-       <CountryCurrencySelector/>
+          <div className="currency__container">
+            <CountryCurrencySelector />
 
             <Image
-            onClick={handleOpenCurrencyModal}
+              onClick={handleOpenCurrencyModal}
               className={isCurrencyModal ? 'arrow-rotate' : ''}
               src={'/img/arrow_down.svg'}
               width={10}

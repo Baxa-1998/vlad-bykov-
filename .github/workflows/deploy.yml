@@ -1,0 +1,27 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main   # или master, если у тебя так называется ветка
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 5.187.2.131
+          username: root
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/mysite
+            git pull origin main
+            npm install --production
+            npm run build
+            pm2 restart mysite || pm2 start npm --name "mysite" -- start

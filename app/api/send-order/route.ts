@@ -39,7 +39,10 @@ export async function POST(req: NextRequest) {
 💾 Сохранить для следующего раза: ${data.saveForNext ? 'Да' : 'Нет'}
 📦 Товары:
 ${cartItems
-  .map((item: ICartItem) => `— ${item.name} | ${item.size} | ${item.count} шт. | ${item.price}₽`)
+  .map(
+    (item: ICartItem) =>
+      `— ${item.name} | ${item.size} | ${item.count} шт. | ${item.color} | ${item.price}₽`,
+  )
   .join('\n')}
 💰 Общая сумма: ${data.totalPrice}₽
 `;

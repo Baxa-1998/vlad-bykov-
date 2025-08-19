@@ -65,8 +65,8 @@ export const CartPopup = () => {
             alt="close"
           />
         </div>
-        <div className="delivery__info">
-          {/* тут надо сконвертировать 20 000 рублей  */}
+        {/* <div className="delivery__info">
+    
           <p>
             {translations[lang].cart.delivery}{' '}
             <span>
@@ -74,7 +74,7 @@ export const CartPopup = () => {
               {translations[lang].cart.from} {deliveryThreshold.toFixed(0)} {currencySymbol}
             </span>
           </p>
-        </div>
+        </div> */}
         <div className="cart__list">
           {cart.length === 0 ? (
             <h2 className="cart__list-empty">{translations[lang].cart.empty}</h2>

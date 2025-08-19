@@ -54,6 +54,8 @@ const ProductPage = () => {
     }
 
     addItemToCart(item, lang, count, selectedSize, selectedColor);
+    console.log(selectedColor);
+    
     openCartPopup();
   };
 

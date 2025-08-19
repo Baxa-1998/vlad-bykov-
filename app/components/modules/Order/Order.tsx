@@ -16,9 +16,7 @@ export const Order = () => {
   const cart: ICartItem[] = useUnit($cart);
   const { translations, lang } = useLang();
 
-
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-
 
   const location = useUnit($location);
 
@@ -66,7 +64,7 @@ export const Order = () => {
     country: location?.country_name || '',
     city: '',
     zipCode: '',
-
+    
     saveForNext: true,
     subscribeNews: false,
 
@@ -93,8 +91,8 @@ export const Order = () => {
       formData.address === '' ||
       formData.city === '' ||
       formData.zipCode === '' ||
-      formData.deliveryMethod === '' ||
-      formData.paymentMethod === ''
+      formData.deliveryMethod === '' 
+  
     ) {
       alert(translations[lang].alerts.fill_form);
     } else {
@@ -137,7 +135,6 @@ export const Order = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
-
 
   if (!mounted) return null; // SSR отрендерит пусто — значит совпадёт с клиентом
 
@@ -207,7 +204,7 @@ export const Order = () => {
               placeholder={translations[lang].order.input_adress}
               type={'text'}
             />
-            <Image src={'/img/order-search.svg'} width={15} height={15} alt="search" />
+            {/* <Image src={'/img/order-search.svg'} width={15} height={15} alt="search" /> */}
           </div>
           <div className={styles.appartment}>
             <Input
@@ -233,7 +230,7 @@ export const Order = () => {
             />
           </div>
 
-          <div className={styles.saveOrder}>
+          {/* <div className={styles.saveOrder}>
             <div>
               <label className={styles.checkboxWrapper}>
                 <input
@@ -258,7 +255,7 @@ export const Order = () => {
 
               <h5>{translations[lang].order.get_news}</h5>
             </div>
-          </div>
+          </div> */}
           <div className={styles.methodDelivery}>
             <h4 className={styles.orderTitle}>{translations[lang].order.title3}</h4>
 
@@ -327,13 +324,7 @@ export const Order = () => {
             return (
               <div key={item.clientId} className={styles.orderSummaryItem}>
                 <div>
-                  <Image
-               
-                    src={item?.img.url}
-                    width={80}
-                    height={80}
-                    alt={'cart'}
-                  />
+                  <Image src={item?.img.url} width={80} height={80} alt={'cart'} />
 
                   <div className={styles.orderSummaryInfo}>
                     <p className={styles.orderSummarySize}>{item.size}</p>

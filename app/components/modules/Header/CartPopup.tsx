@@ -50,7 +50,7 @@ export const CartPopup = () => {
   const handleCloseCartPopup = () => {
     closeCartPopup();
   };
-  const deliveryThreshold = convertPrice(20000, rates, currencyCode);
+  // const deliveryThreshold = convertPrice(20000, rates, currencyCode);
 
   return (
     <div className={`cart-popup ${open ? 'cart-active' : ''}`}>

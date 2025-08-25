@@ -217,7 +217,7 @@ const ProductPage = () => {
             </p>
 
             <button onClick={toggleDescription}>
-              {expanded ? translations[lang].productItem.hide : translations[lang].productItem.hide}
+              {expanded ? translations[lang].productItem.hide : translations[lang].productItem.show}
             </button>
           </div>
         </div>

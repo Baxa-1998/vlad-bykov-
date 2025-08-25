@@ -5,11 +5,12 @@ import Image from 'next/image';
 const Logo = () => (
   <Image
     className="logo__img"
-    style={{ width: 'fit-content', height: 'fit-content' }}
+    style={{ width: '75px', height: '75px' }}
     src={logo}
-    width={60}
-    height={40}
+    // width={60}
+    // height={45}
     alt="Logo"
+    
   />
 );
 

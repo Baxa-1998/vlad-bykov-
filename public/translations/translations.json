@@ -77,6 +77,7 @@
 
     "category":{
       "men": "MEN",
+      "unisex": "UNISEX",
       "girls": "GIRLS",
       "news": "NEW COLLECTIONS",
       "button": "TO CATALOG"
@@ -283,6 +284,7 @@
         "subcategory": {
           "all": "All",
   "cloth": "Clothes",
+  "outerwear": "Outerwear",
   "accessories": "Accessories",
   "shoes": "Shoes"
 },
@@ -460,6 +462,7 @@
     },
         "category":{
       "men": "ДЛЯ МУЖЧИН",
+        "unisex": "ДЛЯ ВСЕХ",
       "girls": "ДЛЯ ДЕВУШЕК",
       "news": "НОВЫЕ КОЛЕКЦИИ",
       "button":"В КАТАЛОГ"
@@ -661,6 +664,7 @@
     },
     "subcategory": {
       "all": "Все товары",
+      "outerwear":"Верхняя одежда",
   "cloth": "Одежда",
   "accessories": "Аксессуары",
   "shoes": "Обувь"

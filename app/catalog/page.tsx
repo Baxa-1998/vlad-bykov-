@@ -11,7 +11,7 @@ import { $allGoods } from '../context/goods';
 import { Pagination } from '../components/elements/Pagination';
 import { $currencyRates, $location } from '../context/country';
 import { convertPrice } from '../lib/utils/convert-price';
-type Subcategory = 'all' | 'cloth' | 'accessories' | 'shoes';
+type Subcategory = 'all' | 'cloth' | 'accessories' | 'shoes' | 'outerwear';
 
 export default function CatalogPage() {
   const goods: IGoodsItemProps[] = useUnit($allGoods);
@@ -23,6 +23,8 @@ export default function CatalogPage() {
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
+  console.log(selectedSubcategory);
+  console.log(goods);
 
   const { currencyCode, currencySymbol } = useMemo(() => {
     return {
@@ -34,23 +36,47 @@ export default function CatalogPage() {
   // Основные коллекции
   const isNew = goods.filter((item) => item.isNew === true);
 
-
   // Вычисляем текущую коллекцию с учётом пола и подкатегории
-const currentCollection = useMemo(() => {
-  if (collectionSelected === 0) return isNew;
+  const currentCollection = useMemo(() => {
+    if (collectionSelected === 0) return isNew;
 
-  const type = collectionSelected === 1 ? 'men' : 'women';
+    if (collectionSelected === 2) {
+      // Мужчины
+      return goods.filter(
+        (item) =>
+          item.type === 'men' &&
+          (selectedSubcategory && selectedSubcategory !== 'all'
+            ? item.category === selectedSubcategory
+            : true),
+      );
+    }
 
-  return goods.filter(
-    (item) =>
-      item.type === type &&
-      (selectedSubcategory && selectedSubcategory !== 'all'
-        ? item.category === selectedSubcategory
-        : true)
-  );
-}, [collectionSelected, selectedSubcategory, goods]);
+    if (collectionSelected === 1) {
+      // Только unisex
+      return goods.filter(
+        (item) =>
+          item.type === 'unisex' &&
+          (selectedSubcategory && selectedSubcategory !== 'all'
+            ? item.category === selectedSubcategory
+            : true),
+      );
+    }
 
-  const subcategories = ['all','cloth', 'accessories', 'shoes']; // добавь такие категории в товары
+    if (collectionSelected === 3) {
+      // Женщины
+      return goods.filter(
+        (item) =>
+          item.type === 'women' &&
+          (selectedSubcategory && selectedSubcategory !== 'all'
+            ? item.category === selectedSubcategory
+            : true),
+      );
+    }
+
+    return [];
+  }, [collectionSelected, selectedSubcategory, goods]);
+
+  const subcategories = ['all', 'cloth', 'accessories', 'shoes', 'outerwear']; // добавь такие категории в товары
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -59,6 +85,7 @@ const currentCollection = useMemo(() => {
 
   const titles = [
     translations[lang].category.news,
+    translations[lang].category.unisex,
     translations[lang].category.men,
     translations[lang].category.girls,
   ];
@@ -90,24 +117,22 @@ const currentCollection = useMemo(() => {
         </div>
 
         {/* Подкатегории */}
-    {collectionSelected !== 0 && (
-  <div className={styles.subcategories}>
-    {subcategories.map((sub) => (
-      <button
-        key={sub}
-        className={
-          selectedSubcategory === sub || (!selectedSubcategory && sub === 'all')
-            ? styles.activeSub
-            : ''
-        }
-        onClick={() => setSelectedSubcategory(sub)}
-      >
-        {translations[lang].subcategory?.[sub as Subcategory] || sub
-}
-      </button>
-    ))}
-  </div>
-)}
+        {collectionSelected !== 0 && (
+          <div className={styles.subcategories}>
+            {subcategories.map((sub) => (
+              <button
+                key={sub}
+                className={
+                  selectedSubcategory === sub || (!selectedSubcategory && sub === 'all')
+                    ? styles.activeSub
+                    : ''
+                }
+                onClick={() => setSelectedSubcategory(sub)}>
+                {translations[lang].subcategory?.[sub as Subcategory] || sub}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Товары */}
         <div className={styles.catalogItems}>

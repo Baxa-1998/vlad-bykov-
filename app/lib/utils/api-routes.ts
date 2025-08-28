@@ -29,6 +29,14 @@ export const getMenGoods = async (db: Db) => {
   );
 };
 
+export const getUnisexGoods = async (db: Db) => {
+  const clothes = await db.collection('cloth').find({ type: 'unisex' }).toArray();
+
+  return shuffle(
+    clothes.filter((item) => Object.values(item.sizes).some((value) => value)).slice(0, 5),
+  );
+};
+
 export const getWomenGoods = async (db: Db) => {
   const clothes = await db.collection('cloth').find({ type: 'women' }).toArray();
 

@@ -2,16 +2,21 @@
 import { Effect, createDomain, sample } from 'effector';
 import { Gate, createGate } from 'effector-react';
 
-import { getAllGoodsFX, getMenProductsFX, getNewProductsFX, getShoesProductsFX, getWomenProductsFX } from '@/api/main-page';
+import {
+  getAllGoodsFX,
+  getMenProductsFX,
+  getNewProductsFX,
+  getShoesProductsFX,
+  getUnisexProductsFX,
+  getWomenProductsFX,
+} from '@/api/main-page';
 import { IGoodsItemProps } from '../types/modules';
-
 
 const goods = createDomain();
 
-
 export const MainPageGate = createGate();
 
-const setCurrentProduct = goods.createEvent<IGoodsItemProps>()
+const setCurrentProduct = goods.createEvent<IGoodsItemProps>();
 
 const goodsStoreInstance = (effect: Effect<void, [], Error>) =>
   goods
@@ -27,14 +32,13 @@ const goodSampleInstance = (effect: Effect<void, [], Error>, gate: Gate<unknown>
     target: effect,
   });
 
-
-  export const $currentProduct = goods
+export const $currentProduct = goods
   .createStore<IGoodsItemProps>({} as IGoodsItemProps)
-  .on(setCurrentProduct, (_, product) => product)
-  
+  .on(setCurrentProduct, (_, product) => product);
 
 export const $newProducts = goodsStoreInstance(getNewProductsFX);
 export const $menProducts = goodsStoreInstance(getMenProductsFX);
+export const $unisexProducts = goodsStoreInstance(getUnisexProductsFX);
 export const $womenProducts = goodsStoreInstance(getWomenProductsFX);
 export const $allGoods = goodsStoreInstance(getAllGoodsFX);
 export const $shoesProducts = goodsStoreInstance(getShoesProductsFX);
@@ -43,4 +47,5 @@ goodSampleInstance(getNewProductsFX, MainPageGate);
 goodSampleInstance(getMenProductsFX, MainPageGate);
 goodSampleInstance(getWomenProductsFX, MainPageGate);
 goodSampleInstance(getAllGoodsFX, MainPageGate);
+goodSampleInstance(getUnisexProductsFX, MainPageGate);
 goodSampleInstance(getShoesProductsFX, MainPageGate);

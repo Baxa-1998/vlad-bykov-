@@ -3,23 +3,21 @@
 import { CurrencyRates } from "@/app/context/country";
 
 
+
+
 export const convertPrice = (
-  basePrice: number, // цена в рублях
+  basePrice: number, // цена из базы (в USD)
   currencyRates: CurrencyRates | null,
   targetCurrencyCode: string
 ): number => {
   if (!currencyRates) return basePrice;
 
-  const rates = currencyRates.rates;
+  const rateForTarget = currencyRates.rates[targetCurrencyCode];
 
+  if (!rateForTarget) return basePrice;
 
-  const rateForRUB = rates['RUB'];
-  const rateForTarget = rates[targetCurrencyCode];
-
-  if (!rateForRUB || !rateForTarget) return basePrice;
-
-  const priceInBase = basePrice / rateForRUB;
-  const converted = priceInBase * rateForTarget;
+  // Переводим USD → целевая валюта
+  const converted = basePrice * rateForTarget;
 
   return Math.round(converted * 100) / 100;
 };

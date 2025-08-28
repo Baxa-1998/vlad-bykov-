@@ -16,12 +16,15 @@ export const Catalog = ({ item, convertedPrice, currencySymbol }: ICatalogProps)
  // альтернативный текст
    const [isLoading, setIsLoading] = useState(true);
    const { lang } = useLang();
+  //  console.log(item);
+   
 
   return (
     <div className={styles.catalogItem}>
      
         <Image
           src={item.img[0]?.url}
+          // src={'/img/collections/Collection1.svg'}
          
           width={224}
           height={340}

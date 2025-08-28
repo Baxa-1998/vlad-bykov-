@@ -4,7 +4,7 @@ import styles from '@/app/styles/main-page/index.module.scss';
 import Image from 'next/image';
 import { Button } from '@/app/components/elements/Button';
 import { useUnit } from 'effector-react';
-import { $menProducts, $newProducts, $womenProducts } from '@/app/context/goods';
+import { $menProducts, $newProducts, $unisexProducts, $womenProducts } from '@/app/context/goods';
 import { useLang } from '@/app/hooks/useLang';
 import { IGoodsItemProps } from '@/app/types/modules';
 import { Link, useTransitionRouter } from 'next-view-transitions';
@@ -19,8 +19,8 @@ export const NewCollection = () => {
   const newGoods: IGoodsItemProps[] = useUnit($newProducts);
   const menGoods: IGoodsItemProps[] = useUnit($menProducts);
   const womenGoods: IGoodsItemProps[] = useUnit($womenProducts);
-
-
+  const unisexGoods: IGoodsItemProps[] = useUnit($unisexProducts);
+  console.log(unisexGoods);
 
   const router = useTransitionRouter();
   const location = useUnit($location);
@@ -28,8 +28,8 @@ export const NewCollection = () => {
 
   const { currencyCode, currencySymbol } = React.useMemo(() => {
     return {
-      currencyCode: location?.currency.code || 'RUB',
-      currencySymbol: location?.currency.symbol || '₽',
+      currencyCode: location?.currency.code || 'USD',
+      currencySymbol: location?.currency.symbol || '$',
     };
   }, [location]);
 
@@ -41,9 +41,18 @@ export const NewCollection = () => {
   // }, [location]);
   const titles = [
     translations[lang].category.news,
+    translations[lang].category.unisex,
     translations[lang].category.men,
     translations[lang].category.girls,
   ];
+  const selectedGoods =
+  collectionSelected === 0
+    ? newGoods
+    : collectionSelected === 1
+    ? unisexGoods
+    : collectionSelected === 2
+    ? menGoods
+    : womenGoods;
   const handleCollectionClick = (index: number) => {
     setCollectionSelected(index);
   };
@@ -64,17 +73,11 @@ export const NewCollection = () => {
             ))}
           </div>
         </div>
-        
+
         <div className={styles.newCollectionItems}>
-     
-          {(collectionSelected === 0
-            ? newGoods
-            : collectionSelected === 1
-            ? menGoods
-            : womenGoods
-          ).map((item) => {
+          {selectedGoods.map((item) => {
             const convertedPrice = convertPrice(item.price, rates, currencyCode);
-                const langContent = item.content?.[lang];
+            const langContent = item.content?.[lang];
             return (
               <Link key={item._id} href={`/catalog/${item._id}`}>
                 <div className={styles.newCollectionItem}>
@@ -88,8 +91,8 @@ export const NewCollection = () => {
                   <Image
                     width={300}
                     height={300}
-                    src ={item.img[0]?.url}
-             
+                    // src={'/img/collections/Collection1.svg'}
+                    src={item.img[0]?.url}
                     alt="collection"
                     onLoadingComplete={() => setIsLoading(false)}
                     style={{
@@ -98,13 +101,10 @@ export const NewCollection = () => {
                     }}
                   />
                   <span className={styles.newCollectionItemTitle}>
-                           {langContent?.characteristics?.compositions}
+                    {langContent?.characteristics?.compositions}
                   </span>
-                  <h4 className={styles.newCollectionItemName}>
-                     {langContent?.name}
-                  </h4>
+                  <h4 className={styles.newCollectionItemName}>{langContent?.name}</h4>
                   <p className={styles.newCollectionItemPrice}>
-                 
                     {convertedPrice.toFixed(0)} {currencySymbol}
                   </p>
                 </div>
@@ -112,7 +112,6 @@ export const NewCollection = () => {
             );
           })}
         </div>
-
 
         <div className={styles.newCollectionBtnWrapper}>
           <Link

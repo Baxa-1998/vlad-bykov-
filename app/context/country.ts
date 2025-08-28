@@ -44,16 +44,16 @@ export const fetchLocationFx = createEffect(async (): Promise<LocationData> => {
 });
 
 // === Эффект получения курса валют ===
-export const fetchCurrencyRatesFx = createEffect(async (currencyCode: string) => {
-  const res = await fetch(`/api/currency?base=${currencyCode}`);
+export const fetchCurrencyRatesFx = createEffect(async () => {
+  const res = await fetch(`/api/currency?base=USD`);
   if (!res.ok) {
-   
     return { rates: {} }; // безопасная заглушка
   }
 
   const data = await res.json();
+  console.log("API response (base USD):", data);
 
-  return data;
+  return data; // { base: "USD", rates: { UZS: ..., EUR: ..., RUB: ... } }
 });
 
 // === Ивенты ===

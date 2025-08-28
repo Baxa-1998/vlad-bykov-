@@ -19,6 +19,12 @@ export const getWomenProductsFX = createEffect(async () => {
   return data; 
 });
 
+export const getUnisexProductsFX = createEffect(async () => {
+  const { data } = await api.get('/api/goods/unisex');
+
+  return data; 
+});
+
 export const getAllGoodsFX = createEffect(async () => {
   const { data } = await api.get('/api/goods/goods');
 

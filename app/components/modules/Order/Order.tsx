@@ -348,10 +348,10 @@ export const Order = () => {
               {convertedPrice.toFixed(0)} {currencySymbol}
             </p>
           </div>
-          <div className={styles.orderSummaryDelivery}>
+          {/* <div className={styles.orderSummaryDelivery}>
             <h5>{translations[lang].order.title2}</h5>
             <p>0 ₽</p>
-          </div>
+          </div> */}
           <div className={styles.finalPrice}>
             <h5>{translations[lang].order.total}</h5>
             <p>

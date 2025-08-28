@@ -2,7 +2,7 @@
 import {MongoClient} from 'mongodb';
 
 const clientPromise =  MongoClient.connect(
-  process.env.DB_URL as string,
+  process.env.NEXT_PUBLIC_DB_URL as string,
 {
   maxPoolSize: 10,
 }

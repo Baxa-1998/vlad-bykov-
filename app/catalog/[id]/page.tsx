@@ -64,12 +64,12 @@ const ProductPage = () => {
   const [open, setOpen] = useState(false);
   const rates = useUnit($currencyRates);
 
-  const { currencyCode, currencySymbol } = React.useMemo(() => {
-    return {
-      currencyCode: location?.currency.code || 'RUB',
-      currencySymbol: location?.currency.symbol || '₽',
-    };
-  }, [location]);
+const { currencyCode, currencySymbol } = React.useMemo(() => {
+  return {
+    currencyCode: location?.currency.code || 'USD',
+    currencySymbol: location?.currency.symbol || '$',
+  };
+}, [location]);
 
   const convertedPrice = convertPrice(item?.price ?? 0, rates, currencyCode);
 
@@ -136,6 +136,7 @@ const ProductPage = () => {
               width={526}
               height={720}
               src={selectedImage}
+              //  src={'/img/collections/Collection1.svg'}
               alt="collection"
             />
           )}

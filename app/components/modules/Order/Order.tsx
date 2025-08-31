@@ -324,7 +324,7 @@ export const Order = () => {
             return (
               <div key={item.clientId} className={styles.orderSummaryItem}>
                 <div>
-                  <Image src={item?.img.url} width={80} height={80} alt={'cart'} />
+                  {/* <Image src={item?.img.url} width={80} height={80} alt={'cart'} /> */}
 
                   <div className={styles.orderSummaryInfo}>
                     <p className={styles.orderSummarySize}>{item.size}</p>

@@ -29,7 +29,6 @@ const ProductPage = () => {
   // получаю рандомные 5 товаров
   const randomGoods = goods.sort(() => Math.random() - 0.5).slice(0, 5);
 
-
   // item это конкретный продукт которые находит в goods по его id
   const item = goods.find((i) => i._id === id);
   const [expanded, setExpanded] = useState(false);
@@ -55,7 +54,7 @@ const ProductPage = () => {
 
     addItemToCart(item, lang, count, selectedSize, selectedColor);
     console.log(selectedColor);
-    
+
     openCartPopup();
   };
 
@@ -64,12 +63,12 @@ const ProductPage = () => {
   const [open, setOpen] = useState(false);
   const rates = useUnit($currencyRates);
 
-const { currencyCode, currencySymbol } = React.useMemo(() => {
-  return {
-    currencyCode: location?.currency.code || 'USD',
-    currencySymbol: location?.currency.symbol || '$',
-  };
-}, [location]);
+  const { currencyCode, currencySymbol } = React.useMemo(() => {
+    return {
+      currencyCode: location?.currency.code || 'USD',
+      currencySymbol: location?.currency.symbol || '$',
+    };
+  }, [location]);
 
   const convertedPrice = convertPrice(item?.price ?? 0, rates, currencyCode);
 
@@ -118,8 +117,8 @@ const { currencyCode, currencySymbol } = React.useMemo(() => {
                   <Image
                     width={60}
                     height={60}
-                    src={img.url}
-                    // src={'/img/collections/Collection1.svg'}
+                    // src={img.url}
+                    src={'/img/collections/Collection1.svg'}
                     alt={'collection'}
                     // alt="collection"
                     onClick={() => setSelectedImage(img.url)}
@@ -135,8 +134,8 @@ const { currencyCode, currencySymbol } = React.useMemo(() => {
               className={styles.productMainImg}
               width={526}
               height={720}
-              src={selectedImage}
-              //  src={'/img/collections/Collection1.svg'}
+              // src={selectedImage}
+              src={'/img/collections/Collection1.svg'}
               alt="collection"
             />
           )}
@@ -176,9 +175,9 @@ const { currencyCode, currencySymbol } = React.useMemo(() => {
             </div>
           </div>
 
-          <h3>
+          {/*   <h3>
             {translations[lang].productItem.inStock} {item.inStock}
-          </h3>
+          </h3>     */}
           <Button onClick={addToCart} className={styles.productBtn}>
             {translations[lang].productItem.add_to_cart}
           </Button>
@@ -261,8 +260,8 @@ const { currencyCode, currencySymbol } = React.useMemo(() => {
               <Link key={item._id} href={`/catalog/${item._id}`}>
                 <div className={styles.recommendationItem}>
                   <Image
-                    // src={'/img/collections/Collection1.svg'}
-                    src={item.img[0].url}
+                    src={'/img/collections/Collection1.svg'}
+                    // src={item.img[0].url}
                     width={220}
                     height={340}
                     alt={'recommendation-img'}

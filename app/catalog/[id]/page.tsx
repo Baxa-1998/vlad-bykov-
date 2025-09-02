@@ -117,8 +117,8 @@ const ProductPage = () => {
                   <Image
                     width={60}
                     height={60}
-                    // src={img.url}
-                    src={'/img/collections/Collection1.svg'}
+                    src={img.url}
+                    // src={'/img/collections/Collection1.svg'}
                     alt={'collection'}
                     // alt="collection"
                     onClick={() => setSelectedImage(img.url)}
@@ -134,8 +134,8 @@ const ProductPage = () => {
               className={styles.productMainImg}
               width={526}
               height={720}
-              // src={selectedImage}
-              src={'/img/collections/Collection1.svg'}
+              src={selectedImage}
+              // src={'/img/collections/Collection1.svg'}
               alt="collection"
             />
           )}
@@ -260,8 +260,8 @@ const ProductPage = () => {
               <Link key={item._id} href={`/catalog/${item._id}`}>
                 <div className={styles.recommendationItem}>
                   <Image
-                    src={'/img/collections/Collection1.svg'}
-                    // src={item.img[0].url}
+                    // src={'/img/collections/Collection1.svg'}
+                    src={item.img[0].url}
                     width={220}
                     height={340}
                     alt={'recommendation-img'}

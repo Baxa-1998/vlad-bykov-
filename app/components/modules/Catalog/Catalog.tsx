@@ -23,8 +23,8 @@ export const Catalog = ({ item, convertedPrice, currencySymbol }: ICatalogProps)
     <div className={styles.catalogItem}>
      
         <Image
-          // src={item.img[0]?.url}
-          src={'/img/collections/Collection1.svg'}
+          src={item.img[0]?.url}
+          // src={'/img/collections/Collection1.svg'}
          
           width={224}
           height={340}

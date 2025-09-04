@@ -100,9 +100,10 @@ export const NewCollection = () => {
                       transition: 'opacity 0.3s ease-in-out',
                     }}
                   />
-                  <span className={styles.newCollectionItemTitle}>
+                  {/* состав */}
+                  {/* <span className={styles.newCollectionItemTitle}>
                     {langContent?.characteristics?.compositions}
-                  </span>
+                  </span> */}
                   <h4 className={styles.newCollectionItemName}>{langContent?.name}</h4>
                   <p className={styles.newCollectionItemPrice}>
                     {convertedPrice.toFixed(0)} {currencySymbol}

@@ -23,8 +23,8 @@ export const Catalog = ({ item, convertedPrice, currencySymbol }: ICatalogProps)
     <div className={styles.catalogItem}>
      
         <Image
-          src={item.img[0]?.url}
-          // src={'/img/collections/Collection1.svg'}
+          // src={item.img[0]?.url}
+          src={'/img/collections/Collection1.svg'}
          
           width={224}
           height={340}
@@ -39,8 +39,8 @@ export const Catalog = ({ item, convertedPrice, currencySymbol }: ICatalogProps)
         />
    
 
-      <h5>{item.content[lang]?.characteristics?.compositions?.split('/').join(', ')}</h5>
-      <h4>{item.content[lang].characteristics.collection}</h4>
+      <h5>{item.content[lang]?.name}</h5>
+      {/* <h4>{item.content[lang].characteristics.collection}</h4> */}
       <p>
         {convertedPrice.toFixed(0)} {currencySymbol}
       </p>

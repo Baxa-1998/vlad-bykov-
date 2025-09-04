@@ -40,7 +40,7 @@ export default function CatalogPage() {
   const currentCollection = useMemo(() => {
     if (collectionSelected === 0) return isNew;
 
-    if (collectionSelected === 2) {
+    if (collectionSelected === 1) {
       // Мужчины
       return goods.filter(
         (item) =>
@@ -51,18 +51,18 @@ export default function CatalogPage() {
       );
     }
 
-    if (collectionSelected === 1) {
-      // Только unisex
-      return goods.filter(
-        (item) =>
-          item.type === 'unisex' &&
-          (selectedSubcategory && selectedSubcategory !== 'all'
-            ? item.category === selectedSubcategory
-            : true),
-      );
-    }
+    // if (collectionSelected === 1) {
+    //   // Только unisex
+    //   return goods.filter(
+    //     (item) =>
+    //       item.type === 'unisex' &&
+    //       (selectedSubcategory && selectedSubcategory !== 'all'
+    //         ? item.category === selectedSubcategory
+    //         : true),
+    //   );
+    // }
 
-    if (collectionSelected === 3) {
+    if (collectionSelected === 2) {
       // Женщины
       return goods.filter(
         (item) =>
@@ -85,7 +85,7 @@ export default function CatalogPage() {
 
   const titles = [
     translations[lang].category.news,
-    translations[lang].category.unisex,
+    // translations[lang].category.unisex,
     translations[lang].category.men,
     translations[lang].category.girls,
   ];

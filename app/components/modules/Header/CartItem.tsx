@@ -17,8 +17,8 @@ export const CartItem = ({ item, convertedPrice, currencySymbol }: CartItemProps
     <div className="cart__item">
       <div className="cart__img">
         <Image
-          src={item.img.url}
-          // src={'/img/collections/Collection1.svg'}
+          // src={item.img.url}
+          src={'/img/collections/Collection1.svg'}
           width={128}
           height={192}
           alt="cart-item"

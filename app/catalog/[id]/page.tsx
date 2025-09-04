@@ -117,8 +117,8 @@ const ProductPage = () => {
                   <Image
                     width={60}
                     height={60}
-                    src={img.url}
-                    // src={'/img/collections/Collection1.svg'}
+                    // src={img.url}
+                    src={'/img/collections/Collection1.svg'}
                     alt={'collection'}
                     // alt="collection"
                     onClick={() => setSelectedImage(img.url)}
@@ -134,15 +134,15 @@ const ProductPage = () => {
               className={styles.productMainImg}
               width={526}
               height={720}
-              src={selectedImage}
-              // src={'/img/collections/Collection1.svg'}
+              // src={selectedImage}
+              src={'/img/collections/Collection1.svg'}
               alt="collection"
             />
           )}
         </div>
 
         <div className={styles.productInfo}>
-          <h5>{item.content[lang].characteristics.compositions.split('/')}</h5>
+          {/* <h5>{item.content[lang].characteristics.compositions.split('/')}</h5> */}
           <h4>{item.name}</h4>
           <p>
             {convertedPrice.toFixed(0)} {currencySymbol}
@@ -260,16 +260,16 @@ const ProductPage = () => {
               <Link key={item._id} href={`/catalog/${item._id}`}>
                 <div className={styles.recommendationItem}>
                   <Image
-                    // src={'/img/collections/Collection1.svg'}
-                    src={item.img[0].url}
+                    src={'/img/collections/Collection1.svg'}
+                    // src={item.img[0].url}
                     width={220}
                     height={340}
                     alt={'recommendation-img'}
                   />
                   <div className={styles.recommendationItemInfo}>
-                    <p className={styles.composition}>
+                    {/* <p className={styles.composition}>
                       {langContent?.characteristics?.compositions}
-                    </p>
+                    </p> */}
                     <p className={styles.name}> {langContent?.name}</p>
                     <p className={styles.price}>
                       {convertedPrice.toFixed(0)} {currencySymbol}

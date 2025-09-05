@@ -58,9 +58,9 @@ export default function CategoryPage({ products,  label }: TCategoryPageProps) {
                     // src={'/img/collections/Collection1.svg'}
                     alt="collection"
                   />
-                  <span className={styles.newCollectionItemTitle}>
+                  {/* <span className={styles.newCollectionItemTitle}>
                     {product.content[lang].characteristics.compositions.split('/')}
-                  </span>
+                  </span> */}
                   <h4 className={styles.newCollectionItemName}>
                     {product.content[lang].name}
                   </h4>

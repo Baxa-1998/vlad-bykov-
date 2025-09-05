@@ -99,6 +99,8 @@ const ProductPage = () => {
   }, [item]);
 
   if (!item) return <div>{translations[lang].productItem.not_fount}</div>;
+ 
+  
   return (
     <div className={styles.product}>
       <div className={styles.productTop}>
@@ -117,8 +119,8 @@ const ProductPage = () => {
                   <Image
                     width={60}
                     height={60}
-                    // src={img.url}
-                    src={'/img/collections/Collection1.svg'}
+                    src={img.url}
+                    // src={'/img/collections/Collection1.svg'}
                     alt={'collection'}
                     // alt="collection"
                     onClick={() => setSelectedImage(img.url)}
@@ -134,8 +136,8 @@ const ProductPage = () => {
               className={styles.productMainImg}
               width={526}
               height={720}
-              // src={selectedImage}
-              src={'/img/collections/Collection1.svg'}
+              src={selectedImage}
+              // src={'/img/collections/Collection1.svg'}
               alt="collection"
             />
           )}
@@ -143,37 +145,31 @@ const ProductPage = () => {
 
         <div className={styles.productInfo}>
           {/* <h5>{item.content[lang].characteristics.compositions.split('/')}</h5> */}
-          <h4>{item.name}</h4>
+          <h4>{item.content[lang]?.name}</h4>
           <p>
             {convertedPrice.toFixed(0)} {currencySymbol}
           </p>
-          <div className={styles.productSize}>
-            <p>{translations[lang].productItem.size}</p>
-            <div className={styles.productSizeItems}>
-              {Array.isArray(item.sizes)
-                ? item.sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size.toString())}
-                      className={`${styles.sizeButton} ${
-                        selectedSize === size.toString() ? styles.selected : ''
-                      }`}>
-                      {size}
-                    </button>
-                  ))
-                : Object.entries(item.sizes).map(([size, available]) => (
-                    <button
-                      key={size}
-                      disabled={!available}
-                      onClick={() => available && setSelectedSize(size)}
-                      className={`${styles.sizeButton} ${
-                        selectedSize === size ? styles.selected : ''
-                      } ${!available ? styles.disabled : ''}`}>
-                      {size.toUpperCase()}
-                    </button>
-                  ))}
-            </div>
-          </div>
+<div className={styles.productSize}>
+  <p>{translations[lang].productItem.size}</p>
+  <div className={styles.productSizeItems}>
+    {Object.entries(item.sizes).map(([size, available]) => (
+      <div key={size} className={styles.sizeWrapper}>
+        <button
+          disabled={!available}
+          onClick={() => available && setSelectedSize(size)}
+          className={`${styles.sizeButton} ${
+            selectedSize === size ? styles.selected : ''
+          } ${!available ? styles.disabled : ''}`}
+        >
+          {size.toUpperCase()}
+        </button>
+        {size.toUpperCase() === 'C' && available && (
+          <div className={styles.tooltip}>{translations[lang].productItem.custom}</div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
 
           {/*   <h3>
             {translations[lang].productItem.inStock} {item.inStock}
@@ -260,8 +256,8 @@ const ProductPage = () => {
               <Link key={item._id} href={`/catalog/${item._id}`}>
                 <div className={styles.recommendationItem}>
                   <Image
-                    src={'/img/collections/Collection1.svg'}
-                    // src={item.img[0].url}
+                    // src={'/img/collections/Collection1.svg'}
+                    src={item.img[0].url}
                     width={220}
                     height={340}
                     alt={'recommendation-img'}

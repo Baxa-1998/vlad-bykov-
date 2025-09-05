@@ -4,10 +4,10 @@ require('dotenv').config();
 const config = {
   mongodb: {
     // TODO Change (or review) the url to your MongoDB:
-    url: process.env.NEXT_PUBLIC_DB_URL,
+    url: process.env.DB_URL,
 
     // TODO Change this to your database name:
-    databaseName: process.env.NEXT_PUBLIC_DB_NAME,
+    databaseName: process.env.DB_NAME,
 
     // options: {
     //   useNewUrlParser: true, // removes a deprecation warning when connecting

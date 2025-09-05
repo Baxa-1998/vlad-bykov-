@@ -41,16 +41,16 @@ export const NewCollection = () => {
   // }, [location]);
   const titles = [
     translations[lang].category.news,
-    translations[lang].category.unisex,
+    // translations[lang].category.unisex,
     translations[lang].category.men,
     translations[lang].category.girls,
   ];
   const selectedGoods =
   collectionSelected === 0
     ? newGoods
+    // : collectionSelected === 1
+    // ? unisexGoods
     : collectionSelected === 1
-    ? unisexGoods
-    : collectionSelected === 2
     ? menGoods
     : womenGoods;
   const handleCollectionClick = (index: number) => {

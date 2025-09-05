@@ -55,8 +55,8 @@ export const SearchModal = () => {
                   <Link key={item._id} href={`/catalog/${item._id}`}>
                     <div onClick={closeModal} className="search-modal__item">
                       <Image
-                        // src={item.img[0].url}
-                         src={'/img/collections/Collection1.svg'}
+                        src={item.img[0].url}
+                        //  src={'/img/collections/Collection1.svg'}
                         width={220}
                         height={340}
                         alt={'item'}

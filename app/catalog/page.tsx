@@ -18,6 +18,7 @@ export default function CatalogPage() {
   const location = useUnit($location);
   const rates = useUnit($currencyRates);
   const { translations, lang } = useLang();
+  
 
   const [collectionSelected, setCollectionSelected] = useState(0); // 0 - Новинки, 1 - Мужчины, 2 - Женщины
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);

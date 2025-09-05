@@ -173,6 +173,7 @@
       }
       .newCollectionItems {
         overflow: scroll;
+          align-items: start;
       }
       .newCollectionInner {
         overflow: scroll;
@@ -181,7 +182,7 @@
           display: flex;
           width: 1200px !important;
           flex-wrap: nowrap;
-          padding-left: 500px;
+          padding-left: 280px;
           h3 {
             width: 220px;
             &:nth-child(2) {

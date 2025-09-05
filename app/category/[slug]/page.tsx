@@ -26,7 +26,7 @@ export default function CategorySlugPage() {
   ]
 
   const currentCategory = categories.find((c) => c.slug === slug)
-  console.log(currentCategory);
+
   
 
   const filteredGoods = goods.filter((item) => {

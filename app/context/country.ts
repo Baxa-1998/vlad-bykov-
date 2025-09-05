@@ -51,7 +51,7 @@ export const fetchCurrencyRatesFx = createEffect(async () => {
   }
 
   const data = await res.json();
-  console.log("API response (base USD):", data);
+
 
   return data; // { base: "USD", rates: { UZS: ..., EUR: ..., RUB: ... } }
 });

@@ -24,8 +24,7 @@ export default function CatalogPage() {
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
-  console.log(selectedSubcategory);
-  console.log(goods);
+
 
   const { currencyCode, currencySymbol } = useMemo(() => {
     return {
